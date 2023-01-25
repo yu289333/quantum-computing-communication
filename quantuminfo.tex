@@ -19,6 +19,7 @@
 \usepackage[utf8]{inputenc}  
 \usepackage{fix-cm}  % this package allows large \fontsize
 \usepackage{tikz}    % this is for graphics. e.g. rectangle on title page
+\usepackage{graphicx}
 \usepackage{amsmath} % Used by equations
 
 % The following dimensions specify 4.75" X 7.5" content on 6 3/8" by 9 1/4"
@@ -44,13 +45,7 @@
 % \begin{document}) after you insert your own content.
 % Example content from Einstein's Meaning of Relativity.
 % Public domain book: http://www.gutenberg.org/ebooks/36276
-\newcommand{\fakeparagraph}{The theory of relativity is intimately connected
-with the theory of space and time. I shall therefore begin with a brief
-investigation of the origin of our ideas of space and time, although in
-doing so I know that I introduce a controversial subject. The object of all
-science, whether natural science or psychology, is to co-ordinate our
-experiences and to bring them into a logical system. How are our customary
-ideas of space and time related to the character of our experiences?}
+\newcommand{\fakeparagraph}{The theory of relativity experiences?}
 
 \newcommand{\fakecontent}{
 \fakeparagraph{}
@@ -78,42 +73,8 @@ ideas of space and time related to the character of our experiences?}
 \begin{document}
 \frontmatter
 
-% ---- Half Title Page ----
-% current geometry will be restored after title page
-\newgeometry{top=1.75in,bottom=.5in}
-\begin{titlepage}
-\begin{flushleft}
-
-% Title
-\textbf{\fontfamily{qcs}\fontsize{38}{54}\selectfont Quantum Information\\and Computing\\}
-
-% Draw a line 4pt high
-\par\noindent\rule{\textwidth}{4pt}\\
-
-% Subtitle
-% Shaded box from left to right. Text node is midway (centered).
-\begin{tikzpicture}
-\shade[bottom color=lightgray,top color=white]
-    (0,0) rectangle (\textwidth, 1.5)
-    node[midway] {\textbf{\large \textit{\booksubtitle}}};
-\end{tikzpicture}
-
-% Edition Number
-\begin{flushright}
-\Large First Edition
-\end{flushright}
-
-% \vspace{\fill}
-\vspace{\fill}
-
-\end{flushleft}
-\end{titlepage}
-\restoregeometry
-% ---- End of Half Title Page ----
-
-
 % No page numbers on the Frontispiece page
-\thispagestyle{empty}
+% \thispagestyle{empty}
 
 
 % ---- Title Page ----
@@ -123,7 +84,7 @@ ideas of space and time related to the character of our experiences?}
 \begin{flushleft}
 
 % Title
-\textbf{\fontfamily{qcs}\fontsize{48}{54}\selectfont Science\\Textbook\\}
+\textbf{\fontfamily{qcs}\fontsize{38}{50}\selectfont Quantum Information\\and Computing\\}
 
 % Draw a line 4pt high
 \par\noindent\rule{\textwidth}{4pt}\\
@@ -181,7 +142,7 @@ License: \booklicense
 
 % The asterisk excludes chapter from the table of contents.
 \chapter*{Preface}
-Quantum information and computing are hot topics, and there are many books around. But there is no book for computer science or engineering students who have not taken any courses on quantum physics. Of course, there are many popular science books and articles that explain quantum physics by drawing analogy to laymen observable things. But can one use the analogies of quantum superposition or entanglement to QSI programming? This book is to bridge the gap between quantum physics and computer and information science so that students can use their computer and information science knowledge to implement quantum algorithms and protocols.
+Quantum information and computing are hot topics, and there are many books around. But there is no book for computer science or engineering students who have not taken any courses on quantum physics. Of course, there are many popular science books and articles that explain quantum physics by drawing analogy to laymen observable things. But can one use the analogies of quantum superposition or entanglement to (IBM) QIS programming? This book is to bridge the gap between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement or even develop quantum algorithms and protocols.
 
 % Three-level Table of Contents
 \setcounter{tocdepth}{3}
@@ -190,33 +151,43 @@ Quantum information and computing are hot topics, and there are many books aroun
 \mainmatter
 
 \chapter{Introduction}
+The advantage of quantum computing lies in possibility of parallel computing using a quantum system. The secrecy of quantum key exchange lies in the uncertainty of quantum measurement. If these statements are too abstract, read on.
+
 \section{The Advantage of Parallel Exploration}
 \subsection{The Maze Problem}
-Maze problems are hard. That's because there are too many paths explore from the entrance to the exit. Computer scientists have long known parallel computing can speed up the solution finding.
+Maze problems are hard. That's because there are too many paths to explore from the entrance to the exit. Computer scientists have long known parallel computing is the way to speed up finding solutions to such problems.
 
-For a physicist, the problem could be simple: let's run water into the entrance. If we see water out of the exit, we know the maze problem has at least one solution or one good path from the entrance to the exit. How do we know whether there are more than one good paths or how many good paths there are?
+\begin{figure}[ht]
+\includegraphics[width=6cm]{maze.png}
+\caption{Maze}
+\label{Maze}
+\end{figure}
 
+For a physicist, this experiment is the fast approach to a solution: run water into the entrance. If we see water out of the exit, we know the maze problem has at least one solution. But do we know whether there are more than one good paths or how many good paths there are? We can refine the experiment: run several water drops into the entrance. Of course, these are not the solution to the final maze problem, but we can keep on adding water tricks toward a solution.
+Of course the solutions to such hard problems are to explore all the paths in parallel. Let’s look at how a physicist would use parallel exploration to solve the maze problems.
 
+For the simplest case – we want to know if there is any good path at all. We can put water into the entrance. If there is any water coming out of the exit, we know the answer is positive. Adding complexity to the problem, we want to know how many good paths there are? Again, we can play the water trick. Let’s put several water drops into the entrance and see how many drops will come out. Until now, we don't have the solution to the final maze problem, but we can keep on adding water tricks toward a solution.
 
-\chapter{Theory of Numbers}\fakesections{}
-\chapter{Irrational and Transcendent Numbers}\fakesections{}
-\chapter{Complex Numbers}\fakesections{}
-\chapter{Quaternions and Ausdehnungslehre}\fakesections{}
-\chapter{Theory of Equations}\fakesections{}
-\chapter{Substitutions and Groups}\fakesections{}
-\chapter{Determinants}\fakesections{}
-\chapter{Quantics}\fakesections{}
-\chapter{Calculus}\fakesections{}
-\chapter{Differential Equations}\fakesections{}
-\chapter{Infinite Series}\fakesections{}
-\chapter{Theory of Functions}\fakesections{}
-\chapter{Probabilities and Least Squares}\fakesections{}
-\chapter{Analytic Geometry}\fakesections{}
-\chapter{Modern Geometry}\fakesections{}
-\chapter{Trigonometry and Elementary Geometry}\fakesections{}
-\chapter{Non-Euclidean Geometry}\fakesections{}
-\chapter{Bibliography}\fakesections{}
-\chapter{General Tendencies}\fakesections{}
+Playing with water tricks is exactly the idea behind quantum computers. Quantum physics tells us every particle possesses both wave behavior and particle behavior. The wave behavior is like the watery behavior and allows the wave to spread and propagate through out all possible paths. The particle behavior gives use the “drop” behavior and allows the particle to reveal the properties, e.g. the length, of the individual paths.
+\subsection{Waves}
+We use electromagnetic waves every day. We get Wi-Fi or cellphone signals even when we move around the house or on the streets because the waves can spread and explore unlimited paths to reach us. We can contain electromagnetic waves in boxes. Microwave ovens are examples. We can also optical fibers, co-axile cables and waveguides to channel electromagnetic waves in one dimension along the cable lengths.
+
+All matters, e.g. electrons, are waves in nature. If electrons were not waves, they would collapse to the positively charged nucleus and result in atoms of zero sizes, and we have not seen the world as we have.
+
+\subsection{Particles}
+A particle is the smallest "drop" of matter. But "smallest" by what measure? That is a critical question we should ask. By the amount of energy, a photon is the smallest drop of an electromagnetic wave, and the energy is proportional to the frequency of the wave. An electron is the smallest drop if measured by both mass and electric charge.
+
+The waves and matters we see or use everyday contain too many particles, and we only see the average behavior of the waves and matters. Only special equipment allow us to observe and work with individual particles.
+
+\subsection{State and superposition}
+State is a quantum physics term referring to the wave that a particle is in. Physicists use the wavefunction $\psi$ of the wave to note the state $|\psi>$ - the so called "ket" notation. But throughout this book, we use the labels e.g. "0" and "1" of the waves to note the states as $|0>$ and $|1>$. 
+
+Can a particle be in two waves? Yes, it can. The two waves may be viewed as two by one measurement but are one by another measurement. 
+
+\chapter{Qubits for computing}
+\chapter{Qubits for communication}
+\chapter{Bibliography}
+\chapter{General Tendencies}
 
 \backmatter
 \addcontentsline{toc}{chapter}{Index}
