@@ -144,6 +144,10 @@ License: \booklicense
 \chapter*{Preface}
 Quantum information and computing are hot topics, and there are many books around. But there is no book for computer science or engineering students who have not taken any courses on quantum physics. Of course, there are many popular science books and articles that explain quantum physics by drawing analogy to laymen observable things. But can one use the analogies of quantum superposition or entanglement to (IBM) QIS programming? This book is to bridge the gap between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement or even develop quantum algorithms and protocols.
 
+The difficulty of quantum physics lies in the wave behavior of particles. The focus of theoretical is how to solve the wave equations. And experimental physicists focus on how to control the waves. This book leaves out the details of the waves by labelling them with symbols e.g. "0" and "1". The symbols are what computer science and engineering students know how to work with. They are what the computer science data structure and algorithms, and Shannon information theory apply.
+
+How to label waves with symbols is studied by encoding theory whose techniques have been studied by electrical engineering students. They are the bridge between physics in the analog world and information and computer sciences in the digital world.
+
 % Three-level Table of Contents
 \setcounter{tocdepth}{3}
 \tableofcontents
@@ -151,7 +155,7 @@ Quantum information and computing are hot topics, and there are many books aroun
 \mainmatter
 
 \chapter{Introduction}
-The advantage of quantum computing lies in possibility of parallel computing using a quantum system. The secrecy of quantum key exchange lies in the uncertainty of quantum measurement. If these statements are too abstract, read on.
+The advantage of quantum computing lies in the possibility of parallel computing using a quantum system. Quantum information theory is mostly used in distributing encryption keys for telecommunication using quantum systems -- the so called quantum key distribution. The secrecy of quantum key exchange lies in the uncertainty of quantum measurement. If these statements are too abstract, read on.
 
 \section{The Advantage of Parallel Exploration}
 \subsection{The Maze Problem}
@@ -172,15 +176,19 @@ Playing with water tricks is exactly the idea behind quantum computers. Quantum 
 \subsection{Waves}
 We use electromagnetic waves every day. We get Wi-Fi or cellphone signals even when we move around the house or on the streets because the waves can spread and explore unlimited paths to reach us. We can contain electromagnetic waves in boxes. Microwave ovens are examples. We can also optical fibers, co-axile cables and waveguides to channel electromagnetic waves in one dimension along the cable lengths.
 
-All matters, e.g. electrons, are waves in nature. If electrons were not waves, they would collapse to the positively charged nucleus and result in atoms of zero sizes, and we have not seen the world as we have.
+All matters, e.g. electrons, are waves in nature. If electrons were not waves, they would collapse to the positively charged nucleus and result in atoms of zero sizes, and we would have not seen the world as we have.
 
 \subsection{Particles}
-A particle is the smallest "drop" of matter. But "smallest" by what measure? That is a critical question we should ask. By the amount of energy, a photon is the smallest drop of an electromagnetic wave, and the energy is proportional to the frequency of the wave. An electron is the smallest drop if measured by both mass and electric charge.
+A particle is the smallest "drop" of matter. But "the smallest" by what measure? That is a critical question we should ask. By the amount of energy, a photon is the smallest drop of an electromagnetic wave. An electron is the smallest drop if measured by both mass and electric charge.
 
-The waves and matters we see or use everyday contain too many particles, and we only see the average behavior of the waves and matters. Only special equipment allow us to observe and work with individual particles.
+The waves and matters we see or use everyday contain too many particles, and we only see the average effects of the waves and matters. If we have two beams of lights, one is yellow and the other blue, merged into one, what do we see? We see a beam of green light. But if we lower the emissions from each of the lights to one photon at a time, we will see either a yellow or blue photon -- we don't see a green photon. 
+
+The sound from a guitar string play note E is different in our ears from that played on a violin. That is because the sound from each is composed by many harmonics, an octave apart from each other. The average or combined effects from the strings of different instruments is different. If our ears were sensitive enough to hear individual phonons -- the smallest drops of sound -- we would hear sound of pure harmonics.
+
+Of course making such single particle, photon or phonon, generators or detectors has been the very challenge to physicists in their effort to make quantum computing and communication.
 
 \subsection{State and superposition}
-State is a quantum physics term referring to the wave that a particle is in. Physicists use the wavefunction $\psi$ of the wave to note the state $|\psi>$ - the so called "ket" notation. But throughout this book, we use the labels e.g. "0" and "1" of the waves to note the states as $|0>$ and $|1>$. 
+From a wave's perspective, we see particles in it. From a particle's perspective, we can imagine it rides on a wave like a surfer following the trajectry defined by the wave. State is a quantum physics term referring to the wave that a particle rides on. Physicists use the wavefunction $\psi$ of the wave to note the state $|\psi>$ - the so called "ket" notation. But throughout this book, we use the labels e.g. "0" and "1" of the waves to note the states as $|0>$ and $|1>$. 
 
 Can a particle be in two waves? Yes, it can. The two waves may be viewed as two by one measurement but are one by another measurement. 
 
