@@ -114,10 +114,9 @@
 % The source file is book.svg. If you change the svg, you must then convert
 % it to pdf. There are many online and offline tools available to do that.
 \begin{center}
-\includegraphics{booksvg.pdf}\\[4pt]
+%\includegraphics{booksvg.pdf}\\[4pt]
 \fontfamily{lmtt}\small{Self Publishers Worldwide\\
-Seattle San Francisco New York\\
-London Paris Rome Beijing Barcelona}
+}
 \end{center}
 
 \end{flushleft}
@@ -142,7 +141,7 @@ License: \booklicense
 
 % The asterisk excludes chapter from the table of contents.
 \chapter*{Preface}
-Quantum information and computing are hot topics, and there are many books around. But there is no book for computer science or engineering students who have not taken any courses on quantum physics. Of course, there are many popular science books and articles that explain quantum physics by drawing analogy to laymen observable things. But can one use the analogies of quantum superposition or entanglement to (IBM) QIS programming? This book is to bridge the gap between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement or even develop quantum algorithms and protocols.
+Quantum information and computing are hot topics. There are software development kits (SDKs), such as IBM Qiskit and Google Cirq, for programmers to develop quantum computer software. But there are no books on data structures and algorithms for computer science students. Similarly, there are no books on signaling and modulation for engineering students. This book is to bridge the gaps between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement quantum algorithms and protocols or even develop them.
 
 The difficulty of quantum physics lies in the wave behavior of particles. The focus of theoretical is how to solve the wave equations. And experimental physicists focus on how to control the waves. This book leaves out the details of the waves by labelling them with symbols e.g. "0" and "1". The symbols are what computer science and engineering students know how to work with. They are what the computer science data structure and algorithms, and Shannon information theory apply.
 
@@ -184,7 +183,11 @@ A particle is the smallest "drop" of matter. But "the smallest" by what measure?
 The waves and matters we see or use everyday contain too many particles, and we only see the average effects of the waves and matters. If we have two beams of lights, one is yellow and the other blue, merged into one, what do we see? We see a beam of green light. But if we lower the emissions from each of the lights to one photon at a time, we will see either a yellow or blue photon -- we don't see a green photon. 
 
 The sound from a guitar string play note E is different in our ears from that played on a violin. That is because the sound from each is composed by many harmonics, an octave apart from each other. The average or combined effects from the strings of different instruments is different. If our ears were sensitive enough to hear individual phonons -- the smallest drops of sound -- we would hear sound of pure harmonics.
-
+\begin{figure}[ht]
+\includegraphics[width=6cm]{overtones.png}
+\caption{Fundamental harmonic and the overtones}
+\label{Overtones}
+\end{figure}
 Of course making such single particle, photon or phonon, generators or detectors has been the very challenge to physicists in their effort to make quantum computing and communication.
 
 \subsection{State and superposition}

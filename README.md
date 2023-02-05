@@ -1,9 +1,11 @@
 # Quantum Information and Computing #
 
 ## About the project -- the book ##
-Quantum information and computing are hot topics, and there are many books around. But there is no book for computer science or engineering students who have not taken any courses on quantum physics. Of course, there are many popular science books and articles that explain quantum physics by drawing analogy to laymen observable things. But can one use the analogies of quantum superposition or entanglement to (IBM) QIS programming? This book is to bridge the gap between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement or even develop quantum algorithms and protocols.
+Quantum information and computing are hot topics. There are software development kits (SDKs), such as IBM Qiskit and Google Cirq, for programmers to develop quantum computer software. But there are no books on data structures and algorithms for computer science students. Similarly, there are no books on signaling and modulation for engineering students. This book is to bridge the gaps between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement quantum algorithms and protocols or even develop them.
 
 The difficulty of quantum physics lies in the wave behavior of particles. The focus of theoretical is how to solve the wave equations. And experimental physicists focus on how to control the waves. This book leaves out the details of the waves by labelling them with symbols e.g. "0" and "1". The symbols are what computer science and engineering students know how to work with. They are what the computer science data structure and algorithms, and Shannon information theory apply.
+
+How to label waves with symbols is studied by signaling and modulation theory whose techniques have been studied by electrical engineering students. They are the bridge between physics in the analog world and information and computer sciences in the digital world.
 
 ## The project ##
 The book project is initiated by Dr. Jiang and written in the open source approach. The whole world is welcome to contribute on
