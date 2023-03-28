@@ -1,4 +1,4 @@
-# Quantum Information and Computing #
+# Quantum Computing and Communication#
 
 ## About the project -- the book ##
 Quantum information and computing are hot topics. There are software development kits (SDKs), such as IBM Qiskit and Google Cirq, for programmers to develop quantum computer software. But there are no books on data structures and algorithms for computer science students. Similarly, there are no books on signaling and modulation for engineering students. This book is to bridge the gaps between quantum physics and engineering so that information and computer sciences students can use their knowledge to implement quantum algorithms and protocols or even develop them.
