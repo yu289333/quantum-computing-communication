@@ -21,6 +21,7 @@
 \usepackage{tikz}    % this is for graphics. e.g. rectangle on title page
 \usepackage{graphicx}
 \usepackage{svg}
+%\usepackage{tikz} vector drawing
 \usepackage{amsmath} % Used by equations
 
 % The following dimensions specify 4.75" X 7.5" content on 6 3/8" by 9 1/4"
@@ -131,14 +132,14 @@ How to use wave characteristics to represent information belongs to special subj
 
 \mainmatter
 
-\chapter{Introduction}
+\chapter{Quantum Information}
 The advantage of quantum computing lies in the possibility of parallel computing. The use of quantum communication has been in key distribution. The secrecy of quantum key exchange lies in the uncertainty of quantum measurement. If these statements are too abstract, read on.
 
-\section{The maze problems}
+\section{Introduction: the maze problems}
 Maze problems are hard because there are too many paths to explore from the entrance to the exit. Computer scientists have long known parallel computing is the way to speed up solution finding of such problems.
 
 \begin{figure}[ht]
-\includegraphics[width=6cm]{maze.png}
+\includegraphics[width=6cm]{pic/maze.png}
 \caption{Maze}
 \label{Maze}
 \end{figure}
@@ -148,25 +149,27 @@ People have always looked up to physicists to find ways to realize the solutions
 The next step we may take is to ask the question: how many good paths are there. I would propose refining the experiment this way: run several water drops into the entrance and see how many drops will come out. Here, we run into the challenge of how to achieve the precision we need: if one drop comes out of the exit, how do we know whether there is only one good path or there are two drops from two paths arriving the exit at the same time. It would be ideal if we know what the smallest drop of water is like so that we can distinguish one drop from a combined two drops.
 
 \section{The quantum power}
-Playing with water tricks is exactly the idea behind quantum computers. Quantum physics tells us all matters are waves and have the smallest drops when measured the right way. A wave, like water, can spread and propagate through all possible paths and give us the power of parallel computing. The drop-like behavior (the so-called particle behavior by physicists) gives us the needed precision. We can also use the drop-like behavior in communication to assure that a communication channel is not tapped for eavesdropping because, if a bit carried by a smallest drop the carrier waves is tapped, it is lost as a whole. For this reason, quantum communication is the promise for ultimate secure communication.
+Playing with water tricks is exactly the idea behind quantum computers. Quantum physics tells us that all matters are waves and have the smallest drops when measured in certain ways. A wave, like water, can spread and propagate through all possible paths and give us the power of parallel computing. The drop-like behavior (the so-called particle behavior by physicists) gives us the needed precision. Beside parallel computing, We can also use the drop-like behavior in communication to assure that a communication channel is not tapped for eavesdropping because if a bit carried by a smallest drop the carrier waves is tapped, it is lost as a whole. For this reason, quantum communication is the promise for ultimate secure communication.
 
 \subsection{Waves}
-Waves are not strangers to us. We use electromagnetic waves every day. We get Wi-Fi or cellphone signals even when we move around, in a house or on the streets, because the waves can spread and explore unlimited paths to reach us. So, we are already benefiting from the power of parallel exploration of waves.
+When talking about waves, we think of waves in the oceans and seas. We imagine the water molecules being pushed up by other molecules and then pulled down by gravity. Waves are not strangers to us. Our image of a wave is something vibrating and the vibration propagates forward. Radio waves certainly fit this picture. AM and FM broadcasts, Wi-Fi and cellphone signals ride on radio waves. They are a kind of electromagnetic waves involving vibrations of electric and magnetic fields. They also propagate. They reach us from the Wi-Fi or cellphone antennas even when we move around, in a house or on the streets, because they can spread and explore unlimited paths to reach us.
 
-For communication, we need waves that spread and propagate. They are propagating waves. Beside radio frequency waves propagating in free space, another type of propagating waves are used in optical communications. They are lights propagating in one dimension along the axis-es of the optical fibers. Because the waves are confined in the other two-dimensions and don't spread, we have minimal signal loss at the receiving ends.
+Not all waves propagate. But for communication, we need waves that spread and propagate. They are called propagating waves. The radio waves used in radio broadcast, Wi-Fi and cellphone communication spread and propagating in free space in 3 dimensions. The light waves used in optical communications and also electromagnetic waves. They propagate in the dimension along the axis-es of the optical fibers. Because the are confined in the other two-dimensions and don't spread, we have minimal signal loss at the receiving ends. Quantum communication qubits use this type of waves.
 
-We can also confine electromagnetic waves in three dimensions. Microwave ovens are examples. When confined this way, the waves do not propagate anywhere and are called standing waves. If no energy loss, a standing wave stays in the confinement forever. So, standing waves are good for storing information. The vibrations of a guitar string are also standing waves. The two ends of the string and fixed and block the vibration from propagating beyond the ends. When we pluck a string in a guitar, the vibration of the string does not go beyond its two ends. Superconductor qubits are built by standing waves of electrons as we will describe further below.
+Another type of waves is standing waves. Microwave ovens are examples in which electromagnetic waves in three dimensions.  When confined this way, the waves do not propagate anywhere. If no energy loss, a standing wave stays in the confinement forever. So, standing waves are good for storing information. The vibrations of a guitar string are also standing waves. The two ends of the string and fixed and block the vibration from propagating beyond the ends. When we pluck a string in a guitar, the vibration of the string does not go beyond its two ends. Superconductor qubits are built by standing waves of electrons as we will describe further below.
 
 Another type of waves, which we may call trapped waves, are not confined but are trapped by forces extending to infinity. Electrons are trapped waves by the electric force of a nucleus' positive charges. The waves extend to infinity but are concentrated within a nanometer around the nucleus. Trapped waves are also good for storing information. Trapped-ion qubits are built by trapped electron waves.
 
-By tradition, physicists use the bracket notations $|\phi>$ or $|\psi>$ to label waves and call them states.
+When talking about a wave, we usually think of something that is vibrating. That is true with water waves, sound waves and electromagnetic waves, which are vibrations of electric and magnetic fields. But for electrons, protons and neutrons, physicists have hard time to pinpoint what exactly are vibrating. The answer is not very important anyway for our engineers. We only need to understand the wave features that can be used for computing and communication.
+
+(By tradition, physicists use the bracket notations $|\phi>$ or $|\psi>$ to label waves and call them states.)
 
 \subsection{Particle behaviors and measurements}
-Particles refer to things that are point like or of negligible sizes. Scientists believed electrons were particles when JJ Thomson discovered them in 1897. But when Ernest Rutherford discovered atomic nucleus 14 years later, people raised the question: why is the size of an atom much bigger than that of its nucleus? Why wouldn't the tiny negatively charged electrons fall into the positively charged nucleus and be combined into an atom close to the size of the nucleus -- if it were to happen, we would have not seen the world as we have.
+By tradition, physicists keep on using the term particle and have cause the biggest confusion to non-physicists. For non-physicists, particles refer to things that are point like or of negligible sizes. Scientists believed electrons were particles when JJ Thomson discovered them in 1897. But when Ernest Rutherford discovered atomic nucleus 14 years later, people raised the question: why is the size of an atom much bigger than that of its nucleus? Why wouldn't the tiny negatively charged electrons fall into the positively charged nucleus and be combined into an atom close to the size of the nucleus -- if it were to happen, we would have not seen the world as we have.
 
 We now know that electrons are not point like. So aren't the other so called particles, protons, neutrons etc. What we use to describe points, position or moment of time are not good quantities to describe them. Electric field and magnetic field strengths are still good quantities to measure. But when measuring quantities such as mass, energy, charge and what later discover in the 20th century such as "spin" and "flavor," physicists find their drop-like behavior. For example, the mass of electrons can only be multiple of $9.1x10^{-31}$ kg, and their charges can only be multiple of $1.6x10^{-19}$ Coulomb. And of course, the smallest drop is an electron. Physicists also know that lights have zero mass. But measuring their energy, physicists find their smallest drops and call them photons.
 
-Physicists call the drop-like behavior particle behaviors. But the term "particle" misleads people to think of point-like objects. We try not to use the term in this book. The biggest implication of working with the smallest drop of a wave is that we only have one chance to measure the wave. After the measurement, the wave is in a changed form or course. Further, the impact of noise to a qubit leads to complete loss of information.
+Physicists call the drop-like behavior particle behaviors. But in this book, we try not to avoid using the term. The biggest implication of working with the smallest drops of a waves is that we only have one chance to measure a wave. After the measurement, the wave is in a changed form or shape. Another implication is that the waves are ultimately sensitive to noise.
 
 (Ignore - The waves we see or use everyday contain too many particles, and we only see the average effects of the waves and matters. If we pluck guitar string and hear the note E, which is different in our ears from that played on a violin. That is because the sound from each string on the respective instrument is composed by many harmonics, an octave apart from each other. The average or combined effects from the strings of different instruments is different. If our ears were sensitive enough to hear individual phonons -- the smallest drops of sound -- we would hear sound of pure harmonics.
 
@@ -179,69 +182,93 @@ Modulation -- how to represent information by electromagnetic waves for communic
 
 Not limited to communication, quantum computers are also prune to noises and errors because we work with the smallest drops of waves. How information is represented is also complicated as we will learn in the following sections. We will borrow the term "modulation" from communication textbooks to refer all the techniques for representing information as some physical characteristics. Understanding how modulation works in quantum computers and communication is the critical link for electrical engineering and computer science students to understand the quantum technologies. 
 
-\subsection{Digital technology}
-In theory, we can measure a wave's amplitude, frequency and phase precisely and use them to represent all real numbers. In really, our information transporting and processing devices have noises and errors. We are best to have the systems working with only integer numbers. Using integer numbers to represent information is what we call digital technology. In addition, using binary integers instead of decimals makes computer and communication components much simpler. And nowadays digital technology is almost the synonym of binary technology.
+\subsubsection{Phase modulation}
+Phase modulation uses carrier waves' phases to represent information. The waves are of the same frequency and amplitude. But their phases are real numbers between 0 and 2$\pi$. In set theory, we know the cardinal of the set $\theta \in [0, 2\pi)$ is the same as the entire set of real numbers. Therefore, the phases $\theta \in [0, 2\pi)$ can be used to represent all information that may be represented by real numbers. This fact is not intuitive, but it is mathematically proven.
+
+In communication textbooks, we use the points in constellation diagrams to depict the amplitudes and phases of waves -- the distance of a point to the origin is the amplitude of the wave, and the angle to the x-axis is the phase. So, the values that PM can represent fall all onto a circle in a constellation diagram as in Fig. \ref{PM}. Describing the points in the constellation diagram using polar coordinates is especially easy for phase modulation since the amplitude is a constant. We can make it easier if we assume the amplitude as one in the rest of this book.
+
+\begin{figure}[ht]
+\includegraphics[width=6cm]{pic/PM.pdf}
+\caption{Constellation diagram of phase modulation}
+\label{PM}
+\end{figure}
+
+\subsection{Digital modulation}
+In theory, we can measure a wave's amplitude, frequency and phase precisely and use them to represent all real numbers. In really, communication channels and information processing devices have noises and errors. We are best to have the systems working with only integer numbers. Using integer numbers to represent information is what we call digital technology. Further, using binary integers instead of decimals makes computer and communication components much simpler. And nowadays digital technology is almost the synonym of binary technology.
 
 All electronic computers use digital technology if we ignore the history of the slide rules. Communication systems are slow to convert to digital technology. For a long time, communication was mostly about voice communication -- radio broadcast and telephones. For digital information, modulations such as AM, FM and PM often carry different names, e.g. amplitude-shift keying (ASK), frequency-shift keying (FSK) and phase-shift keying respectively (PSK).
 
-Quadrature phase-shift keying (QPSK) uses one carrier wave to represent "0" and uses another, which is 90-degree phase shifted from the first, to represent "1". The second carrier wave is a quarter of wave phase shifted from the first is thus called the quadrature wave while the first is called the in-phase wave. The two waves are orthogonal from each other and thus are most immune to error -- best to distinguish one from another -- in the presence of noise.
+\subsubsection{Quadrature phase-shift keying}
+ Quadrature phase-shift keying (QPSK) uses the carrier waves of phases being 0, 90, 180, 270 degrees to represent 0, 1, 2, and 3 (or 0, 1, 10, and 11 in binary). The significance of using phases 90 degree apart is that their corresponding carrier waves are orthogonal to each other in the temporal dimension. Measurement of orthogonal waves is least prone to noise or errors. The constellation diagram is shown in the left diagram in \ref{QPSK}.
+ 
+ A practical QPSK modulator circuit\cite{qpsk-circuits} uses a modified scheme: the input circuit divides the 2-bit input into 2 bits and feeds each to a different carrier, one of zero phase and the other of 90-degree phase. If the input to a carrier is "0", its phase is shifted 180 degrees. The combined or summed up wave of the two carriers is the output of the modulator. The demodulator circuit is just the reverse of the modulation: divide up the received signal wave into two orthogonal waves and measure their relative phases. The constellation diagram this scheme is shown in the right diagram in \ref{QPSK}.
 
-Like QPSK, all qubits use two waves orthogonal to each other to represent "0" and "1" respectively. However, the orthogonality of the waves is not due to their phase difference but the result of their orthogonal polarizations or spatial concentrations. Another difference, QPSK can use additional carrier waves, $N$-degree phase shifted from the first, to represent more integers and thus more information. In electrical engineering textbooks, the design of QPSK is usually illustrated by as shown in Fig. \ref{8QPSK} is a constellation diagram of 8-QPSK, which uses 8 carrier waves with respective 0, 45, 90, 135, 180, 215, 270 and 315 degree phase shifts to represent 8 integers "0", "1", "2", ..., "7" (their binary symbols are 000, 001, 010, ..., 111).
-
-\subsection{Qubits and modulations}
-A quantum bit (qubit) is the fundamental quantum computer component to store one bit of information. The quantum communication unit for transporting one bit of information is also called a qubit. The way that the information is represented in a qubit is very much like how quadrature phase-shift keying (QPSK) works. QPSK uses one carrier wave to represent "0" and uses another carrier wave, which is 90-degree phase shifted from the first, to represent "1". The second carrier wave is a quarter of wave phase shifted from the first is thus called the quadrature wave. The two waves are orthogonal from each other and thus are most immune to error -- best to distinguish one from another -- in the presence of noise.
-
-Like QPSK, all qubits use two waves orthogonal to each other to represent "0" and "1" respectively. However, the orthogonality of the waves is not due to their phase difference but the result of their orthogonal polarizations or spatial concentrations. Another difference, QPSK can use additional carrier waves, $N$-degree phase shifted from the first, to represent more integers and thus more information. In electrical engineering textbooks, the design of QPSK is usually illustrated by as shown in Fig. \ref{8QPSK} is a constellation diagram of 8-QPSK, which uses 8 carrier waves with respective 0, 45, 90, 135, 180, 215, 270 and 315 degree phase shifts to represent 8 integers "0", "1", "2", ..., "7" (their binary symbols are 000, 001, 010, ..., 111).
 \begin{figure}[ht]
-\includegraphics[width=6cm]{4qpsk.jpg}
-\includegraphics[width=6cm]{8qpsk.jpg}
-\caption{Constellation diagrams of QPSK (left) and 8QPSK (right)}
-\label{8QPSK}
+\includegraphics[width=6cm]{pic/4qpsk.jpg}
+\caption{Constellation diagrams of two QPSK schemes}
+\label{QPSK}
 \end{figure}
-The waves that have 45, 135, 215 and 315 degree phase shifts can be viewed as combinations of the first wave and the quadrature. In quantum physics, such a composed wave is called a superposition state.
 
-In qubits, we also use the 45 and 315 degree phase shifted waves, which are call the Bell states by physicists. But they are not used to represent more integers or information. In a computing qubit, we have one drop of the wave in both the "0" and "1" waves and achieve parallel exploration. For communication, a qubit in such a state obscures its true value to the eavesdropper. 
-\begin{figure}[ht]
-\includegraphics[width=6cm]{qqpsk.jpg}
-\caption{Constenlation diagram of quantum phase shift keying}
-\label{qQPSK}
-\end{figure}
+(Like QPSK, all qubits use two waves orthogonal to each other to represent "0" and "1" respectively. However, the orthogonality of the waves is not due to their phase difference but the result of their orthogonal polarizations or spatial concentrations. Another difference, QPSK can use additional carrier waves, $N$-degree phase shifted from the first, to represent more integers and thus more information. In electrical engineering textbooks, the design of QPSK is usually illustrated by as shown in Fig. \ref{8QPSK} is a constellation diagram of 8-QPSK, which uses 8 carrier waves with respective 0, 45, 90, 135, 180, 215, 270 and 315 degree phase shifts to represent 8 integers "0", "1", "2", ..., "7" (their binary symbols are 000, 001, 010, ..., 111).)
+
+\subsection{Qubits}
+A quantum bit (qubit) is the fundamental quantum computer component to store one bit of information. The quantum communication unit for transporting one bit of information is also called a qubit. The way that the information is represented in a qubit is very much like how QPSK works. Like QPSK, a qubit uses two orthogonal waves to represent "0" and "1". However, the orthogonality of the waves is not due to their phase difference in the time domain but instead due to their difference in polarization, frequency or spatial concentration as we will below.
+
+\subsubsection{Free space optical qubits}
+Lights are propagating waves and obviously are suited for communications. The two waves used in such a qubit typically have the same frequency but different polarization's, orthogonal to each other.
 
 \subsubsection{Superconductor qubits}
 A superconductor transmon qubit is similar to the string of a guitar and uses the first two standing waves, which resonate at the first and second harmonic frequencies respectively, to represent the integers of "0" and "1". Such a qubit is constructed by two superconductors separated by a layer of insulator. The insulator is thin enough for electrons to move ("tunnel") back and forth from one superconductor to another without loss of energy. But traveling through the insulator leads to delays (phase delays) of the electrons. The back-and-forth movement (vibration) of the electrons between the two superconductors resonate as standing waves at periods fractions of the delay. typically, the first fundamental frequency and the first harmonic are used to represent "0" and "1".
 \begin{figure}[ht]
-\includegraphics[width=6cm]{supercQubit.jpg}
+\includegraphics[width=6cm]{pic/supercQubit.jpg}
 \caption{Superconductor qubit}
 \label{Superconductor}
 \end{figure}
 
 \begin{figure}[ht]
-\includegraphics[width=6cm]{overtones.png}
+\includegraphics[width=6cm]{pic/overtones.png}
 \caption{The vibration of a string is a superposition of standing waves with wavelengths fractions of the string length.}
 \label{Overtones}
 \end{figure}
 
 \subsubsection{Trapped ion qubits}
 
-\subsubsection{Free space optical qubits}
-Lights are propagating waves and obviously are suited for communications. The two waves used in such a qubit typically have the same frequency but different polarization's, orthogonal to each other.
-
 \subsubsection{Optical waveguide qubits}
 Another type of qubits uses lights -- traveling waves -- in waveguides. "0" is represented as light appearing in waveguide A while being absent in B; and "1" is represented as light appearing in waveguide B while being absent in A.
 \begin{figure}[ht]
-\includegraphics[width=6cm]{wguideQubit.png}
+\includegraphics[width=6cm]{pic/wguideQubit.png}
 \caption{Waveguide qubit}
 \label{Waveguide}
 \end{figure}
 
-\subsection{Bloch sphere}
-(Ignore - If we consider the relative amplitude $A$ and phase $\phi$ of the two waves in a qubit, they can represent all the real number pairs in the rectangle ${ A \in [0,1], phi \in [0,2\pi) }$. Physicists like to represent the relative amplitude as $cos\theta$, and therefore, the $(\theta, \phi)$ pair can represent all the real number pairs in the rectangle ${[0,\pi],  [0,2\pi)}$. This rectangle can also be represented as a Bloch sphere.
+\subsection{Qubit modulation and data types}
+\subsubsection{Vector}
+Physicists use the so-called Dirac "bra-ket" notation to label quantum states or waves. In the ket notation, the base carrier waves, which represent 0 and 1, can be noted as $|0>$ and $|1>$. Summing up the base carriers, the superposition wave can be noted as $|s> = a |0> + b |1>$. Here, $a$ and $b$ are complex numbers and reflect the amplitude and phase contributions to the superposition. The $+$ sign has no mathematical meaning though. Actual modulation (information representation) is more practically noted by the vector $
+\begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}.$
+But not all of the 4 real numbers the two complex numbers can be used independently for modulation. First, the amplitude of the wave is one to be sure that the qubit contains only one drop $|a|^2 + |b|^2 = 1$. Second, only the relative phase of the two contributing base carriers can be used because absolute phases cannot be controlled or measured, and thus meaningless. So, only the relative amplitude and the relative phase of the two base carriers are independent variables for modulation. Physicists usually use $\phi$ to note the relative phase and write the relative amplitudes as $cos\theta/2$ and $sin\theta/2$. And thus $cos\theta/2 |0> + sin\theta/2 |1>$ represents all the waves that a qubit can have. And $\{\theta \in [0, \pi]$ and $\phi \in [0, 2\pi)\}$ is the domain of the modulation. Physicists use the Bloch sphere as in Fig. \ref{Bloch} to draw an intuitive picture of the domain.
 
 \begin{figure}[ht]
-\includegraphics[width=6cm]{blochSphere.png}
+\includegraphics[width=6cm]{pic/blochSphere.png}
 \caption{Bloch sphere}
 \label{Bloch}
 \end{figure}
+
+\subsubsection{Real numbers}
+ $\{\theta \in [0, \pi /2] and \phi \in [0, 2\pi)\}$ defines a domain of a pair of real numbers that a qubit can directly represent. But by cardinality, this domain is equivalent to the domain of all the real numbers and the domain of ${\theta \in [1, 2\pi)}$. (We shall continue to use the "phase" $\theta$ to describe the principles behind qubits and quantum process.)
+ 
+ \subsubsection{Binary numbers}
+In qubits, we also use the $\theta =$ 0, 45, 90 and 315 degree phase shifted waves. Among them, the waves with $\theta =$ 45 and 315 degrees are call the Bell states by physicists. But they are not used to represent more integers or information. In a computing qubit, we have one drop of the wave in both the "0" and "1" waves and achieve parallel exploration. For communication, a qubit in such a state obscures its true value to the eavesdropper. 
+\begin{figure}[htbp]
+\includegraphics[width=6cm]{pic/qqpsk.jpg}
+%\includesvg{qQPSK.svg}
+\caption{Constenlation diagram of quantum phase shift keying}
+\label{qQPSK}
+\end{figure}
+
+(Ignore - If we consider the relative amplitude $A$ and phase $\phi$ of the two waves in a qubit, they can represent all the real number pairs in the rectangle ${ A \in [0,1], phi \in [0,2\pi) }$. Physicists like to represent the relative amplitude as $cos\theta$, and therefore, the $(\theta, \phi)$ pair can represent all the real number pairs in the rectangle ${[0,\pi],  [0,2\pi)}$. This rectangle can also be represented as a Bloch sphere.
 
 If we measure waves in any than other way space or time, we find their smallest "drops" -- the particle nature of matter. Quantum physics started a hundred years ago when Einstein first proposed that electromagnetic waves, when measured in their energy, have the smallest drops called photons.
 
@@ -249,23 +276,62 @@ When measuring in electric charge, physicists discovered the smallest drops firs
 
 Measurement is the very thing that the quantum world is different from the classical world. In the quantum world, with an article, you only have one chance to measure it.)
 
-\chapter{Quantum communication}
-\section{BB84}
-The key distribution protocol proposed by Charles Bennett and Gilles Brassard in 1984 is naturally called BB84. It is a rather boring protocol. It uses the fact that the key transmitting media are the smallest drops of waves and any eavesdropping can be detected. It uses two communication channels, one is an open and untrusted quantum channel, the other is an open but trusted classical channel.
+\subsubsection{Measurement and demodulation}
+With the radio wave received by a cellphone, we can divide the wave into several portions, and measure it multiple ways and multiple times. But with the wave in a qubit, we can only measure it once because it contains only one drop, which cannot be divided.
 
-The protocol works this way: Alice has a series of bits -- the secret key -- to transmit to Bob. Alice prepares another series random bits of equal length. Alice pairs one bit from each series into a number, 0, 1, 2, or 3, which are respectively 00, 01, 10 or 11 in binary, and send the number modulated according to Fig. \ref{qQPSK}. Bob has another random bits prepared. 
+\chapter{Single-qubit operations}
+
+\section{BB84 quantum key distribution protocol}
+Encryption key distribution technologies are used in everyday Internet communication. Preventing hackers or adversaries, who can eavesdrop the communication channels, to crack the keys has always been based on the fact that cracking operation is time consuming. Charles Bennett and Gilles Brassard proposed a quantum key distribution protocol in 1984, which is naturally called BB84. It is a rather boring protocol. It uses the fact that each bit of the key being transmitted is carried by qubits, which contain the smallest drops of a waves, and that any eavesdropping can be detected by the receiver.
+
+\subsection{The protocol}
+The protocol uses two communication channels, one is an open and untrusted quantum channel, the other is an open but trusted classical channel and works as follow:
+- Alice has two series of random bits, one series are for the secret key to be transmit to Bob, and another for confusing the potential eavesdropper. - Alice pairs one bit from each series into a number 00, 01, 10 or 11 in binary, and send the number modulated according to Fig. \ref{qQPSK}.
+- Bob has a series of random bits of the same length prepared.
+- He demodulates each received qubit with the help of the bit from his series.
+- 
+i.e. if the bit is "0", he measures the received qubit using base "0"; if the bit is "1", he measures the received qubit using base "1". He then compares his bit with the corresponding bit of Alice's. If they agree, Bob keeps the bit of his measurement result. Otherwise, the measured bit is discarded.
+\subsection{Generator}
+How a qubit is put in the state of "0" or "1" depends on the specific implementation. A quantum circuit diagram is usually drawn with a qubit starts in the "0" or occasionally in the "1" state.
+
+\subsection{Hadamard gate for modulation}
+To modulate a qubit in the 10 or 11 states, a $\theta_pm = 45$ degree phase shifter is needed. That is equivalent to $(\theta_q =90, \phi=0$ in the Bloch sphere and is equivalent to
+\begin{equation}
+    1 over [\sqrt 2]
+    \begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix}
+\end{equation}
 
 \section{Teleportation}
 Alice has a qbit with information S and shares a pair of qbits with Bob. The pair is one of the 4 known eigenstates and has information 2. The total input information is therefore S+2. At the output, Alice measures the first 2 qbits against the same 4 eigenstates and tells Bob the result, which has information 2. If no information is lost, the information in the 3 qbit should be S.
 
 \section{QSDC}
 
-\chapter{Quantum computing}
+\chapter{@-qubit operations}
 \section{Data structures and quantum gates}
 \subsection{Single qubits and Hadamaq gates}
 \subsection{Entangled qubits and control gates}
-\section{Deutsche algorithm}
+\section{Deutsch's algorithm}
+A one-bit function mapping \{0,1\} -\> \{0,1\} can have 4 possible outputs, which are 2 bits of information. But their categories, constant or balanced, is a 1-bit information as of XOR(f(1),f(0)). We can't obtain the 2-bit information using one operation but can obtain the 1-bit information if we feed the function with the "10" qubit.
+
+\begin{table}[]
+\caption{Possible outputs of an one-bit function}
+\label{1function}
+\begin{tabular}{lllll}
+Output & Constant-1 & Constant-2 & Balanced-1 & Balanced-2                 \\
+f(1),f(0)      & 0,0   & 1,1 & 1,0 & 0,1               \\
+f(1)$\oplus$f(0)   & 0   & 0  & 1 & 1
+\end{tabular}
+\end{table}
+
+Next, we need to think up how to measure the output XOR(f(1),f(0)). Fortunately, we know a CNOT gate can perform the XOR operation.
+
 \chapter{Bibliography}
+\bibliographystyle{unsrt}
+   \bibliography{qcc}
+ 
 \chapter{General Tendencies}
 
 \backmatter
