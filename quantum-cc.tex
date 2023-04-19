@@ -119,9 +119,9 @@ License: \booklicense
 
 % The asterisk excludes chapter from the table of contents.
 \chapter*{Preface}
-Quantum computing and communication are hot topics. There are software development kits (SDKs), such as IBM Qiskit and Google Cirq, for programmers to develop quantum computer software. But there are no books on data structures and algorithms for computer science students. Similarly, there are no books on signaling and modulation for engineering students. This book is to bridge the gaps between quantum physics and engineering so that computer sciences and engineering students can use their knowledge to implement quantum algorithms and protocols or even develop them.
+Quantum computing and communication are hot topics. There are software development kits (SDKs), such as IBM Qiskit and Google Cirq, for programmers to develop quantum computer software. But there are no books on data structures and algorithms for computer science students. Similarly, there are no books on signaling and modulation on quantum communication for engineering students. This book is to bridge the gaps between quantum physics and engineering so that computer sciences and engineering students can use their knowledge to implement quantum algorithms and protocols, and even develop them.
 
-The difficulty of quantum physics lies in the wave behavior of particles. But that's the job of the physicists, and computer science and engineering students do not need to know. This book leaves out the details of the waves by labelling them with symbols e.g. "0" and "1". The symbols are what computer science and engineering students know how to work with. They are what data structure and algorithms in the computer science deal with, and what Shannon information theory apply to. There's absolutely no need to von Neumann entropy, which serves no purpose other than confusing non-physics majored.
+The difficulty of quantum physics lies in the wave behavior of particles. But that's the job of the physicists, and computer science and engineering students do not need to know. This book leaves out the details of the waves by labelling them with symbols such as "0" and "1". The symbols are what computer science and engineering students know how to work with. They are what data structure and algorithms in the computer science deal with, and what Shannon information theory apply to. There's absolutely no need to von Neumann entropy, which serves no purpose other than confusing non-physics majored.
 
 How to use wave characteristics to represent information belongs to special subject of modulation. That is what  the communication engineering students know best. The book starts with how modulation works in qubits.
 
@@ -131,10 +131,10 @@ How to use wave characteristics to represent information belongs to special subj
 
 \mainmatter
 
-\chapter{Quantum Information}
+\chapter{Introduction to Quantum Information}
 The advantage of quantum computing lies in the possibility of parallel computing. The use of quantum communication has been in key distribution. The secrecy of quantum key exchange lies in the uncertainty of quantum measurement. If these statements are too abstract, read on.
 
-\section{Introduction: the maze problems}
+\section{The maze problems}
 Maze problems are hard because there are too many paths to explore from the entrance to the exit. If we change the traditional maze game into a generic blackbox problem as follow, finding the number of path is still a hard problem:
 - assume the maze is a blackbox and we can't see the paths
 - the blackbox can take inputs (entries) and produce outputs (exits).
@@ -152,10 +152,10 @@ The next step we may take is to ask the question: how many good paths are there.
 \section{The quantum power}
 Playing with water tricks is exactly the idea behind quantum computers. Quantum physics tells us that all matters are waves and have the smallest drops when measured in certain ways. A wave, like water, can spread and propagate through all possible paths and give us the power of parallel computing. The drop-like behavior (the so-called particle behavior by physicists) gives us the needed precision.
 
-Beside parallel computing, we can also apply the quantum power to secure communication channels from eavesdropping. If an encrypted quantum bit containing only a smallest drop is tapped, it can only be measured once. The interceptor not only cannot decrypt the bit, but also cannot reconstruct (clone) the encrypted quantum bit for the true receiver to hide the eavesdropping.
+Beside parallel computing, we can also apply the quantum power to secure communication channels from eavesdropping. If an information bit is transmitted by the smallest drop, it cannot be split or tapped. Even it can be intercepted by an eavesdropper, but it cannot be reproduced for transmitting to the receiver because one drop allows only one measurement, which is not sufficient to reproduce or clone the drop of wave.
 
-\subsection{Quantum system}
-A quantum communication system can be shown in Fig. \ref{qsystem}
+\subsection{Quantum circuits}
+Fig. \ref{qsystem} shows a block diagram of how a simple quantum communication system. It can also be viewed as a quantum computer if the sender and receiver are the same party. A quantum bit (qubit) is the fundamental component of a quantum computer to store one bit of information. The quantum communication unit for transporting one bit of information is also called a qubit. A quantum information processing circuit contains qubits and quantum processing components, which we call quantum gates. The focus of the book is on how to design the quantum circuit to achieve the desired computing and communication needs.
 
 \begin{figure}[ht]
 \includegraphics[width=6cm]{pic/q-circuit.pdf}
@@ -163,12 +163,14 @@ A quantum communication system can be shown in Fig. \ref{qsystem}
 \label{qsystem}
 \end{figure}
 
-\subsection{Waves}
-When talking about waves, we think of waves in the oceans and seas. We imagine the water molecules being pushed up by other molecules and then pulled down by gravity. Waves are not strangers to us. Our image of a wave is something vibrating and the vibration propagates forward. Radio waves certainly fit this picture. AM and FM broadcasts, Wi-Fi and cellphone signals ride on radio waves. They are a kind of electromagnetic waves involving vibrations of electric and magnetic fields. They also propagate. They reach us from the Wi-Fi or cellphone antennas even when we move around, in a house or on the streets, because they can spread and explore unlimited paths to reach us.
+\subsection{Waves and states}
+When talking about waves, we think of ripples in a lake or surge in the oceans and seas. We see some water being pushed up and then pulled down by gravity. Our image of a wave is something vibrating and the vibration propagates forward. Even for some waves such as the sound wave of music, although we only see the vibration of the guitar strings, we still can imagine the vibration of the air molecules brought in motion by the strings.
 
-Not all waves propagate. But for communication, we need waves that spread and propagate. They are called propagating waves. The radio waves used in radio broadcast, Wi-Fi and cellphone communication spread and propagating in free space in 3 dimensions. The light waves used in optical communications and also electromagnetic waves. They propagate in the dimension along the axis-es of the optical fibers. Because the are confined in the other two-dimensions and don't spread, we have minimal signal loss at the receiving ends. Quantum communication qubits use this type of waves.
+There are many ways to categorize waves. In this book, we categorize them by how they propagate, which determines how we use them for quantum computing or for communication. The first is the type that propagates freely. The radio waves for AM and FM radio broadcasts, TV, Wi-Fi and cellphone are this type. signals ride on radio waves. They are a kind of electromagnetic waves involving vibrations of electric and magnetic fields. For communication, we use laser lights launched into free space. They are also electromagnetic waves but propagate in only one direction. We call this sub-type plane waves. Laser lights are not strictly plane waves but can be considered so in free space communications. A plane wave can be characterized by its amplitude, frequency and phase. Its frequency is related to its period and wavelength. For electromagnetic waves, polarization is another characteristic.
 
-Another type of waves is standing waves. Microwave ovens are examples in which electromagnetic waves in three dimensions.  When confined this way, the waves do not propagate anywhere. If no energy loss, a standing wave stays in the confinement forever. So, standing waves are good for storing information. The vibrations of a guitar string are also standing waves. The two ends of the string and fixed and block the vibration from propagating beyond the ends. When we pluck a string in a guitar, the vibration of the string does not go beyond its two ends. Superconductor qubits are built by standing waves of electrons as we will describe further below.
+For communication, we also use laser lights launched into optical waveguides such as optical fibers. They are confined in two dimensions -- the lateral dimensions -- but propagate in the dimension along the axis-es of the waveguides or fibers. Using waveguides, optical fibers in particular, allows us to guide the lights to other optical devices. For this type of waves, amplitude, frequency, phase and polarization are also their characteristics.
+
+If a wave is confined in three dimensions, e.g. an electromagnetic wave in a microwave oven, the wave cannot propagate anywhere other than being reflected back. Only standing waves of specific frequencies can exist in the confinement. The allowed frequencies are discrete. Standing waves are good for storing information. Superconductor qubits are built by standing waves of electrons as we will describe further below. Vibrations of a guitar string are also standing waves. The two ends of the string and fixed and block the vibration from propagating beyond the ends. When we pluck a string in a guitar, the vibration of the string does not go beyond its two ends.
 
 Another type of waves, which we may call trapped waves, are not confined but are trapped by forces extending to infinity. Electrons are trapped waves by the electric force of a nucleus' positive charges. The waves extend to infinity but are concentrated within a nanometer around the nucleus. Trapped waves are also good for storing information. Trapped-ion qubits are built by trapped electron waves.
 
@@ -212,21 +214,27 @@ So, the values that PM can represent fall all onto a circle in a constellation d
 \subsection{Digital modulation}
 In theory, we can measure a wave's amplitude, frequency and phase precisely and use them to represent real numbers. In really, communication channels and information processing devices have noises and errors. We are best to have the systems working with only integer numbers. Using integer numbers to represent information is what we call digital technology. Further, using binary integers instead of decimals makes computer and communication components much simpler. And nowadays digital technology is almost the synonym of binary technology. Technologies of dealing with real numbers are called analog technologies.
 
-All electronic computers use digital technology if we ignore the history of the slide rules. Communication systems are slow to convert to digital technology. For a long time, communication was mostly about voice communication -- radio broadcast and telephones -- and used analog technologies. For digital information, modulations such as AM, FM and PM often carry different names, e.g. amplitude-shift keying (ASK), frequency-shift keying (FSK) and phase-shift keying respectively (PSK).
+All electronic computers use digital technology if we ignore the history of the slide rules. Communication systems are slow to convert to digital technology. For a long time, communication was mostly about voice communication -- radio broadcast and telephones -- and used analog technologies. For digital information, modulations such as AM, FM and PM often carry different names, e.g. amplitude-shift keying (ASK), frequency-shift keying (FSK) and phase-shift keying respectively (PSK). Some other times, digital modulation may also be referred as encoding, which is what we adopt in most scenarios.
 
 \subsubsection{Quadrature phase-shift keying}
- Quadrature phase-shift keying (QPSK) uses the carrier waves of phases 0, 90, 180, 270 degrees to represent a 2-bit number 
+ Quadrature phase-shift keying (QPSK) uses the carrier waves of phases 0, 90, 180, 270 degrees to encode a 2-bit number 
 0, 1, 2, and 3 
-(or 0, 1, 10, and 11 in binary). The significance of using phases 90 degree apart is that their corresponding carrier 
+(or 0, 1, 10, and 11 in binary). The significance of using waves with phases 90 degree apart is that the 
 waves are orthogonal to each other in the time domain. Measurement of orthogonal waves is least prone to noise or errors 
 because they have zero overlap -- integration of their product in the time domain is zero. 
-The constellation diagram is shown in the left diagram in \ref{QPSK}.
+The constellation diagram is shown in the left diagram in \ref{4QPSK}.
  
  A practical QPSK modulator circuit\cite{qpsk-circuits} uses a modified scheme: in every time slot, 2 bits are feed into the modulator.
 Each bit is used to modulate a base carrier wave's phade. The two base carrier waves are orthogonal, one of zero phase and the other of 90-degree phase. If the input to a carrier is "0", its phase is shifted 180 degrees. The combined or summed up wave of the two carriers is the output of the modulator. The demodulator circuit is just the reverse of the modulation: divide up the received signal wave into two orthogonal waves and measure their relative phases. The constellation diagram this scheme is shown in the right diagram in \ref{QPSK}.
 
 \begin{figure}[ht]
-\includegraphics[width=6cm]{pic/4qpsk.jpg}
+\includegraphics[width=6cm]{pic/4qpsk.pdf}
+\caption{Constellation diagrams of two QPSK schemes}
+\label{4QPSK}
+\end{figure}
+
+\begin{figure}[ht]
+\includegraphics[width=6cm]{pic/qpsk.pdf}
 \caption{Constellation diagrams of two QPSK schemes}
 \label{QPSK}
 \end{figure}
@@ -269,6 +277,9 @@ A superconductor transmon qubit is similar to the string of a guitar and uses th
 \caption{The vibration of a string is a superposition of standing waves with wavelengths fractions of the string length.}
 \label{Overtones}
 \end{figure}
+
+\subsection{Generator}
+How a qubit is put in the state of "0" or "1" depends on the specific implementation. A quantum circuit diagram is usually drawn with a qubit starts in the "0" or occasionally in the "1" state.
 
 \subsection{Quantum information}
 \subsubsection{Modulation and data types}
@@ -313,28 +324,25 @@ When a cellphone receives a radio wave, the demodulator can divide the wave into
 
 Similar to a demodulator of QPSK. the demodulation of a qubit can only detect the presence or absence of two orthogonal waves. It cannot detect the phases. Since there is only one drop of wave, the demodulator can only detect the presence of one of the waves. If we know the qubit is modulated by BQSK, detecting the qubit in the $|0>$ wave means the qubit's phase $\theta = 0$. Further, the absence of detecting signal in the $|1>$ wave also suggests $\theta = 0$ too. But if the qubit is originally modulated in any other way, we have no way of measuring the knowing the information that the qubit represents.
 
-\section{Terminology differences}
-\begin{itemize}
-    \item State: physicists use the term state to refer to the wave function of the waves. But through out the book, we use wave in place of state.
-    \item Particle: 
-    \item Superposition:
-\end{itemize}
-
 \chapter{Single-qubit operations}
 
-\section{BB84 quantum key distribution protocol}
-Encryption key distribution technologies are used in everyday Internet communication. Preventing hackers or adversaries, who can eavesdrop the communication channels, to crack the keys has always been based on the fact that cracking operation is time consuming. Charles Bennett and Gilles Brassard proposed a quantum key distribution protocol in 1984, which is naturally called BB84. It is a rather boring protocol. It uses the fact that each bit of the key being transmitted is carried by qubits, which contain the smallest drops of a waves, and that any eavesdropping can be detected by the receiver.
+\section{BB84 protocol}
+Encryption is used in everyday Internet communication. Encryption conceals the credit card numbers and passwords, which we send to the websites, from hackers or adversaries, who can eavesdrop the communication channels. One of the communication encryption protocols is called one-time-pad (OTP) encryption, which is ideal in theory but is impractical. Charles Bennett and Gilles Brassard proposed in 1984 a quantum version of the protocol and improved it for practical use. It is called the BB84 protocol.
 
 \subsection{The protocol}
-The protocol uses two communication channels, one is an open and untrusted quantum channel, the other is an open but trusted classical channel and works as follow:
-- Alice has two series of random bits, one series are for the secret key to be transmit to Bob, and another for confusing the potential eavesdropper. - Alice pairs one bit from each series into a number 00, 01, 10 or 11 in binary, and send the number modulated according to Fig. \ref{qQPSK}.
-- Bob has a series of random bits of the same length prepared.
-- He demodulates each received qubit with the help of the bit from his series.
-- 
-i.e. if the bit is "0", he measures the received qubit using base "0"; if the bit is "1", he measures the received qubit using base "1". He then compares his bit with the corresponding bit of Alice's. If they agree, Bob keeps the bit of his measurement result. Otherwise, the measured bit is discarded.
+The protocol uses two communication channels, one is an open and untrusted quantum channel, the other is an open but trusted classical channel and works as follow
+By tradition, all communication encryption protocol is narrated as the scenario that Alice wants to transmit a series of data bits to Bob but fears Eve may eavesdrop the communication channel\cite{Schneier}. The OTP protocol goes like
+- Alice has a second series of random bits of equal length, which is the encryption key.
+- Alice pairs one bit from each series and sends the XOR of the two bits to Bob in each time lot.
+- Bob also has the key. Upon receiving the bit from Alice, Bob XOR it with the corresponding bit from the key.
 
-\subsection{Generator}
-How a qubit is put in the state of "0" or "1" depends on the specific implementation. A quantum circuit diagram is usually drawn with a qubit starts in the "0" or occasionally in the "1" state.
+The OTP protocol is a hundred percent secure. There is no way to break it even using brute force. But it is not practical because the key needs to be equally long as the message. It is a chicken and egg dilemma. BB84 protocol modifies OTP and offers a way to establish a key between Alice and Bob:
+- Alice concatenates each pair of the bits into a 2-bit number with the key bit being the significant bit -- 00, 01, 10 or 11 in binary, and sends the number to Bob as a qubit modulated according to Fig. \ref{qQPSK}.
+- Bob does not have the key that Alice uses but has a key of his random guessing.
+- Bob demodulates each received qubit and obtain a message candidate bit with the help of the bit from his key i.e. if the key bit is "0", he measures the received qubit using base "0"; if the key bit is "1", he measures the received qubit using base "11".
+- Then, Alice and Bob use a conventional communication channel to compares the corresponding key bits from each. If they agree, Alice and Bob keep the candidate message bit. Otherwise, the candidate bit is discarded.
+
+With many of the original message bits from Alice being discarded, what is good of BB84? The use of the remain message bits can be used as the key for a conventional OPT communication. BB84 is considered a quantum key distribution protocol. Despite not being able to overcome all types of security attacks, BB84 overcomes two types of attacks: 1) the qubits being tapped by Eve, and 2) the qubits being intersepted by Eve and re-transmitted to Bob.
 
 \subsection{Hadamard gate}
 To modulate a qubit in the 10 or 11 wave, a $\theta_pm = 45$ degree phase shifter in the constellation diagram is needed. In the Bloch sphere, a $\theta_q =90, \phi=0$ phase shift is needed. Such a phase shifter is called a Hadamard gate. In the ket notation, $|11> = 1 over [\sqrt 2] (|0> + |1>)$ and $|10> = 1 over [\sqrt 2] (|0> - |1>)$. So, as a vector transformation, the Hadamard gate is a transformation matrix:
@@ -383,7 +391,10 @@ Alice has a qbit with information S and shares a pair of qbits with Bob. The pai
 
 \section{QSDC}
 
-\chapter{@-qubit operations}
+\chapter{3-qubit operations}
+\section{Error correction}
+
+\chapter{n-qubit operations}
 \section{Data structures and quantum gates}
 \subsection{Single qubits and Hadamaq gates}
 \subsection{Entangled qubits and control gates}
