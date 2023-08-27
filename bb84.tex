@@ -1,0 +1,27 @@
+\documentclass{letter}
+
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+
+\begin{document}
+
+\begin{quantikz} %[wire types={q,c}]
+    \lstick{Alice' data bits}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{Z} & \gate{H} &\qw & \gate{H} & \meter{} &\cw \rstick{data output} \\
+    \lstick{Alice' key bits}  & \cw & \cwbend{-1} & & \cwbend{-1} & \cw \rstick{Bob's key bits}
+\end{quantikz}
+
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dashed] (2.5,2.5) -- (0,0);
+    \draw[dashed] (0,0) -- (2.5,-2.5);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {0};
+    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {1};
+    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {11};
+    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {10};
+    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\theta=\pi/4$};
+\end{tikzpicture}
+
+\end{document}
