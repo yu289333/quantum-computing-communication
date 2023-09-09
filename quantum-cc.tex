@@ -148,31 +148,26 @@ Maze problems are hard because there are too many paths to explore from the entr
 
 Computer scientists have long known parallel computing is the way to speed up solutions to such problems. But how to realize parallel computing needs the help of physicists. Indeed, a physicist would suggest the following experiment to attack the problem: run water into the entrance and observe what's coming out of the exit. If we see water out of the exit, we know the maze has at least one good path. Of course, this is not the ultimate answer. But at least it shows the power of using water for parallel exploration.
 
+\subsection{A blackbox maze problem}
+
 To attack the final question of how many good paths there are, we would propose refining the experiment this way: run several water drops into the entrance and see how many drops will come out. Here, we run into the challenge of how to achieve the precision we need: if one drop comes out of the exit, how do we know whether there is only one good path or there are two drops from two paths arriving the exit at the same time. It would be ideal if we know what the smallest drop of water is like so that we can distinguish one drop from a big combined drop.
 
 \subsection{Encryption is a maze game}
 Cryptographers have also known that all computationally difficult problems are candidates of encryption algorithms. What if Alice at the entrance of a maze has a way to select the path when putting a drop of water into the maze?  An onlooker who observes how the water drop exits cannot determine which path it has taken without trying out each possible path. But what if Bob, who some agreed knowledge with Alice, can differentiate the path taken by the water drop? The maze is an encrypted communication channel between Alice and Bob.
 
-\section{Optical waveguide quantum computing chip}
-If we take a look at the Xanadu.ai M-8 quantum computing chip, we see it very much ressembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters ressemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two.
-
-\section{Optical waveguide qubits}
-Another type of qubits uses lights confined in optical waveguides or fibers. We use the optical wave in waveguide A to represent the binary number 0 and label it $|0>$. We use the one in waveguide B to represent 1 and label it $|1>$. The two waves have the same frequency and amplitude. They don't overlap and are of course orthogonal to each other. If we bring the two waveguides together to overlap (using an optical coupler), we get a superposition wave that is a sum of both waves. If the sum has $cos\theta$ amount in amplitude from $|0>$ wave contributes and $sin\theta_p$ amount in amplitude from the $|1>$ wave, we can use the value $\theta_p$ to characterize the superposition wave.
-
-\begin{figure}[ht]
-\includegraphics[width=6cm]{pic/wguideQubit.png}
-\caption{Waveguide qubit}
-\label{Waveguide}
-\end{figure}
-
 \section{The quantum power}
-Playing with water tricks is exactly the idea behind quantum computers. Quantum physics tells us that all matters are waves and in addition, they all have the smallest drops, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest drops when measured by energy or mass.
-
+Playing with water tricks is exactly the idea behind quantum computers. 
 The first hint of quantum power for parallel computing came by the proposal of Deutsch's algorithm\cite{1985Deutsch} although the shock did not come until the publication of Shor's algorithm in 1997. The hint of quantum application to secure communication came a year early in 1984 though by the publication of the BB84 protocol\cite{BB84}.
 
 Named after the inventors Charles Bennett and Gilles Brassard, BB84 protocol secures communication from eavesdropping. If the quantum channel carries one quntum bit at a time made up by one drop of wave. The drop cannot be divided for wire-tapping. Although an eavesdropper can intercept the quantum bits and try to reproduce or clone them for re-transmitting to the receiver, the reproduction or cloning fail 50 percent of the time. So, the BB84 protocol secures communication completely against eavesdropping although it is not secure against some other attacks.
 
 \section{Quantum circuits and programming}
+
+\subsection{Optical waveguide quantum computing chip}
+If we take a look at the Xanadu.ai M-8 quantum computing chip, we see it very much ressembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters ressemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two. The chip has 8 entrances and 8 exits and can build $8^8$ possible paths.
+
+Quantum physics tells us that all matters are waves and in addition, they all have the smallest drops, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest drops when measured by energy or mass.
+
 When implementing the algorithms and protocols in software, we first draw out them as quantum circuit diagrams. Our software programs would call out qubits for input and output as well as the gates for processing according to the circuit diagrams. Qubit stands for quantum bit. For quantum computing, a qubit is the data memory device that typically stores a bit of information to be processed. The storage medium is a drop of wave, and the device includes hardware that contain the wave. For quantum communication, a qubit is the channel uses one drop of wave to carry one bit of information. It is no difference from a radio wave or optical wave communication channel except it uses one drop of wave at a time. Appendix \ref{A-qubit} explains the physics behind the construct and operation principles of several types of qubit devices. In Chapter \ref{C-qi} on quantum information, we will revise the notion that a qubit can stores or carries only one-bit of information. Before that, we will stay with the qubit definition implied by its name and repeated in literature.
 
 Conventional computers have no resemblance to quantum computers. Even before the appearance of modern computer, the not widely known subject of optical computing has explored the parallel computing capability of optical waves with Fourier transformation. But its application is limited and has not become a subject of learning by many. On the other hand, quantum devices have much in common with radio and optical communication devices because they all work with waves. Radio-wave communication including mobile communication and Wi-Fi is the dominating way for everyone connecting to the wired world. Mobile devices already take advantage of waves' parallel exploration capability for transmitters and receivers to find each other. The backbone of the wired world, on the other hand, is all optical fibers. The knowledge of wave communication reaches more engineering students than quantum physics and is most relevant not only to quantum communication but also to quantum computing. This chapter reviews some of the relevant subjects of communication theories especially on modulation before delving into the following chapters on the specifics of quantum communication and computing.
@@ -185,7 +180,24 @@ Quantum gates are modulators and demodulators, and are not the same as transisto
 
 When we talk about quantum computers, we should understand that we don't have entire computers made of all quantum devices. They will only have some chips or co-processors be replaced by chips of integrated circuits of quantum devices. Even our conventional computers have graphic processor units (GPU) in addition to the central processing units (CPU) to help speed up the processing of video display data.
 
+\section{The quantum concepts}
+For engineers, only two concepts of quantum physics are needed: 1. all matters are waves even the seemingly size-less electrons and protons are; 2. all waves have their smallest drops, which cannot be divided futher. Physicists refer the two concepts the particle and wave duality of matters. In this book, we call the smallest drop of wave a quantum instead of a particle. To most people, particles have the image of point like or of negligible sizes. This image completely removes the wave nature from the picture and cause all the misunderstandings when learning quantum physics. We still call a quantum of light a photon and a quantum of electron waves an electron. We just avoid using the term particle.
+
+The first concept tells us that, not limited to radio and optical waves, electrons and protons can also be used to make qubits.
+
+The second concept is simple and easy to understand. But it leads to profound differences between a quantum wave and a classical wave -- one that has theoretical limit of dividing into smaller drops. The most profound difference is that one quantum of a wave can only be measured once. After measurement, the quantum of wave is no longer the same as it once was. This is the so-called Bohr quantum collapse theory. Another difference is that possible value of the measurement, in many circumstances such as the amplitude, can take only discreet values instead of a continuous range of values in the case of a classical wave. This difference relates to the so-called von Neumann projection theory. We shall explain these theories further when we encounter the relevant topics.
+
 \chapter{Using waves to represent information}
+
+\section{Optical waveguide qubits}
+Another type of qubits uses lights confined in optical waveguides or fibers. We use the optical wave in waveguide A to represent the binary number 0 and label it $|0>$. We use the one in waveguide B to represent 1 and label it $|1>$. The two waves have the same frequency and amplitude. They don't overlap and are of course orthogonal to each other. If we bring the two waveguides together to overlap (using an optical coupler), we get a superposition wave that is a sum of both waves. If the sum has $cos\theta$ amount in amplitude from $|0>$ wave contributes and $sin\theta_p$ amount in amplitude from the $|1>$ wave, we can use the value $\theta_p$ to characterize the superposition wave.
+
+\begin{figure}[ht]
+\includegraphics[width=6cm]{pic/wguideQubit.png}
+\caption{Waveguide qubit}
+\label{Waveguide}
+\end{figure}
+
 \section{Waves and modulation}
 When talking about waves, we often visualize ripples in a lake or the surges in oceans and seas. We observe water being pushed up and then pulled down by gravity. When we shake one end of a string as show in Fig. \ref{String}, we also see the vibration of each section of the string and the propagation of the vibration. Our perception of a wave involves something vibrating and the vibration propagating. But can we consider the vibration of a guitar string as a wave? Indeed, we can. The reason we don't perceive the vibration propagating is because it gets reflected back by the two fixed ends of the string. Therefore, propagation or spatial spread remains a defining characteristic of waves, even if their propagation or spread is constrained.
 
