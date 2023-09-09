@@ -153,6 +153,18 @@ To attack the final question of how many good paths there are, we would propose 
 \subsection{Encryption is a maze game}
 Cryptographers have also known that all computationally difficult problems are candidates of encryption algorithms. What if Alice at the entrance of a maze has a way to select the path when putting a drop of water into the maze?  An onlooker who observes how the water drop exits cannot determine which path it has taken without trying out each possible path. But what if Bob, who some agreed knowledge with Alice, can differentiate the path taken by the water drop? The maze is an encrypted communication channel between Alice and Bob.
 
+\section{Optical waveguide quantum computing chip}
+If we take a look at the Xanadu.ai M-8 quantum computing chip, we see it very much ressembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters ressemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two.
+
+\section{Optical waveguide qubits}
+Another type of qubits uses lights confined in optical waveguides or fibers. We use the optical wave in waveguide A to represent the binary number 0 and label it $|0>$. We use the one in waveguide B to represent 1 and label it $|1>$. The two waves have the same frequency and amplitude. They don't overlap and are of course orthogonal to each other. If we bring the two waveguides together to overlap (using an optical coupler), we get a superposition wave that is a sum of both waves. If the sum has $cos\theta$ amount in amplitude from $|0>$ wave contributes and $sin\theta_p$ amount in amplitude from the $|1>$ wave, we can use the value $\theta_p$ to characterize the superposition wave.
+
+\begin{figure}[ht]
+\includegraphics[width=6cm]{pic/wguideQubit.png}
+\caption{Waveguide qubit}
+\label{Waveguide}
+\end{figure}
+
 \section{The quantum power}
 Playing with water tricks is exactly the idea behind quantum computers. Quantum physics tells us that all matters are waves and in addition, they all have the smallest drops, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest drops when measured by energy or mass.
 
@@ -948,15 +960,6 @@ Free space communication is mostly used for satellites to communicate with each 
 Lights are propagating electromagnetic waves and obviously are best suited for communications. The vibration direction of the electric field of an electromagnet wave is its polarization. A free space optical qubit uses one optical wave of horizontal polarization to represent the binary number 0 and is thus label $|0>$. It uses the one of vertical polarization to represent 1 and is labeled $|1>$. The two waves have the same frequency and amplitude. They are orthogonal to each other of course. A wave of polarization angle $\theta_p$ can be considered the superposition of the two base waves: the $|0>$ wave contributes $cos\theta_p$ amount in amplitude while the $|1>$ wave contributes $sin\theta$.
 
 Polarization modulation is also used in optical fiber communication. For example, dual polarization quadrature phase shift keying (DP-QPSK) modulation is a widely used.
-
-\section{Optical waveguide qubits}
-Another type of qubits uses lights confined in optical waveguides or fibers. We use the optical wave in waveguide A to represent the binary number 0 and label it $|0>$. We use the one in waveguide B to represent 1 and label it $|1>$. The two waves have the same frequency and amplitude. They don't overlap and are of course orthogonal to each other. If we bring the two waveguides together to overlap (using an optical coupler), we get a superposition wave that is a sum of both waves. If the sum has $cos\theta$ amount in amplitude from $|0>$ wave contributes and $sin\theta_p$ amount in amplitude from the $|1>$ wave, we can use the value $\theta_p$ to characterize the superposition wave.
-
-\begin{figure}[ht]
-\includegraphics[width=6cm]{pic/wguideQubit.png}
-\caption{Waveguide qubit}
-\label{Waveguide}
-\end{figure}
 
 \section{Superconductor qubits}
 A superconductor transmon qubit is similar to the string of a guitar and uses the first two standing waves, which resonate at the first and second harmonic frequencies respectively, to represent the integers of "0" and "1". Such a qubit is constructed by two superconductors separated by a layer of insulator. The insulator is thin enough for electrons to move ("tunnel") back and forth from one superconductor to another without loss of energy. But traveling through the insulator leads to delays (phase delays) of the electrons. The back-and-forth movement (vibration) of the electrons between the two superconductors resonate as standing waves at periods fractions of the delay. typically, the first fundamental frequency and the first harmonic are used to represent "0" and "1".
