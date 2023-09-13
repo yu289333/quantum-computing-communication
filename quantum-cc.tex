@@ -134,7 +134,7 @@ Quantum computing and communication are hot topics. Software development kits (S
 
 \mainmatter
 
-\chapter{Introduction to Quantum Information}
+\chapter{Introduction}
 The advantage of quantum computing lies in the possibility of parallel computing. The use of quantum communication has been in key distribution.
 
 \section{The maze problems}
@@ -150,23 +150,55 @@ Computer scientists have long known parallel computing is the way to speed up so
 
 \subsection{A blackbox maze problem}
 
-To attack the final question of how many good paths there are, we would propose refining the experiment this way: run several water drops into the entrance and see how many drops will come out. Here, we run into the challenge of how to achieve the precision we need: if one drop comes out of the exit, how do we know whether there is only one good path or there are two drops from two paths arriving the exit at the same time. It would be ideal if we know what the smallest drop of water is like so that we can distinguish one drop from a big combined drop.
-
 \subsection{Encryption is a maze game}
 Cryptographers have also known that all computationally difficult problems are candidates of encryption algorithms. What if Alice at the entrance of a maze has a way to select the path when putting a drop of water into the maze?  An onlooker who observes how the water drop exits cannot determine which path it has taken without trying out each possible path. But what if Bob, who some agreed knowledge with Alice, can differentiate the path taken by the water drop? The maze is an encrypted communication channel between Alice and Bob.
 
 \section{The quantum power}
-Playing with water tricks is exactly the idea behind quantum computers. 
+Playing with water tricks is exactly the idea behind quantum computing and communication. The fundamental concepts of quantum physics are in the so-called particle-wave dual nature: 1. all matters are waves even the seemingly size-less electrons and protons; 2. all waves have their smallest drops, which cannot be divided further.
+
 The first hint of quantum power for parallel computing came by the proposal of Deutsch's algorithm\cite{1985Deutsch} although the shock did not come until the publication of Shor's algorithm in 1997. The hint of quantum application to secure communication came a year early in 1984 though by the publication of the BB84 protocol\cite{BB84}.
 
-Named after the inventors Charles Bennett and Gilles Brassard, BB84 protocol secures communication from eavesdropping. If the quantum channel carries one quntum bit at a time made up by one drop of wave. The drop cannot be divided for wire-tapping. Although an eavesdropper can intercept the quantum bits and try to reproduce or clone them for re-transmitting to the receiver, the reproduction or cloning fail 50 percent of the time. So, the BB84 protocol secures communication completely against eavesdropping although it is not secure against some other attacks.
+\subsection{What is a particle}
+To most people, particles have the image of point like or of negligible sizes. This image excludes the wave nature from the picture and cause all the misunderstandings when learning quantum physics. It really refers to the fact that all matters have the smallest drops when measured certain ways. For electrons and protons, measurement of their mass or charge show the smallest drops. For photons, measure their energy show the smallest drops. Through out this book, we avoid using the mis-leading term particle and use "quantum" to refer to the smallest drop photons, electrons and protons.
 
-\section{Quantum circuits and programming}
+\subsection{What is a wave?}
 
-\subsection{Optical waveguide quantum computing chip}
+
+\subsubsection{Types of waves}
+
+For communication, beside radio waves, we also use laser lights launched into optical waveguides such as optical fibers. They are confined in two dimensions -- the lateral dimensions -- but propagate in the dimension along the axis-es of the waveguides or fibers. Using waveguides, optical fibers in particular, allows us to guide the lights to other optical devices. For this type of waves, amplitude, frequency, phase and polarization are also their characteristics.
+
+If a wave is confined in three dimensions, e.g. an electromagnetic wave in a microwave oven, the wave cannot propagate anywhere other than being reflected back. Only standing waves of specific frequencies can exist in the confinement. The allowed frequencies are discrete. Standing waves are good for storing information. Superconductor qubits are built by standing waves of electrons as we will describe further below. Standing waves may be best visualized and understood by the vibrations of a guitar string. When we pluck a string, the propagation of the vibrations are stopped and reflected by the two fixed ends. Only the waves whose phases coincide after a complete round trip of reflection survive while the other waves cancel each other and die off.
+
+Another type of waves, which we may call trapped waves, are not confined but are trapped by forces extending to infinity. Electrons are trapped waves by the electric force of a nucleus' positive charges. The waves extend to infinity but are concentrated within a nanometer around the nucleus. Trapped waves are also good for storing information. Trapped-ion qubits are built by trapped electron waves.
+
+
+\subsubsection{Controlling a wave}
+
+To attack the final question of how many good paths there are, we would propose refining the experiment this way: run several water drops into the entrance and see how many drops will come out. Here, we run into the challenge of how to achieve the precision we need: if one drop comes out of the exit, how do we know whether there is only one good path or there are two drops from two paths arriving the exit at the same time. It would be ideal if we know what the smallest drop of water is like so that we can distinguish one drop from a big combined drop.
+
+%\tdplotsetmaincoords{60}{120} % Set the viewpoint angles (adjust as needed)
+
+\begin{tikzpicture}%[tdplot_main_coords]
+% Draw the outer surface of the tube
+\draw (0,0) ellipse (0.8cm and 2cm);
+\draw (5,0) ellipse (0.8cm and 2cm);
+
+% Draw the inner surface of the tube (representing the hollow part)
+\draw (0,0) ellipse (0.5cm and 1.5cm);
+
+% Connect the ends of the cylinders to form the tube
+\draw (0,-2) -- (5,-2);
+\draw (0,2) -- (5,2);
+\end{tikzpicture}
+
+
+\subsubsection{Optical waveguide quantum computing chip}
 If we take a look at the Xanadu.ai M-8 quantum computing chip, we see it very much ressembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters ressemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two. The chip has 8 entrances and 8 exits and can build $8^8$ possible paths.
 
 Quantum physics tells us that all matters are waves and in addition, they all have the smallest drops, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest drops when measured by energy or mass.
+
+\section{Quantum circuits and programming}
 
 When implementing the algorithms and protocols in software, we first draw out them as quantum circuit diagrams. Our software programs would call out qubits for input and output as well as the gates for processing according to the circuit diagrams. Qubit stands for quantum bit. For quantum computing, a qubit is the data memory device that typically stores a bit of information to be processed. The storage medium is a drop of wave, and the device includes hardware that contain the wave. For quantum communication, a qubit is the channel uses one drop of wave to carry one bit of information. It is no difference from a radio wave or optical wave communication channel except it uses one drop of wave at a time. Appendix \ref{A-qubit} explains the physics behind the construct and operation principles of several types of qubit devices. In Chapter \ref{C-qi} on quantum information, we will revise the notion that a qubit can stores or carries only one-bit of information. Before that, we will stay with the qubit definition implied by its name and repeated in literature.
 
@@ -181,7 +213,7 @@ Quantum gates are modulators and demodulators, and are not the same as transisto
 When we talk about quantum computers, we should understand that we don't have entire computers made of all quantum devices. They will only have some chips or co-processors be replaced by chips of integrated circuits of quantum devices. Even our conventional computers have graphic processor units (GPU) in addition to the central processing units (CPU) to help speed up the processing of video display data.
 
 \section{The quantum concepts}
-For engineers, only two concepts of quantum physics are needed: 1. all matters are waves even the seemingly size-less electrons and protons are; 2. all waves have their smallest drops, which cannot be divided futher. Physicists refer the two concepts the particle and wave duality of matters. In this book, we call the smallest drop of wave a quantum instead of a particle. To most people, particles have the image of point like or of negligible sizes. This image completely removes the wave nature from the picture and cause all the misunderstandings when learning quantum physics. We still call a quantum of light a photon and a quantum of electron waves an electron. We just avoid using the term particle.
+For engineers, only two concepts of quantum physics are needed: 1. all matters are waves even the seemingly size-less electrons and protons are; 2. all waves have their smallest drops, which cannot be divided further. Physicists refer the two concepts the particle and wave duality of matters. In this book, we call the smallest drop of wave a quantum instead of a particle. To most people, particles have the image of point like or of negligible sizes. This image completely removes the wave nature from the picture and cause all the misunderstandings when learning quantum physics. We still call a quantum of light a photon and a quantum of electron waves an electron. We just avoid using the term particle.
 
 The first concept tells us that, not limited to radio and optical waves, electrons and protons can also be used to make qubits.
 
@@ -704,6 +736,8 @@ From above derivation, we see that it takes one operation of the $F$ gate to eva
 \section{BB84 protocol}
 Encryption is used in everyday Internet communication. Encryption conceals the credit card numbers and passwords, which we send to the websites, from hackers or adversaries, who can eavesdrop the communication channels. One of the communication encryption protocols is called one-time-pad (OTP) encryption, which is ideal in theory but is impractical. Charles Bennett and Gilles Brassard proposed in 1984 a quantum version of the protocol and improved its practicality. The improved version is called the BB84 protocol\cite{BB84}.
 
+Named after the inventors Charles Bennett and Gilles Brassard, BB84 protocol secures communication from eavesdropping. If the quantum channel carries one quntum bit at a time made up by one drop of wave. The drop cannot be divided for wire-tapping. Although an eavesdropper can intercept the quantum bits and try to reproduce or clone them for re-transmitting to the receiver, the reproduction or cloning fail 50 percent of the time. So, the BB84 protocol secures communication completely against eavesdropping although it is not secure against some other attacks.
+
 \subsection{The OTP protocol}
 By tradition, all communication encryption protocol is narrated as the scenario that Alice wants to transmit a series of data bits to Bob but fears Eve may eavesdrop the communication channel\cite{Schneier}. The OTP protocol goes like
 - Alice has a second series of random bits of equal length, which is the encryption key.
@@ -950,20 +984,6 @@ Using conventional computer, finding the period takes $2^{n/2}$ operations.
 According to Shannon theorem, under noise, the channel capacity is $C = 2B (1+SNR)$.
 
 
-\chapter{Bibliography}
-\bibliographystyle{unsrt}
-   \bibliography{qcc}
-
-\chapter{Appendix A: Wave Physics}
-
-\subsection{Types of waves}
-
-For communication, beside radio waves, we also use laser lights launched into optical waveguides such as optical fibers. They are confined in two dimensions -- the lateral dimensions -- but propagate in the dimension along the axis-es of the waveguides or fibers. Using waveguides, optical fibers in particular, allows us to guide the lights to other optical devices. For this type of waves, amplitude, frequency, phase and polarization are also their characteristics.
-
-If a wave is confined in three dimensions, e.g. an electromagnetic wave in a microwave oven, the wave cannot propagate anywhere other than being reflected back. Only standing waves of specific frequencies can exist in the confinement. The allowed frequencies are discrete. Standing waves are good for storing information. Superconductor qubits are built by standing waves of electrons as we will describe further below. Standing waves may be best visualized and understood by the vibrations of a guitar string. When we pluck a string, the propagation of the vibrations are stopped and reflected by the two fixed ends. Only the waves whose phases coincide after a complete round trip of reflection survive while the other waves cancel each other and die off.
-
-Another type of waves, which we may call trapped waves, are not confined but are trapped by forces extending to infinity. Electrons are trapped waves by the electric force of a nucleus' positive charges. The waves extend to infinity but are concentrated within a nanometer around the nucleus. Trapped waves are also good for storing information. Trapped-ion qubits are built by trapped electron waves.
-
 \chapter{Appendix: Qubit devices}\label{A-qubit}
 
 \section{Free space optical qubits}
@@ -1005,6 +1025,9 @@ To modulate a qubit in the 10 or 11 wave, a $\theta_pm = 45$ degree phase shifte
 \end{pmatrix}
 \end{equation}
 
+\chapter{Bibliography}
+\bibliographystyle{unsrt}
+   \bibliography{qcc}
 
 \backmatter
 \addcontentsline{toc}{chapter}{Index}
