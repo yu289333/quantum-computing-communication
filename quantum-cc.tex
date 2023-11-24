@@ -1041,6 +1041,11 @@ where $x = x_0 + x_1 2^1 + x_2 2^2 + ... +x_{N-1} 2^{N-1}$. In vector notation, 
 \end{equation}
 This matrix is the same matrix as for the discrete Fourier transform. Therefore, quantum Fourier transform is equivalent to discrete Fourier transform.
 
+\subsubsection{Complexity}
+
+\subsection{Phase estimation}
+\subsubsection{Complexity}
+
 \section{Grover's algorithm}
 Like the Deutsch's algorithm, the Grover's algorithm also assumes a blackbox function $f(x)$ whose variable $x$ is a $n$-bit binary variable. Its result is a single-bit value and is always 1 except for an unknown $x=x_w$ at which $f(x_w)=-1$. The goal of the algorithm is to find $x_w$. This is the simplified version of many search problems. Lov Grover proposed in 1996 that quantum computer can solve it faster than conventional computers.
 
@@ -1068,9 +1073,6 @@ Therefore, can we apply $F$ gate $2^n$ times and turn $\vec{S}$ completely to $-
 
 \subsection{Complexity}
 
-\section{Phase estimation}
-\subsection{Complexity}
-
 \section{Simon's algorithm}
 The Simon's algorithm assumes a blackbox oracle function $f(x)$ whose variable $x$ is a $n$-bit binary variable. Its results are $m$-bit values that are periodic, but the period $t$ is unknown -- $f(x+t)=(fx)$ for all $x$. How do we find the period $t$? Of course, we are tempted to play the trick again of feeding $\vec{S} = \frac 1 {\sqrt{2^n}} (1, 1, ...1)^T$ to the oracle function $f$. We have
 $f(\vec{S}) = \frac 1  {\sqrt{2^n}} \sum_x f(x)$.
@@ -1093,27 +1095,29 @@ Using conventional computer, finding the period takes $2^{n/2}$ operations.
 \section{Shor's algorithm}
 Much of modern day cryptography is based on the difficulty of factoring large integer numbers. Almost all Internet connections from our mobile phones and computers are based on AES, which is a private key encryption algorithm, and RSA or DH algorithms for key exchange.
 
-For a positive integer $M$, how can we find out whether it has factors? A naive approach is to iterate over $a=2, 3, ..., [M/2]$ one by one to see whether $M$ modulo $a$ is zero. Mathematicians have found a shortcut basing on the fact that if a pair of positive integers $a < N$ and $r$ exist, such that $a^r = 1(mod M)$, and that if they exist and $r$ is an even number, $(a^{r/2}+1)(a^{r/2}-1) = 0 (mod M)$. $r$ is called the order of $x$. But iterating over all the possible $x$ and $r$ is still a daunting task. Peter Shor, in his 1997 monumental paper\cite{1997Shor}, described a quantum algorithm, which finds the existence of $r$ and its value without iteration for every given $a$.
+For a positive integer $M$, how can we find out whether it has factors? A naive approach is to iterate over $a=2, 3, ..., [M/2]$ one by one to see whether $M$ modulo $a$ is zero. Mathematicians have found a shortcut basing on the fact that if a pair of positive integers $a < N$ and $r$ exist, such that $a^r = 1(mod M)$, and that if they exist and $r$ is an even number, $(a^{r/2}+1)(a^{r/2}-1) = 0 (mod M)$. $r$ is called the order of $a$. But, beside some trivial solutions, iterating over all the possible $a$ and $r$ is still a daunting task. Peter Shor, in his 1997 monumental paper\cite{1997Shor}, described a quantum algorithm, which finds the existence of $r$ and its value without iteration for every given $a$.
 
 With all the design patterns, which we have learned so far, how would we design such an algorithm? We may simply extend the ideas behind the Deutsch's algorithm to the $n$ dimension, where $n$ is the closest integer for $M < 2^n$.
-1. feed the function $f(x) = a^x$ with the evenly mix quantum waves $\keta{s_0}$
-2. use phase kick back to transfer the values of $f(a^j (mod M)), j\in \{0,N-1\}$, which should have periodicity of $r$, to the phases of the waves in the Fourier base
+1. feed the function $f(x) = a^x (Mod M)$ with the evenly mix quantum waves $\keta{s_0}$
+2. use phase kickback to transfer the values of $f(j), j\in \{0,N-1\}$, which should have periodicity of $r$, to the phases of the waves in the Fourier base
 3. use phase estimate to reveal the information containing $r$.
 
-For phase kick back, the operation $U$ is the quantum Fourier transform, and the chosen eigen wave should have the form
+For phase kickback to work, we need to find an eigen-waves of $U_f$,
 \begin{equation}\label{keta_u}
-    \keta{u} = \sum^r_{j=1} c_j \keta{a^j (mod M)}
+    \keta{u} = \sum^{r-1}_{j=0} c_j \keta{a^j (mod M)}.
 \end{equation}
-and the eigen values of the Fourier transform may be $e^{2\pi i \frac k r}$ where $k=0, 1, 2, ..., r-1$. The eigen values are the ones of the Fourior transform in the subspace. We can be certain that the The corresponding eigen-waves 
+If we assume the eigen-values are $e^{2\pi i \frac k r}$ where $k=0, 1, 2, ..., r-1$. We derive the corresponding eigen-waves to be
 \begin{equation}\label{keta_u}
-    \keta{u_k} = \frac 1 {\sqrt{r}} \sum^r_{j=1} e^{-{\frac {2\pi} r} kj} \keta{a^j (mod M)}
+    \keta{u_k} = \frac 1 {\sqrt{r}} \sum^{r-1}_{j=0} e^{-{\frac {2\pi} r} kj} \keta{a^j (mod M)}
 \end{equation}
 
-
-Shor's algorithm is based on another proven mathematical fact As = 0.sume $r$ exists. And we define $\omega_r = e^{2\pi i/r}$. We have
-\begin{equation}
-    \sum^{r-1}_{j=0} \omega^j_r = \frac {1-\omega^r_r} {1-\omega_r} = 0.
+However, we don't know the value of $r$ at the first place except the trivial $u_0$. How can we produce any of the non-trivial eigen waves to feed the operator $U_f$? Fortunately, the even mixture of the eigen waves
+\begin{equation}\label{keta_u}
+    \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0}\keta{u_k} = \frac 1 r \sum^{r-1}_{k=0} \sum^{r-1}_{j=0} e^{-{\frac {2\pi} r} kj} \keta{a^j (mod M)} = \sum^{r-1}_{j=0} \delta_j,0 \keta{a^j (mod M)} = \keta{1}
 \end{equation}
+is a wave that we know how to produce.
+
+\subsection{Circuit diagram}
 
 \subsection{Complexity}
 
