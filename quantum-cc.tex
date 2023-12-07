@@ -152,9 +152,9 @@ Maze problems are hard because there are too many paths to explore from the entr
 
 Computer scientists have long known parallel computing is the way to speed up solutions to such problems. But how to realize parallel computing needs the help of physicists. Indeed, a physicist would suggest the following experiment to attack the problem: run water into the entrance and observe what's coming out of the exit. If we see water out of the exit, we know the maze has at least one good path. Of course, this is not the ultimate answer. But at least it shows the power of using water for parallel exploration.
 
-We can obtain more information if we explore the water experiment further: put one big drop of water into the entrance and observe how many drops of water coming out. If three drops coming out of the exit, we can conclude that the maze has at least three good paths. We can also conclude the relative lengths of the paths by measuring the time delays of the three drops assuming water runs through all the paths at the same speed. One problem left is whether we can determine for sure that each of the three drops corresponds to one or more paths. Water is not good medium to reach precise solutions.
+We can obtain more information if we explore the water experiment further: put one big drop of water into the entrance and observe how many drops of water coming out. If three drops coming out of the exit, we can conclude that the maze has at least three good paths. We can also conclude the relative lengths of the paths by measuring the time delays of the three drops assuming water runs through all the paths at the same speed. In another word, the timing of the exiting water drops carries the length information of the paths.
 
-From the above water experiment, to build a parallel computer, a medium must possess the following characteristics:
+One problem left is whether we can determine for sure that each of the three drops corresponds to one or more paths. For this, water is not a good medium because a water drop can always be divided up into smaller drops. Having a smallest drop, which cannot be further divided, must be included in the characteristics of a perfect medium for our parallel computing experiments:
 \begin{itemize}
     \item it must be able to spread and to explore all possible solutions
     \item it must have one or more parameters, such as the time delay of a water drop, that can carry information
@@ -163,9 +163,11 @@ From the above water experiment, to build a parallel computer, a medium must pos
 Many media possess the first two characteristics. But only quantum waves possess all three.
 
 \section{The quantum power}
-Quantum physics tells us that all waves have their smallest drops -- the quanta, which cannot be divided further. This is the so-called particle nature of waves. Quantum physics also says that all matters including electrons and protons are waves. Physicists refer the two concepts as the particle and wave dual-natures of matters. They are the essence of quantum physics. Their truthfulness are proven all the physics experiments plain or wonderful. They are behind the power of quantum computing and communication.
+Quantum physics tells us that all waves have their smallest drops -- the quanta, which cannot be divided further. This is the so-called particle nature of waves. Quantum physics also says that all matters including electrons and protons are waves. Physicists refer the two concepts as the particle and wave dual-natures of matters. They are the essence of quantum physics. Their truthfulness have been proven by millions of experiments and more importantly by the advance of technologies including semiconductor and superconductor technologies.
 
-The first hint of quantum power for parallel computing came by the proposal of Deutsch's algorithm\cite{1985Deutsch} although the shock of the power did not come until the publication of Shor's algorithm in 1997. The hint of quantum application to secure communication came a year early in 1984 by the publication of the BB84 protocol\cite{BB84}. The fact that the smallest drop of a quantum wave cannot be divided prevents it from being partially tapped for eavesdropping.
+The first hint of quantum power for parallel computing came by the proposal of Deutsch's algorithm\cite{1985Deutsch}. Shor's algorithm, published in 1997, is an extension of Deutsch's algorithm in scale as we will explain. But it shocks the world by its potential power of factoring large numbers and, as a consequence, breaking modern encryption technologies.
+
+The hint of applying quantum physics to secure communication came in 1984 by the publication of the BB84 protocol\cite{BB84}. The fact that the smallest drop of a quantum wave cannot be divided prevents it from being partially tapped for eavesdropping. In our daily life, we are already used to the parallel capability of Wi-Fi waves, which allows communication with multiple devices simultaneously. Let's assume the antennae of our Wi-Fi box at home sends out 3 quanta of the wave at a time to limit the communication to precisely 3 devices. If the third device fails to receive its quantum of wave, it knows that someone has tapped it.
 
 \subsection{The particle nature}
 To most people, particles have the image of point-like things with negligible sizes. This image excludes the wave nature from the picture and cause all the misunderstandings when learning quantum physics. The particle nature really refers to the fact that all matters have the smallest drops when measured by their energy, mass or charge. For electrons and protons, measuring their mass or charge shows the smallest drops. For lights or electromagnetic waves, measuring their energy shows the smallest drops, and each drop is called a photon. Through out this book, we avoid using the mis-leading term particle and use "quantum" to refer to the smallest drop of photons, electrons and protons.
@@ -233,14 +235,14 @@ Information is represented by numbers, which can in turn mapped to the parameter
 \subsubsection{Optical waveguide quantum computing chip}
 If we take a look at the Xanadu.ai M-8 quantum computing chip, we see it very much ressembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters ressemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two. The chip has 8 entrances and 8 exits and can build $8^8$ possible paths.
 
-Quantum physics tells us that all matters are waves and in addition, they all have the smallest drops, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest drops when measured by energy or mass.
+Quantum physics tells us that all matters are waves and in addition, they all have the smallest quanta, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest quanta when measured by energy or mass.
 
 \section{Quantum measurement}
 The quantum nature is not shown until a wave is measured. The concept is simple, but leads to profound differences between measure a quantum wave and a classical wave. The most profound difference is that one quantum of a wave can only be measured once. After measurement, the quantum of wave is no longer the same as it once was. This is the so-called Bohr quantum collapse theory. Another difference is the possible values of measurement are limited to the eigen-values, which may be a concept foreign to engineering students. The differences are natural results of von Neumann's projection theory of measurement -- a highly abstract mathematical theory. To engineers, however, quantum measurement may be better understood as demodulation and resonance as described in the next chapter. 
 
 \section{Quantum circuits and programming}
 
-When implementing the algorithms and protocols in software, we first draw out them as quantum circuit diagrams. Our software programs would call out qubits for input and output as well as the gates for processing according to the circuit diagrams. Qubit stands for quantum bit. For quantum computing, a qubit is the data memory device that typically stores a bit of information to be processed. The storage medium is a drop of wave, and the device includes hardware that contain the wave. For quantum communication, a qubit is the channel uses one drop of wave to carry one bit of information. It is no difference from a radio wave or optical wave communication channel except it uses one drop of wave at a time. Appendix \ref{A-qubit} explains the physics behind the construct and operation principles of several types of qubit devices. In Chapter \ref{C-qi} on quantum information, we will revise the notion that a qubit can stores or carries only one-bit of information. Before that, we will stay with the qubit definition implied by its name and repeated in literature.
+When implementing the algorithms and protocols in software, we first draw out them as quantum circuit diagrams. Our software programs would call out qubits for input and output as well as the gates for processing according to the circuit diagrams. Qubit stands for quantum bit. For quantum computing, a qubit is the data memory device that typically stores a bit of information to be processed. The storage medium is a quantum of wave, and the device includes hardware that contain the wave. For quantum communication, a qubit is the channel uses one quantum of wave to carry one bit of information. It is no difference from a radio wave or optical wave communication channel except it uses one quantum of wave at a time. Appendix \ref{A-qubit} explains the physics behind the construct and operation principles of several types of qubit devices. In Chapter \ref{C-qi} on quantum information, we will revise the notion that a qubit can stores or carries only one-bit of information. Before that, we will stay with the qubit definition implied by its name and repeated in literature.
 
 Conventional computers have no resemblance to quantum computers. Even before the appearance of modern computer, the not widely known subject of optical computing has explored the parallel computing capability of optical waves with Fourier transformation. But its application is limited and has not become a subject of learning by many. On the other hand, quantum devices have much in common with radio and optical communication devices because they all work with waves. Radio-wave communication including mobile communication and Wi-Fi is the dominating way for everyone connecting to the wired world. Mobile devices already take advantage of waves' parallel exploration capability for transmitters and receivers to find each other. The backbone of the wired world, on the other hand, is all optical fibers. The knowledge of wave communication reaches more engineering students than quantum physics and is most relevant not only to quantum communication but also to quantum computing. This chapter reviews some of the relevant subjects of communication theories especially on modulation before delving into the following chapters on the specifics of quantum communication and computing.
 
@@ -276,7 +278,7 @@ In the study of communication, modulation is the subject devoted to how informat
 
 Radio broadcasts first used radio waves' amplitudes to represent the volume of one's voice. This is the so called amplitude modulation (AM). Later, frequency modulation (FM) was found less prone to noise in the airways. That is why we now have both AM and FM on the panels of our radios. Modern communication also use phase modulation (PM) and quadrature amplitude modulation (QAM), which is a combination of phase and amplitude modulation.
 
-Quantum devices, working with the smallest drops of waves, typically use two wave characteristics in their modulation scheme. Understanding how modulation works in quantum devices is the critical link for engineers to understand quantum technologies.
+Quantum devices, working with the smallest quanta of waves, typically use two wave characteristics in their modulation scheme. Understanding how modulation works in quantum devices is the critical link for engineers to understand quantum technologies.
 
 \subsection{Phase modulation}
 Phase modulation uses a carrier wave's phase to represent information. By varying the phase while keep the wave's frequency and amplitude constant, the real numbers in the [0, 2$\pi$) domain can be represented. In communication textbooks, we use the points in constellation diagrams to depict the amplitudes and phases of waves -- 
@@ -339,14 +341,13 @@ For simpler modulator circuitry, the QPSK modulation scheme shown in the constel
 \begin{tikzpicture}
     \draw[->] (-3.5,0) -- (3.5, 0);
     \draw[->] (0,-3.5) -- (0,3.5);
-    \draw[dashed] (2.5,2.5) -- (-2.5,-2.5);
-    \draw[dashed] (-2.5,2.5) -- (2.5,-2.5);
+    \draw[dashed] (2.5,2.5) -- (0, 0);
     \draw[dotted, red] (0,0) circle(3cm);
     \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {11};
     \draw[red, fill] (-2.12,2.12) circle(0.05cm) node[above] {01};
     \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {10};
     \draw[red, fill] (-2.12,-2.12) circle(0.05cm) node[left] {00};
-    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\varphi=\pi/4$};
+    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\varphi=45\circ$};
 \end{tikzpicture}
 \caption{Practical QPSK constellation diagram}
 \label{sQPSK}
@@ -355,7 +356,7 @@ For simpler modulator circuitry, the QPSK modulation scheme shown in the constel
 \subsection{Modulator, demodulator and superposition}
 A practical QPSK modulator circuit is shown in Fig. \ref{modulator}. It uses one carrier wave generator and splits the carrier wave into two waves of equal amplitudes. One of the half becomes the quadrature wave after a 90-degree phase shifter while the other half remains as the in-phase wave. modified scheme: in every time slot, 2 bits are fed into the modulator. Each bit is used to modulate a base carrier wave's phase. The two base carrier waves are orthogonal, one of zero phase and the other of 90-degree in phase. If the input to a carrier is "0", its phase is shifted another 180 degrees. The combined or summed up wave of the two carriers is the output of the modulator going into the communication channel. The constellation diagram this scheme is shown in Fig. \ref{QPSK}.
 
-We see that one wave from the source can be divided up into two waves, which can then be combined into one after modulation. In fact, all waves can be combined into one and may be regarded as one wave if they are coherent with each other -- their phases are correlated. Combination, mixing or composing several waves into one is the same concept as superposition in quantum physics although the latter refers to combination, mixing or composition of waves with equal number of drops.
+We see that one wave from the source can be divided up into two waves, which can then be combined into one after modulation. In fact, all waves can be combined into one and may be regarded as one wave if they are coherent with each other -- their phases are correlated. Combination, mixing or composing several waves into one is the same concept as superposition in quantum physics although the latter refers to combination, mixing or composition of waves with equal number of quanta.
 
 \begin{figure}[ht]
 \begin{tikzpicture}
@@ -439,14 +440,14 @@ Polarization modulation is used in optical fiber communication. For example, dua
 For engineers, only two concepts of quantum physics are needed: 1. all matters are waves even the seemingly size-less electrons and protons are; 2. all waves have their smallest drops, which cannot be divided. Physicists refer the two concepts the partical and wave duality of matters. The first concept tells us that, not limited to radio and optical waves, electrons and protons can also be used to make qubits. However, the implication of the second concept is far more profound and is not explored by traditional communication theory:
 
 \begin{itemize}
-    \item Analog AM is not possible because amplitude depends on the number of drops in the wave and can only be use for digital modulation. 
-    \item Each qubit can only be measured once. In disregard how many bits of information are modulated into a qubit, only one bit at most can be demodulated from a qubit.
+    \item Analog AM is not possible because amplitude depends on the number of quanta in the wave and can only be use for digital modulation. 
+    \item Each qubit can only be measured once. In disregard to how many bits of information are modulated into a qubit, only one bit at most can be demodulated from a qubit.
 \end{itemize}
 
-\subsection{Measurement and limit on channel capacity}
-When measuring a wave's mass or energy, we find it in a discrete number -- 1, 2, ..., or $n$ -- of a unit mass or energy. The one with 1 unit is the smallest drop of course. The amplitude is usually proportional to the square root of the mass or energy and takes only discrete values although not exactly 1, 2, ... or $n$.
+\subsection{Limitation of measurement}
+The final stage of demodulation involves measuring the wave's mass or energy. The result is always a discrete number -- 1, 2, ..., or $n$ -- quanta of mass or energy. The amplitude of the wave is usually proportional to the square root of the mass or energy and takes only discrete values although not exactly 1, 2, ... or $n$.
 
-When we have a wave of $n$ drops, we can divide it up to $n$ drops for separate measurements. But with measurement of each drop, the drop of the wave is changed or even disappears. A drop of an electromagnetic wave is called a photon. When measuring a photon, its energy is transferred to an electron, and the movement or change in the electron of charge induce an electrical current observable to humans. The photon cannot be divided and disappears after its whole energy is transferred to an electron. The unique feature of quantum information is that we can modulate a qubit device as much information as the cardinal of real numbers but that we can only extract at most one bit of information when measuring it.
+Measurement always involve energy or mass exchange between the wave and the measurement apparatus. When measuring a photon, for example, its energy is transferred to an electron, and the movement or change in the electron induces an electrical current observable to humans. Lost all the energy to the electron, the photon is "annihilated" -- in physicists' lingo -- and cannot be measured again. The unique feature of quantum information is that we can modulate a qubit device as much information as the cardinal of real numbers but that we can only measure at most once per quantum.
 
 \subsection{Quantum terminology}
 By tradition, physicists keep on using the term particle, which may cause the biggest confusion. To most people, particles have the image of point like or of negligible sizes. Physicists believed electrons were point-like in size when JJ Thomson discovered them in 1897. But when Ernest Rutherford discovered atomic nucleus 14 years later, people raised the question: why is the size of an atom much bigger than that of its nucleus? Why wouldn't the tiny negatively charged electrons fall into the positively charged nucleus and be combined into an atom close to the size of the nucleus -- if it were to happen, we would have not seen the world as we have.
@@ -461,64 +462,25 @@ When talking about electrons being waves, people are often puzzled and ask what 
 \subsection{Requirements on modulation}
 We have two conflicting requirements when considering how to modulate a qubit:
 \begin{itemize}
-    \item For parallel computing/exploration, the modulation code space should be as large as possible.
-    \item For output, demodulated codes are limited to binary "0" and "1".
+    \item For parallel computing/exploration, the modulation points should be as many as possible.
+    \item For output, modulation points for demodulation are limited to binary "0" and "1".
 \end{itemize}
 
-The first requirement is easy to understand, and analog PM, with symbol set $\phi in [0, 2\pi)$, meets the requirement. The second requirement is due to that fact that one qubit has only one drop wave, which resonates with only one of the local oscillators in the demodulator as shown in Fig. \ref{deodulator} and never both.
+The first requirement is easy to understand, and analog PM, with symbol set $\phi in [0, 2\pi)$, meets the requirement. The second requirement is due to that fact that one qubit has only one quantum of wave, which resonates with only one of the local oscillators in the demodulator as shown in Fig. \ref{deodulator} and never both.
 
-As described in the Appendix on qubit devices, all devices add polarization modulation or the like to meet the second requirement. (That's because polarization demodulation is easier than phase demodulation.) Polarization modulation is widely used in optical fiber communication. But some qubit modulation schemes such as using waveguide location have never been used in communication. And communication theory has no established terms for them. In this book, we refer them with a generic term $\theta$ modulation because all of them can be characterized by an angle value $\theta in (-\pi/2, \pi/2]$ as discussed in the appendix on qubit devices.
+As described in the Appendix on qubit devices, all devices add a second modulation such as polarization, frequency, mode modulation or the like to meet the second requirement. In this book, we refer these secondary modulations a generic term, $\theta$ modulation, because all of them can be characterized by an angle value $\theta \in (-\pi/2, \pi/2]$ as discussed in the appendix on qubit devices.
 
-\subsection{Digital modulation}
-\subsubsection{For output}
-To read out from a qubit, it must be in a binary modulation. Similar to QPSK shown in Fig. \ref{qQPSK}, we use the angles $\theta=0$ and $\pi/2$ to represent "0" and "1" respectively as shown in the constellation diagram Fig. \ref{QPSK} 
-\begin{figure}[hp]
-\begin{tikzpicture}
-    \draw[->] (-3.5,0) -- (3.5, 0);
-    \draw[->] (0,-3.5) -- (0,3.5);
-    \draw[dashed] (2.5,2.5) -- (0,0);
-    \draw[dashed] (0,0) -- (2.5,-2.5);
-    \draw[dotted, red] (0,0) circle(3cm);
-    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {0};
-    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {1};
-    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {11};
-    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {10};
-    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\theta=\pi/4$};
-\end{tikzpicture}
-%\includegraphics[width=6cm]{pic/qqpsk.jpg}
-\caption{Constenlation diagram of quantum $\theta$ shift keying}
-\label{qQPSK}
-\end{figure}
-
-\subsubsection{For input}
-At the input stage of a circuit, we can also use the $\theta=\pi/4 and -\pi/4$ code points. They are called the Bell states by physicists. As we will learn in latter chapters, these waves can be used for parallel computing because each of them is a mixture or superposition of both he "0"ed "1" waves. For quantum communication, they encode the binary numbers "11" and "10", and are used as encrypted code points of one-time pad encryption.
-
+\subsection{Measurable modulation points}
 \subsubsection{Quadrature amplitude modulation}
-Since a wave is in drops, 1, 2, 3, ..., or n drops, its amplitude is discrete too although not in increment of 1, 2, 3, ..., or n. Adding amplitude modulation is by adding more qubits and can be used only for digital modulation. Amplitude modulation is always used to add code points for digital modulation and cannot be used for parallel computing.
-
-\begin{figure}[ht]
-\begin{tikzpicture}
-    \draw[->] (-3.5,0) -- (3.5, 0);
-    \draw[->] (0,-3.5) -- (0,3.5);
-    \draw[dotted, red] (0,0) circle(3cm);
-    \draw[red, fill] (2,0) circle(0.05cm) node[below right] {0};
-    \draw[red, fill] (0,2) circle(0.05cm) node[above right] {1};
-    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {10};
-    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {11};
-\end{tikzpicture}
-\caption{Constellation diagrams of two qubits}
-\label{QAM}
-\end{figure}
-
-(Ignore - If we consider the relative amplitude $A$ and phase $\phi$ of the two waves in a qubit, they can represent all the real number pairs in the rectangle ${ A \in [0,1], phi \in [0,2\pi) }$. Physicists like to represent the relative amplitude as $cos\theta$, and therefore, the $(\theta, \phi)$ pair can represent all the real number pairs in the rectangle ${[0,\pi],  [0,2\pi)}$. This rectangle can also be represented as a Bloch sphere.
+Since a wave is in quanta, 1, 2, 3, ..., or n quanta, its amplitude is discrete too although not in increment of 1, 2, 3, ..., or n. Adding amplitude modulation is by adding more qubits and can be used only for digital modulation. Amplitude modulation is always used to add code points for digital modulation and cannot be used for parallel computing.
 
 \subsection{Analog modulation}
-Analog modulation can only be used at input or in processing. For communication, each qubit actually has two channels -- $\theta$ and $\varphi$. And their channel capacities per qubit duty cycle are $\theta in (-\pi/2, \pi/2] and \varphi in [0, \pi)$. For computing, that is the capacities are the amount of information a qubit can store.
+Analog modulation can only be used at input or in processing. For communication, each qubit actually has two channels -- $\theta$ and $\varphi$. And their channel capacities per qubit duty cycle are $\theta \in (-\pi/2, \pi/2] and \varphi \in [0, \pi)$. For computing, that is the capacities are the amount of information a qubit can store.
 
 \subsection{Demodulation and quantum measurement}
-When a cellphone receives a radio wave, the demodulator can divide the wave into many portions to measure the amplitudes and phases. But with a qubit, although we can adopt any of the modulation technique and put information in any of the data points $(\theta, \varphi)$, we cannot divide one drop of wave for multiple measurement.
+When a cellphone receives a radio wave, the demodulator can divide the wave into many portions to measure the amplitudes and phases. But with a qubit, although we can adopt any of the modulation technique and put information in any of the data points $(\theta, \varphi)$, we cannot divide one quantum of wave for multiple measurement.
 
-Similar to a demodulator of QPSK. a demodulator of a qubit expose the drop of wave to two electronic resonators orthogonal to each other.  If we know the qubit is modulated by BQSK, detecting the qubit in the $\keta{0}$ wave means the qubit's phase $\theta = 0$. Further, the absence of detecting signal in the $\keta{1}$ wave also suggests $\theta = 0$ too. But if the qubit is originally modulated in any other way, we have no way of measuring the knowing the information that the qubit represents. the probability of one resonator responds to the wave depends on how much the resontor overlaps with the wave in space and time.
+Similar to a demodulator of QPSK. a demodulator of a qubit expose the quantum of wave to two electronic resonators orthogonal to each other.  If we know the qubit is modulated by BQSK, detecting the qubit in the $\keta{0}$ wave means the qubit's phase $\theta = 0$. Further, the absence of detecting signal in the $\keta{1}$ wave also suggests $\theta = 0$ too. But if the qubit is originally modulated in any other way, we have no way of measuring the knowing the information that the qubit represents. the probability of one resonator responds to the wave depends on how much the resontor overlaps with the wave in space and time.
 
 In contrast to conventional communication and computing systems, information entered into a quibit may be lost at demodulation or measurement. That is the unique feature of quantum information.
 
@@ -549,7 +511,7 @@ For mathematicians and computer scientists, the physical meaning of wave additio
     b
 \end{pmatrix}$ is best for derivation and calculation.
 
-But not all of the 4 real numbers the two complex numbers can be used independently for modulation. First, the amplitude of the wave is one to be sure that the qubit contains only one drop $|a|^2 + |b|^2 = 1$.
+But not all of the 4 real numbers the two complex numbers can be used independently for modulation. First, the amplitude of the wave is one to be sure that the qubit contains only one quantum $|a|^2 + |b|^2 = 1$.
 \begin{equation}
     \begin{pmatrix}
     cos\theta & -e^{i\lambda} sin\theta \\
@@ -685,7 +647,207 @@ In the ket notation developed by physicists, a qubit gate operation is a quantum
 which is unitary.
 A algorithm or protocol is always depicted by a circuit diagram or series of matrix calculations. In circuit diagram, a qubit is shown as a line, and a gate as a rectangle.
 
-\chapter{Single-qubit operations}
+\chapter{Quantum communication protocols}
+
+\section{BB84 protocol}
+Encryption is used in everyday Internet communication. Encryption conceals the credit card numbers and passwords, which we send to the websites, from hackers or adversaries, who can eavesdrop the communication channels. Charles Bennett and Gilles Brassard proposed in 1984 a quantum encryption protocol\cite{BB84}. Named after the authors as the BB84 protocol, it secures communication from eavesdropping over the classical one-time-pad (OTP) encryption protocol\cite{Schneier} by taking advantage of the fact that a qubit cannot be divided for wire-tapping. Let's first describe how BB84 encrypts data as a version of the classical OTP protocol before describing how anti-eavesdropping protocol is added.
+
+\subsection{BB84 as an encryption protocol}
+By tradition, all communication encryption protocol is narrated as the scenario that Alice wants to transmit a series of data bits to Bob but fears Eve may eavesdrop the communication channel\cite{Schneier}. The encryption portion of the protocol goes like
+- Alice has a second series of random bits of equal length to the data bits, which is the encryption key.
+- Depending on the value of the key bit, 0 or 1, the transmitted data qubit uses either the $0\circ$ or $45\circ$ modulation base.
+- Bob has the same series of key bits, and uses either the $0\circ$ or $45\circ$ modulation base to measure the received qubit.
+
+%\begin{comment}[ht]
+%\begin{tikzpicture}
+ %   \path (-5, 0) node[anchor=east] (start) {$\keta{0}$}
+ %   (-5,-2) node[Gate] (data) {Data bits}
+ %   (-5,2) node[Gate] (key) {Key bits}
+  %  (-4,0) node[Gate](dataCoder) {I/Z}
+   % (-2,0% node[Gate](keyCoder) {I/H}
+%    (2,0)%%% node[Gate] (keyDecoder) {I/H}
+%    (4,0)%% node[Gate] (meter) {$\nearrow$}
+%    (4,2)%% node[Gate] (keyD) {D-key bits} (keyDecoder)
+%    (5,0)%% node[anchor=west] (output) {output};
+%    \draw%% (start) -- (dataCoder) -- (keyCoder) -- (keyDecoder) -- (meter) -- (output);
+%    \draw%[->] (data.east) -| (dataCoder.south);
+%    \draw%[->] (key.east) -| (keyCoder.north);
+%    \draw[->] (keyD.west) -| (keyDecoder.north);
+%\end{tikzpicture}
+%\caption{BB84 circuit}
+%\label{BB84}
+%\end{comment}
+
+\begin{figure}[ht]
+\begin{quantikz} %[wire types={q,c}]
+    \lstick{Alice' data bits}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{X} & \gate{H} &\qw & \gate{H} & \meter{} &\cw \rstick{data output} \\
+    \lstick{Alice' key bits}  & \cw & \cwbend{-1} & & \cwbend{-1} & \cw \rstick{Bob's key bits}
+\end{quantikz}
+\caption{BB84 circuit}
+\label{BB84}
+\end{figure}
+
+\subsection{Performance}
+Channels: one.
+Input Processing:
+Output processing:
+Transmission rate: one bit per qubit duty cycle.
+
+\subsection{Adding authentication to BB84 protocol}
+A quantum protocol such as BB84 is immune to wire-tapping, but like other protocols, it is vulnerable to attacks if Eve intercepts the qubits from Alice and send Bob qubits produced by herself. Not part of the BB84 protocol, the standard approach to detect such attacks is to add $m$ authentication bits, which are bits known to both Alice and Bob in advance, to every $n$ data bits:$a_1 a_2 ... a_m d_1 d_2 ...d_n$. If Bob finds the authentication bits not what he expects, he suspects the block's authenticity discards it.
+
+\subsection{Key distribution}
+All OTP protocols such as BB84 are theoretically beautiful but are not practical because they require encryption keys to be equal lengths as the data messages. It is a chicken and egg dilemma: how does Alice shares or distributes the series of secret key bits to Bob at the first place? Conventional public key exchange protocols are the current solutions. But they have many problems. They require expansive computation and may be broken by the power of quantum computing.
+
+BB84 protocol and the quantum protocols following it do not depend on expansive computation. They recognize the fact that keys are random numbers. And key distribution or sharing can afford to lose some candidate key bits and does not require all candidate key bits being accepted by Bob. Alice can distribute all the candidate key bits to Bob. And Bob and Alice only need to agree on which of the candidate bits are "good" to use.
+
+BB84 modifies the above protocol for key distribution in the following way:
+- Alice generates two blocks of random bits of equal length with one block being the data bits -- or candidate key bits -- and another as the "encryption" key bits.
+- Alice pairs the bits 00, 01, 10, or 11, and send it to Bob in the quantum channel (the qubit) mapped to the modulation points shown \ref{qQPSK}. Anyone who measures the qubit and gets a result of "0" cannot distinguish the actual code point is "00" or "10". So the original data is encrypted.
+- Bob does not have the "encryption" key bits that Alice uses but has a series of key bits out of his random generation. And Bob demodulates each received qubit using his key bit and obtain his data bits.
+- Alice and Bob then use a conventional communication channel to compare their corresponding key bits. If they agree, Alice and Bob keeps the candidate data bit. Otherwise, the candidate bit is discarded.
+
+With many of the original data bits from Alice being discarded, what is good of BB84? The good part is that the kept data bits can be used as the key for future encryption. Therefore, BB84 is considered a quantum key distribution protocol. The quantum channel guarantees that it cannot be tapped. But it cannot prevent an eavesdropper Eve from intercepting the qubits in the channel. Eve may intercept the qubits without sending anything to Bob and may also attempt to reproduce the qubit to send to Bob. Because of the non-cloning theory, Eve cannot reproduce the qubit to disguise the interception. So, key distribution with BB84 guarantees keys' confidentiality and integrity although the rate of key transmission may suffer from interception.
+
+\section{2-qubit operations}
+In conventional computers, 8, 16 or 32 bits are joined together to a unit of one byte, word or UINT32. Quantum circuits have their ways to join qubits into new units. If we look into 2 waveguide qubits, we see 4 waveguides, which we can label as $V_0$, $V_1$, $W_0$ and $W_1$. If we join the first two, we can make a superposition wave $a\keta[V]{0}+b\keta[V]{1}$ and allow only one quantum of wave in it. If we join the first and the third, physicists may call the new unit a joint wave while we keep the tradition of this book to call it a joint wave. Physicists note the new unit as $\keta[V]{0} \keta[W]{0}$ or simply $\keta{0}\keta{0}$. For quantum computing and communication, we allow two quanta in the joint wave.
+
+\section{Control gates}
+Assume $f(x)$ is a binary function mapping $x \in {0,1}$ to ${0,1}$. The control-f gate takes input waves $\keta{x}\keta{y}$, where $x$ and $y$ are either 0 or 1, and produce the output waves as shown below.
+\begin{figure}[ht]
+\begin{quantikz}
+    \lstick{\ket{x}}  & \ctrl{1}  & \qw \rstick{\ket{x}} \\
+    \lstick{\ket{y}} & \gate{f} &\qw \rstick{\ket{y\bigoplus f(x)}}
+\end{quantikz}
+\caption{Control-f gate}
+\label{c-f}
+\end{figure}
+A particularly important type of control gates is the control-NOT or C-NOT gates, in which the $f$ is the Pauli $X$. A C-NOT gate is best described in vector notation as matrix
+\begin{equation}
+    \begin{pmatrix}
+1 & 0 & 0 &0 \\
+0 & 1 & 0 &0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\end{equation}
+
+\section{Mostly used modulation points}
+\subsection{The measurable points}
+From 4 orthogonal waves, we have 4 joint waves $\keta{0}\keta{0}$, $\keta{0}\keta{1}$, $\keta{1}\keta{0}$ and $\keta{1}\keta{1}$, which are also orthogonal waves. We can use them as the base waves to represent 2-bit binary numbers 00, 01, 10 and 11. It's impossible to draw any 4-dimensional object using the 4 orthogonal base waves. But the constellation of QAM modulation diagram in Fig. \ref{QAM} shows to some extend the phase relation among the base waves except that two pairs of the waves in QPSK are 180-degree different in phase instead of orthogonal.
+
+%\begin{figure}[ht]
+%\begin{tikzpicture}
+%    \draw[->] (-3.5,0) -- (3.5, 0);
+ %   \draw[->] (0,-3.5) -- (0,3.5);
+  %  \draw[dotted, red] (0,0) circle(3cm);
+  %  \draw[red, fill] (2,0) circle(0.05cm) node[below right] {0};
+   % \draw[red, fill] (0,2) circle(0.05cm) node[above right] {1};
+    %\draw[red, fill] (3,0) circle(0.05cm) node[below right] {10};
+%    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {11};
+%\end{tikzpicture}
+%\caption{Constellation diagrams of two qubits}
+%\label{QAM}
+%\end{figure}
+
+\subsection{Bell states}
+Like in the cases of one qubit and QPSK, we can also use superpositions of the above base waves to come up with a new set of base waves:
+\begin{equation}
+\begin{array}{rl}
+    \keta{\Phi^{+}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}+\keta{1}\keta{1}),\\
+    \keta{\Phi^{-}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}-\keta{1}\keta{1}),\\
+    \keta{\Psi^{+}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}+\keta{1}\keta{0}),\\
+    \keta{\Psi^{-}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}-\keta{1}\keta{0}).
+\end{array}
+\end{equation}
+The second set of base waves can be considered 45 degree rotated from the first set. Physicists call them Bell state waves and use the funny symbols to note them. They are in the form $cos\theta |b_i> + sin\theta |b_j>$. They are no longer separable waves.
+
+We can use 8 waves from the 2 sets of bases to represent numbers of 3 bits as shown in Fig. \ref{8QAM}.
+
+\section{Design patterns}
+
+\subsection{Producing Bell states}
+\begin{figure}[ht]
+\begin{quantikz}
+    \lstick{\ket{+}}  & \ctrl{1} & \qw \rstick[2]{\ket{\Phi^+}} \\
+    \lstick{\ket{0}} & \gate{X} &\qw 
+\end{quantikz}
+\caption{Producing Bell states}
+\label{BS}
+\end{figure}
+Changing the input waves from $\keta{+}$ to $\keta{-}$ or from $\keta{0}$ to $\keta{1}$, we can obtain the other Bell states.
+
+\section{Superdense coding}
+Superdense coding is also called dense coding. With the consideration of two qubits as one wave, modulation of one qubit is modulating the shared $\theta$ of the entanged wave. The modulation appears to be upon one qubit. But the information is actually coded into two qubits.
+
+The operation first creates entanglement $\keta{\Phi^{+}}$.
+
+\begin{table}[]
+\caption{Modulate one qubit twice to encode 2 bits}
+\label{DenseCodingTable}
+\begin{tabular}{lll}
+Digital input & Modulating operation & gate                 \\
+00 & None   & None \\
+01 & $90 degree$& Z gate \\
+10 & Mirror switch $\keta{0}$ and $\keta{1} $ &X gate \\
+11 & Mirror switch $\keta{0}$ and $\keta{1}$ and $90 degree$ &X gate
+\end{tabular}
+\end{table}
+
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & &\lstick{Alice' 2nd bit}  & \cwbend{2} \\
+    & & \lstick{1st bit}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \gate{Z} & \gate{X} &\ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Bob's 1st bit} \\
+    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{1} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{2} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{3} & \targ{} & \qw & \meter{} & \cw \rstick{Bob's 2nd bit}
+\end{quantikz}
+\caption{Superdense coding circuit}
+\label{DenseCoding}
+\end{figure}
+
+\section{Teleportation}
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & \lstick{Alice' wave a\ket{0}+b\ket{1}}  & \ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Alice' 1st bit} \\
+    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \targ{} & \qw& \meter{} &\cw \rstick{Alice' 2nd bit} \\
+    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=2mm}, label style={yshift=-38mm}]{1} & \qw & \qw & \qw \rstick{Bob's wave}
+\end{quantikz}
+\caption{Teleportation circuit}
+\label{Teleportation}
+\end{figure}
+
+Similar to dense coding, quantum teleportation is to modulate an analog signal to one qubit of a $|BS1>$ two-qubit wave. The analog signal comes in the form of a qubit, which we call it the signal qubit. And the wave may be written as $a \keta{0} + b\keta{1}$.
+\begin{equation}\label{}
+\begin{array}{rl}
+    & (a \keta{0} + b\keta{1}) \frac 1 {\sqrt 2}(\keta{0}\keta{0}+\keta{1}\keta{1}) \\
+    = & \frac 1 {\sqrt 2}| (\keta{0}\keta{0}+\keta{1}\keta{1}) (a \keta{0} + b\keta{1}) \\
+    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}-\keta{1}\keta{1}) (a \keta{0} - b\keta{1}) \\
+    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}+\keta{1}\keta{0}) (a \keta{0} + b\keta{1}) \\
+    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}-\keta{1}\keta{0}) (a \keta{0} - b\keta{1})
+\end{array}
+\end{equation}
+
+\begin{table}[]
+\caption{Modulate one qubit to encode 2 bits}
+\label{TeleportationTable}
+\begin{tabular}{lr}
+Alice's output $d_1 d_0$ & Bob's qubit  \\
+00 & $a\keta{0}+b\keta{1}$ \\
+01 & $a\keta{1}+b\keta{0}$ \\
+10 & $a\keta{0}-b\keta{1}$  \\
+11 & $a\keta{1}-b\keta{0}$ 
+\end{tabular}
+\end{table}
+
+Alice has a qbit with information S and shares a pair of qbits with Bob. The pair is one of the 4 known eigenwaves and has 2 bits of information. The total input information is therefore S+2. At the output, Alice measures the first 2 qbits against the same 4 eigenwaves and tells Bob the result, which has 2 bits of information. If no information is lost, the information in the 3rd qubit should be S.
+
+\section{Quantum secure direct communication (QSDC)}
+QSDC is an adaptation of quantum teleportation to key distribution. The key transmission rate is 1 bit per qubit duty cycle and is a much improvement over the BB84 protocol.
+
+\chapter{Deutsch's and related algorithms}
 
 \section{Hadamard gate}
 Hadamard gate rotates the polarization $\theta$ of a qubit by 45 degrees. Its circuit symbol is letter "H" enclosed in a square. Rotating a $\keta{0}$ qubit 45 degrees obvious becomes a qubit of 45 degree polarization.
@@ -737,7 +899,26 @@ The X gate can also be represented as $\bigoplus$. But in this book, we do not u
 
 We see that an X gate flips the bases $\keta{0}$ and $\keta{1}$ from one to another. 
 
-\subsection{$\keta{+}$ wave}
+\subsection{The $\keta{+}$ and $\keta{-}$ waves}
+To read out from a qubit, it must be in a binary modulation. Similar to QPSK shown in Fig. \ref{qQPSK}, we can map the modulation points $\theta=0$ and $\pi/2$ to represent "0" and "1" respectively as shown in the constellation diagram Fig. \ref{QPSK} 
+\begin{figure}[hp]
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dashed] (2.5,2.5) -- (0,0);
+    \draw[dashed] (0,0) -- (2.5,-2.5);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {0};
+    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {1};
+    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {11};
+    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {10};
+    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\theta=\pi/4$};
+\end{tikzpicture}
+%\includegraphics[width=6cm]{pic/qqpsk.jpg}
+\caption{Constenlation diagram of quantum $\theta$ shift keying}
+\label{qQPSK}
+\end{figure}
+
 The $\keta{+}$ wave is a superposition wave of the $\keta{0}$ and $\keta{1}$ waves and is best used as the input wave for parallel processing.
 \begin{figure}[ht]
 \begin{quantikz}
@@ -747,7 +928,6 @@ The $\keta{+}$ wave is a superposition wave of the $\keta{0}$ and $\keta{1}$ wav
 \label{H+}
 \end{figure}
 
-\subsection{$\keta{-}$ wave}
 The $\keta{-}$ wave is also a superposition wave of the $\keta{0}$ and $\keta{1}$ waves, but is mostly used as the input wave phase kickback algorithm, which will be described in the following chapter.
 \begin{figure}[ht]
 \begin{quantikz}
@@ -757,143 +937,16 @@ The $\keta{-}$ wave is also a superposition wave of the $\keta{0}$ and $\keta{1}
 \label{H-}
 \end{figure}
 
-\section{Introducing Deutsch's algorithm}
+\section{Deutsch's algorithm}
 A one-bit function $f$ mapping \{0,1\} -\> \{0,1\} can have 4 possible outputs, which are 2 bits of information. But the outputs belong to 2 categories, constant or balanced, which are an 1-bit information as of $f(1)+f(0)$. We can't obtain the 2-bit information using one operation but can obtain the 1-bit information if we feed the function with the $\keta{+}$ qubit:
 \begin{equation}\label{DeutschF1}
-    F(\frac 1 {\sqrt 2} (\keta{0}+\keta{1}) ) = \frac 1 {\sqrt 2} (\keta{f(0)}+ \keta{f(1)}) 
+\begin{array}{rl}
+    U_f(\frac 1 {\sqrt 2} (\keta{0}+\keta{1}) ) = & \frac 1 {\sqrt 2} (e^{2\pi i f(0)} \keta{0}+ e^{2\pi i f(1)} \keta{1}) \\
+    = & \frac 1 {\sqrt 2} e^{2\pi i f(0)} (\keta{0}+ e^{2\pi i [f(1)-f(0)]} \keta{1})
+\end{array}
 \end{equation}
 
 From above derivation, we see that it takes one operation of the $F$ gate to evaluate both $f(0)$ and $f(1)$. But the result still requires two measurements, one to determine $f(0)$ and the other to determine $f(1)-f(0)$. For two measurements, we need the help of another qubits.
-
-\section{BB84 protocol}
-Encryption is used in everyday Internet communication. Encryption conceals the credit card numbers and passwords, which we send to the websites, from hackers or adversaries, who can eavesdrop the communication channels. One of the communication encryption protocols is called one-time-pad (OTP) encryption, which is ideal in theory but is impractical. Charles Bennett and Gilles Brassard proposed in 1984 a quantum version of the protocol and improved its practicality. The improved version is called the BB84 protocol\cite{BB84}.
-
-Named after the inventors Charles Bennett and Gilles Brassard, BB84 protocol secures communication from eavesdropping. If the quantum channel carries one quntum bit at a time made up by one drop of wave. The drop cannot be divided for wire-tapping. Although an eavesdropper can intercept the quantum bits and try to reproduce or clone them for re-transmitting to the receiver, the reproduction or cloning fail 50 percent of the time. So, the BB84 protocol secures communication completely against eavesdropping although it is not secure against some other attacks.
-
-\subsection{The OTP protocol}
-By tradition, all communication encryption protocol is narrated as the scenario that Alice wants to transmit a series of data bits to Bob but fears Eve may eavesdrop the communication channel\cite{Schneier}. The OTP protocol goes like
-- Alice has a second series of random bits of equal length, which is the encryption key.
-- Alice pairs one bit from each series, calculates the XOR of each of the bit pairs, and sends each of the XOR results to Bob at a time lot.
-- Bob also has the same series of key bits. Upon receiving the bit of each of the XOR results from Alice, Bob XOR it with the corresponding bit from the key bit series in his possession to decrypt the corresponding data bit.
-
-\subsection{Key distribution}
-The OTP protocol is one of the symmetric encryption algorithms. It is the only hundred percent secure algorithm, and there is no way to break it even using brute force. But it is not practical because the encryption key needs to be equally long as the data message. It is a chicken and egg dilemma: how does Alice shares or distribute the series of secret key bits to Bob at the first place? Conventional public key exchange protocols are the current solutions to the chicken and egg problem. But they have many other problems. Among them is that the conventional protocols are computationally expansive and can only be used for key exchanges of short key length. BB84 protocol and the quantum protocols following it do not depend on expansive computation. They recognize the fact that keys are random numbers. And key sharing can afford to lose some candidate key bits and does not require all candidate key bits being exchanged or shared between Alice and Bob. Alice can distribute all the candidate key bits to Bob. And Bob and Alice only need to agree on which of the candidate bits are "good" to use.
-
-BB84 modifies the OTP protocol for key distribution in the following way:
-- Instead of calculating the XOR of bit pair, Alice concatenates the pair into two-bits binary number 00, 01, 10, or 11, and send it to Bob in the quantum channel (the qubit) encoded according to the constellation diagram \ref{qQPSK}. Anyone who measures the qubit and gets a result of "0" cannot distinguish the actual code point is "00" or "10". So the original data is encrypted.
-- Bob does not have the key bits that Alice uses but has a series of key bits out of his random generation. And Bob demodulates each received qubit using his key bit and obtain a data candidate bit, i.e. if the key bit is "0", he measures the received qubit using base "0"; if the key bit is "1", he measures the received qubit using base "11".
-- Alice and Bob then use the conventional communication channel to compare their corresponding key bits. If they agree, Alice and Bob keeps the candidate data bit. Otherwise, the candidate bit is discarded.
-
-With many of the original data bits from Alice being discarded, what is good of BB84? The good part is that the kept data bits can be used as the key for future encryption. Therefore, BB84 is considered a quantum key distribution protocol. The quantum channel guarantees that it cannot be tapped. But it cannot prevent an eavesdropper Eve from intercepting the qubits in the channel. Eve may intercept the qubits without sending anything to Bob and may also attempt to reproduce the qubit to send to Bob. Because of the non-cloning theory, Eve cannot reproduce the qubit to disguise the interception. So, key distribution with BB84 guarantees keys' confidentiality and integrity although the rate of key transmission may suffer from interception.
-
-\subsection{Circuit diagram}
-%\begin{comment}[ht]
-%\begin{tikzpicture}
- %   \path (-5, 0) node[anchor=east] (start) {$\keta{0}$}
- %   (-5,-2) node[Gate] (data) {Data bits}
- %   (-5,2) node[Gate] (key) {Key bits}
-  %  (-4,0) node[Gate](dataCoder) {I/Z}
-   % (-2,0% node[Gate](keyCoder) {I/H}
-%    (2,0)%%% node[Gate] (keyDecoder) {I/H}
-%    (4,0)%% node[Gate] (meter) {$\nearrow$}
-%    (4,2)%% node[Gate] (keyD) {D-key bits} (keyDecoder)
-%    (5,0)%% node[anchor=west] (output) {output};
-%    \draw%% (start) -- (dataCoder) -- (keyCoder) -- (keyDecoder) -- (meter) -- (output);
-%    \draw%[->] (data.east) -| (dataCoder.south);
-%    \draw%[->] (key.east) -| (keyCoder.north);
-%    \draw[->] (keyD.west) -| (keyDecoder.north);
-%\end{tikzpicture}
-%\caption{BB84 circuit}
-%\label{BB84}
-%\end{comment}
-
-\begin{figure}[ht]
-\begin{quantikz} %[wire types={q,c}]
-    \lstick{Alice' data bits}  & \cwbend{1} \\
-    \lstick{\ket{0}} & \gate{X} & \gate{H} &\qw & \gate{H} & \meter{} &\cw \rstick{data output} \\
-    \lstick{Alice' key bits}  & \cw & \cwbend{-1} & & \cwbend{-1} & \cw \rstick{Bob's key bits}
-\end{quantikz}
-\caption{BB84 circuit}
-\label{BB84}
-\end{figure}
-
-\subsection{Performance}
-Channels: one.
-Input Processing:
-Output processing:
-Transmission rate: one bit per qubit duty cycle.
-
-\chapter{2-qubit operations}
-In conventional computers, 8, 16 or 32 bits are joined together to a unit of one byte, word or UINT32. Quantum circuits have their ways to join qubits into new units. If we look into 2 waveguide qubits, we see 4 waveguides, which we can label as $V_0$, $V_1$, $W_0$ and $W_1$. If we join the first two, we can make a superposition wave $a\keta[V]{0}+b\keta[V]{1}$ and allow only one drop of wave in it. If we join the first and the third, physicists may call the new unit a joint wave while we keep the tradition of this book to call it a joint wave. Physicists note the new unit as $\keta[V]{0} \keta[W]{0}$ or simply $\keta{0}\keta{0}$. For quantum computing and communication, we allow two drops in the joint wave.
-
-\section{Control gates}
-Assume $f(x)$ is a binary function mapping $x \in {0,1}$ to ${0,1}$. The control-f gate takes input waves $\keta{x}\keta{y}$, where $x$ and $y$ are either 0 or 1, and produce the output waves as shown below.
-\begin{figure}[ht]
-\begin{quantikz}
-    \lstick{\ket{x}}  & \ctrl{1}  & \qw \rstick{\ket{x}} \\
-    \lstick{\ket{y}} & \gate{f} &\qw \rstick{\ket{y\bigoplus f(x)}}
-\end{quantikz}
-\caption{Control-f gate}
-\label{c-f}
-\end{figure}
-A particularly important type of control gates is the control-NOT or C-NOT gates, in which the $f$ is the Pauli $X$. A C-NOT gate is best described in vector notation as matrix
-\begin{equation}
-    \begin{pmatrix}
-1 & 0 & 0 &0 \\
-0 & 1 & 0 &0 \\
-0 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0
-\end{pmatrix}
-\end{equation}
-
-\section{Mostly used modulation points}
-\subsection{The bases}
-From 4 orthogonal waves, we have 4 joint waves $\keta{0}\keta{0}$, $\keta{0}\keta{1}$, $\keta{1}\keta{0}$ and $\keta{1}\keta{1}$, which are also orthogonal waves. We can use them as the base waves to represent 2-bit binary numbers 00, 01, 10 and 11. It's impossible to draw any 4-dimensional object using the 4 orthogonal base waves. But the constellation of QAM modulation diagram in Fig. \ref{QAM} shows to some extend the phase relation among the base waves except that two pairs of the waves in QPSK are 180-degree different in phase instead of orthogonal.
-
-\subsection{Evenly mixed waves}
-In ket notation, the wave of two qubits can be written as
-$a\keta{0}\keta{0} + b \keta{0}\keta{1} + c \keta{1}\keta{0} + d \keta{1}\keta{1}$.
-In vector notation, they are
-$
-\begin{pmatrix}
-    a \\
-    b \\
-    c \\
-    d
-\end{pmatrix}$.
-
-One useful digital input is the superposition of all the base waves:
-\begin{equation}
-    |s> = \frac 1 2 (\keta{0}\keta{0}+\keta{0}\keta{1}+\keta{1}\keta{0}+\keta{1}\keta{1})
-\end{equation}
-which can be used to compute in parallel.
-
-\subsection{Bell states}
-Like in the cases of one qubit and QPSK, we can also use superpositions of the above base waves to come up with a new set of base waves:
-\begin{equation}
-\begin{array}{rl}
-    |BES1> =& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}+\keta{1}\keta{1}),\\
-    |BES2> =& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}-\keta{1}\keta{1}),\\
-    |BES3> =& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}+\keta{1}\keta{0}),\\
-    |BES4> =& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}-\keta{1}\keta{0}).
-\end{array}
-\end{equation}
-The second set of base waves can be considered 45 degree rotated from the first set. Physicists call them Bell state waves. They are in the form $cos\theta |B_i> + sin\theta |B_j>$. They are no longer separable waves.
-
-We can use 8 waves from the 2 sets of bases to represent numbers of 3 bits as shown in Fig. \ref{8QAM}.
-
-\section{Design patterns}
-
-\subsection{Producing Bell states}
-\begin{figure}[ht]
-\begin{quantikz}
-    \lstick{\ket{+}}  & \ctrl{1} & \qw \rstick[2]{\ket{BS1}} \\
-    \lstick{\ket{0}} & \gate{X} &\qw 
-\end{quantikz}
-\caption{Producing Bell states}
-\label{BS}
-\end{figure}
-Changing the input waves from $\keta{+}$ to $\keta{-}$ or from $\keta{0}$ to $\keta{1}$, we can obtain the other Bell states.
 
 \subsection{Phase kick back}
 \begin{figure}[ht]
@@ -907,7 +960,7 @@ Changing the input waves from $\keta{+}$ to $\keta{-}$ or from $\keta{0}$ to $\k
 
 With the help of a C-NOT gate, the 2 bits of information modulated in one qubit can be transfered to two qubits and therefore can be all extracted.
 
-\section{The output of Deutsch's algorithm}
+\subsection{The output of Deutsch's algorithm}
 With the help of a C-NOT gate, the 2 bits of information modulated in one qubit can be transfered to two qubits and therefore can be all extracted.
 
 \subsection{Circuit diagram}
@@ -924,78 +977,6 @@ With the help of a C-NOT gate, the 2 bits of information modulated in one qubit 
 Processing: two quantum gates - one operation per gate; one measurement.
 Memory: one qubit for the processing. But for output, two qubits are required.
 
-\section{Superdense coding}
-Superdense coding is also called dense coding. With the consideration of two qubits as one wave, modulation of one qubit is modulating the shared $\theta$ of the entanged wave. The modulation appears to be upon one qubit. But the information is actually coded into two qubits.
-
-The operation first creates entanglement $|BES1>$.
-
-\begin{table}[]
-\caption{Modulate one qubit to encode 2 bits}
-\label{DenseCodingTable}
-\begin{tabular}{lll}
-Digital input & Modulating operation & gate                 \\
-00 & None   & None \\
-01 & $90 degree$& Z gate \\
-10 & Mirror switch $\keta{0}$ and $\keta{1} $ &X gate \\
-11 & Mirror switch $\keta{0}$ and $\keta{1}$ and $90 degree$ &X gate
-\end{tabular}
-\end{table}
-
-\subsection{Circuit diagram}
-\begin{figure}[ht]
-\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
-    & & &\lstick{Alice' 2nd bit}  & \cwbend{2} \\
-    & & \lstick{1st bit}  & \cwbend{1} \\
-    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \gate{Z} & \gate{X} &\ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Bob's 1st bit} \\
-    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{BS1} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{BS2} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{BS3} & \targ{} & \qw & \meter{} & \cw \rstick{Bob's 2nd bit}
-\end{quantikz}
-\caption{Superdense coding circuit}
-\label{DenseCoding}
-\end{figure}
-
-\subsection{Entanglement and measurement}
-
-\section{Teleportation}
-Similar to dense coding, quantum teleportation is to modulate an analog signal to one qubit of a $|BS1>$ two-qubit wave. The analog signal comes in the form of a qubit, which we call it the signal qubit. And the wave may be written as $a \keta{0} + b\keta{1}$.
-\begin{equation}\label{}
-\begin{array}{rl}
-    & (a \keta{0} + b\keta{1}) \frac 1 {\sqrt 2}(\keta{0}\keta{0}+\keta{1}\keta{1}) \\
-    = & \frac 1 {\sqrt 2}| (\keta{0}\keta{0}+\keta{1}\keta{1}) (a \keta{0} + b\keta{1}) \\
-    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}-\keta{1}\keta{1}) (a \keta{0} - b\keta{1}) \\
-    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}+\keta{1}\keta{0}) (a \keta{0} + b\keta{1}) \\
-    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}-\keta{1}\keta{0}) (a \keta{0} - b\keta{1})
-\end{array}
-\end{equation}
-
-\begin{table}[]
-\caption{Modulate one qubit to encode 2 bits}
-\label{TeleportationTable}
-\begin{tabular}{ll}
-Alice's output $d_1 d_0$ & Bob's qubit  \\
-00 & $a\keta{0}+b\keta{1}$ \\
-01 & $a\keta{1}+b\keta{0}$ \\
-10 & $a\keta{0}-b\keta{1}$  \\
-11 & $a\keta{1}-b\keta{0}$ 
-\end{tabular}
-\end{table}
-
-Alice has a qbit with information S and shares a pair of qbits with Bob. The pair is one of the 4 known eigenwaves and has information 2. The total input information is therefore S+2. At the output, Alice measures the first 2 qbits against the same 4 eigenwaves and tells Bob the result, which has information 2. If no information is lost, the information in the 3 qbit should be S.
-
-\subsection{Circuit diagram}
-\begin{figure}[ht]
-\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
-    & & \lstick{Alice' wave a\ket{0}+b\ket{1}}  & \ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Alice' 1st bit} \\
-    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \targ{} & \qw& \meter{} &\cw \rstick{Alice' 2nd bit} \\
-    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=2mm}, label style={yshift=-38mm}]{BS1} & \qw \slice[style={shorten <=2mm}, label style={yshift=-38mm}]{BS2} & \qw \slice[style={shorten <=2mm}, label style={yshift=-38mm}]{BS3} & \qw \rstick{Bob's wave}
-\end{quantikz}
-\caption{Teleportation circuit}
-\label{Teleportation}
-\end{figure}
-
-\section{Quantum secure direct communication (QSDC)}
-QSDC is an adaptation of quantum teleportation to key distribution. The key transmission rate is 1 bit per qubit duty cycle and is a much improvement over the BB84 protocol.
-
-\chapter{n-qubit operations}
 
 \section{Mostly used modulation points}
 \subsection{Measurement bases}
@@ -1112,10 +1093,17 @@ If we assume the eigen-values are $e^{2\pi i \frac k r}$ where $k=0, 1, 2, ..., 
 \end{equation}
 
 However, we don't know the value of $r$ at the first place except the trivial $u_0$. How can we produce any of the non-trivial eigen waves to feed the operator $U_f$? Fortunately, the even mixture of the eigen waves
-\begin{equation}\label{keta_u}
+\begin{equation}\label{sum_u}
     \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0}\keta{u_k} = \frac 1 r \sum^{r-1}_{k=0} \sum^{r-1}_{j=0} e^{-{\frac {2\pi} r} kj} \keta{a^j (mod M)} = \sum^{r-1}_{j=0} \delta_j,0 \keta{a^j (mod M)} = \keta{1}
 \end{equation}
-is a wave that we know how to produce.
+is a wave that we know how to produce. Feed it to the control-$U_f$ with $j$ being the control-variable value, we have
+\begin{equation}\label{ctrl_u}
+\begin{array}{rl}
+ \sum^{N-1}_{j=0} \keta{j} \keta{1} \xrightarrow{U_{f(j)}} & \sum^{N-1}_{j=0} \keta{j} U_{f(j)} \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0}\keta{u_k}\\
+    = & \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0} \sum^{N-1}_{j=0} \keta{j} e^{2\pi i \frac kj r} \keta{u_k}\\
+    = & \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0} \keta{s_{k/r}} \keta{u_k}
+\end{array}
+\end{equation}
 
 \subsection{Circuit diagram}
 
