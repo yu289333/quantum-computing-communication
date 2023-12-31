@@ -1,0 +1,319 @@
+%\label{Maze}
+\begin{tikzpicture}[scale=0.5]
+% Water
+% Water
+\fill[blue!7] (-3,9.5) circle (2);
+\fill[blue!7] (18.5,0.5) circle (0.5);
+\fill[blue!7] (21,0.5) circle (0.5);
+
+% outer lines
+\draw (0,10) -| (20,1) -- +(-1,0);
+\draw (20,0) -| (0,9) -| (1,7) -- (3,7);
+\draw (2,7) |- (5,6) |- (6,3) -- (6,2);
+\draw (5,3) -| (4,4);
+\draw (5,5) -| (3,4) -| (1,6); \draw (1,5) -- (2,5);
+
+% bottom row
+\draw (0,2) -| (2,1) -| (3,3) -- (1,3); \draw (3,2) -| (5,1);
+\draw (1,0) -- (1,1);
+\draw (4,0) -- (4,1);
+\draw (8,0) |- (9,1) |- (10,6) -- (10,7); \draw (8,4) -- (9,4); \draw (8,5) -- (9,5);
+
+\draw (10,0) |- (13,4) |- (15,5) |- (14,4) |- (15,1) |- (16,3) |- (14,6) |- (13,9);
+\draw (10, 2) -| (11,3); \draw (12,4) |- (11,1); \draw (13,3) -- (14,3);
+\draw (16,4) -| (19,5) -| (18,6) -| (17,5);
+\draw (14,7) -| (13,6) -| (12,5) -- (10,5); \draw (14,8) -- (16,8);
+
+\draw (13,0) -- (13,1);
+\draw (16,0) |- (17,2) |- (18,3) |- (17,1);
+\draw (20,3) -| (19,2);
+
+% top row
+\draw (4,10) |- (6,7) |- (7,6); \draw (4,8) -- (2,8) |- (3,9); \draw (5,7) |- (6,9);
+\draw (7,10) -- (7,7); \draw (7,8) -- (6,8);
+\draw (9,10) |- (11,9);
+\draw (12,10) |- (11,7); \draw (11,6) |- (8,8) |- (7,5) |- (6,1);
+\draw (12,8) -- (13,8); \draw (9,8) -- (9,7); \draw (7,4) -| (6,5); \draw (7,2) -- (8,2);
+\draw (15,10) |- (19,9) -- (19,8); \draw (17,9) |- (15,7);
+\draw (20,7) -| (18,8); \draw (19,7) -- (19,6);
+\end{tikzpicture}
+
+%\label{String}
+\begin{tikzpicture}[line join=round, line cap=round]
+
+  % draw coordinate
+  \draw[->] (-1,0) -- (10,0) node[pos=1.02,below] {$x$};
+ % \draw[->] (0, -1) -- (0,2);
+  % Rope properties
+  \def\length{9}  % Length of the rope
+  \def\thickness{1}  % Thickness of the rope
+  \def\waveAmplitude{2}  % Amplitude of the wave
+  \def\waveLength{3}  % Wavelength
+  \def\segments{50}  % Number of segments
+  
+  % Draw the rope
+  \draw[decorate, decoration={waves, segment length=2.5}, line width=\thickness, red]
+    (0,0) -- plot[domain=0:\length, samples=\segments]
+    (\x, {\waveAmplitude*sin(\x*(360/\waveLength))}) -- (\length,0);
+
+    % label
+    %\draw[red, fill] (3.75,2) circle(0.05cm);
+    %\draw[red, fill] (6.75,2) circle(0.05cm);
+    %\draw[dashed] (2,2) -- (3.75,2);
+    \draw[<->|, dashed] (2.7,0) -- (2.7,2) node[pos=0.5, rotate = 90, above] {amplitude};
+    \draw[|<->|, dashed] (3.75,2.3) -- (6.75,2.3) node[pos=0.5, above] {wavelength - $\lambda$};
+
+\end{tikzpicture}
+
+%\label{Wave}
+\begin{tikzpicture}[scale=1.2]
+    \draw[->] (-3.8,0) -- (3.9, 0)  node[pos=1.02,below] {$t$};
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dotted, red] (-3.5,0) sin (-2.5,3) cos (-1.5,0) sin (-0.5,-3) cos (0.5,0) sin (1.5,3) cos (2.5,0) sin (3.5,-3);
+    \draw[red, fill] (-2.5,3) circle(0.05cm);
+    \draw[red, fill] (1.5,3) circle(0.05cm);
+    \draw[dashed] (-2.5,0) -- (-2.5,3) node[pos=0.5, rotate = 90, above] {amplitude};
+    \draw[dashed] (-2.5,3) -- (1.5,3) node[pos=0.3, above] {period - $T$};
+    \draw[red, fill] (0.5,0) circle(0.05cm);
+    \draw[dashed] (0.25,-0.1) -- (1,-2) node[below] {phase};
+\end{tikzpicture}
+
+%\label{PM}
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (30:3) circle(0.05cm);
+    \draw[dashed] (1,0) arc (0:30:1) node[right, pos=0.6]{$\varphi$ - phase};
+    \draw[dashed] (30:0.1) -- (30:2.9) node[pos=0.5, rotate = 30, above] {amplitude};
+\end{tikzpicture}
+
+%\label{sQPSK}
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dashed] (2.5,2.5) -- (0, 0);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {11};
+    \draw[red, fill] (-2.12,2.12) circle(0.05cm) node[above] {01};
+    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {10};
+    \draw[red, fill] (-2.12,-2.12) circle(0.05cm) node[left] {00};
+    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\varphi=45\circ$};
+\end{tikzpicture}
+
+\label{Modulator}
+\begin{tikzpicture}
+    \path %(-5,0) node[anchor=east] (start) {Wave} 
+    (-3.5,-0.8) node[circle, draw=black] (lo) {$\sim$}
+    (-3.5,0.8) node[Gate] (p90) {$90^\circ$}
+    (0,2) node[Gate, text width=30] (tm) {$0/180\circ$}
+    (0,-2) node[Gate, text width=30] (bm) {$0/180\circ$}
+    (2,0) node[circle, draw=black] (add) {$\Sigma$}
+     (3,0) node[anchor=west] (output) {wave output};
+    \draw (lo.east) node[anchor=west] {carrier wave generator};
+    \draw (add.west) node[anchor=east] {wave mixer};
+    \draw (p90.east) node[anchor=west] {phase shifter};
+    \draw (tm.north east) node[anchor=west] {variable phase shifter};
+    \draw (bm.south east) node[anchor=west] {variable phase shifter};
+    \draw (lo) -- (p90) |- (tm) -| (add);
+    \draw (lo) |- (bm) -| (add);
+    \draw (add) -- (output);
+    \path (-2,3) node[anchor=east] (even) {data input - even bits}
+    (-2,-3) node [anchor=east] (odd) {data input - odd bits};
+    \draw[double] (even) -| (tm);
+    \draw[double] (odd) -| (bm);
+\end{tikzpicture}
+
+%\label{Deodulator}
+\begin{tikzpicture}[scale=0.8]
+    \path
+    (0,-0.8) node[circle, draw=black] (lo) {$\sim$}
+    (0,0.8) node[Gate] (p90) {$90^\circ$}
+    (0,2) node[circle, draw=black] (ta) {X}
+    (0,-2) node[circle, draw=black] (ba) {X}
+    (2,2) node[Gate] (tm) {$\int$}
+    (2,-2) node[Gate] (bm) {$\int$}
+    (-3,0) node[circle, draw=black] (split) {$\prec$}
+     (-4,0) node[anchor=east] (input) {wave input};
+    \path (3,3) node[anchor=west] (even) {data output - even bits}
+    (3,-3) node [anchor=west] (odd) {data output - odd bits};
+
+    \draw (lo.east) node[anchor=west] {wave generator};
+    \draw (p90.east) node[anchor=west] {phase shifter};
+    \draw (tm.east) node[anchor=west] {detector};
+    \draw (bm.east) node[anchor=west] {detector};
+    \draw (ta.north) node[anchor=south] {resonator};
+    \draw (ba.south) node[anchor=north] {resonator};
+    \draw (bm) -- (ba) -- (lo) -- (p90) -- (ta) -- (tm);
+    \draw[double] (even) -| (tm);
+    \draw[double] (odd) -| (bm);
+
+    \draw (ba) -| (split)  |- (ta);
+    \draw (split.south east) node[anchor=west] {wave splitter};
+    \draw (split) -- (input);    
+\end{tikzpicture}
+
+%\label{Fiber}
+\begin{tikzpicture}[scale=0.5]
+    \def\R{4} % Outer radius
+    \def\Rb{3} % Outer radius
+    \def\r{1} % Inner radius
+    \def\L{6} % Half Length of the tube
+    \def\S{4.2} % half Shift distance between tubes
+    \def\I{5} % increment
+
+    % Left tube
+    \draw[blue!10,fill] (-\S,0,\L) circle (\R);   
+    \draw[red!30,fill] (-\S,0,\L) circle (\r);    
+    %\draw[decorate,decoration=zigzag] (-\S,0,-\L) circle (\Rb);
+    \foreach \t in {-40,-35,...,123} {
+        \fill[blue!20] ({\R*cos(\t+\I)-\S}, {\R*sin(\t+\I)}, \L) -- ({\R*cos(\t)-\S}, {\R*sin(\t)}, \L) 
+        -- ({\Rb*cos(\t)-\S}, {\Rb*sin(\t)}, -\L) -- ({\Rb*cos(\t+\I)-\S}, {\Rb*sin(\t+\I)}, -\L) -- cycle;
+    }
+
+    % Right tube    
+    \draw[blue!10,fill] (\S,0,\L) circle (\R);   
+    \draw[red!30,fill] (\S,0,\L) circle (\r);    
+    %\draw[black!10] (\S,0,-\L) circle (\Rb);
+    \foreach \t in {-40,-35,...,123} {
+        \fill[blue!20] ({\R*cos(\t+\I)+\S}, {\R*sin(\t+\I)}, \L) -- ({\R*cos(\t)+\S}, {\R*sin(\t)}, \L) 
+        -- ({\Rb*cos(\t)+\S}, {\Rb*sin(\t)}, -\L) -- ({\Rb*cos(\t+\I)+\S}, {\Rb*sin(\t+\I)}, -\L) -- cycle;
+    }
+\end{tikzpicture}
+
+%\label{QAM}
+\begin{tikzpicture}[scale=0.5]
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dotted, red] (0,0) circle(2cm);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (2,0) circle(0.05cm) node[below] {0};
+    \draw[red, fill] (0,2) circle(0.05cm) node[right] {1};
+    \draw[red, fill] (-2,0) circle(0.05cm) node[above] {10};
+    \draw[red, fill] (0,-2) circle(0.05cm) node[left] {11};
+    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {100};
+    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {101};
+    \draw[red, fill] (-3,0) circle(0.05cm) node[above left] {110};
+    \draw[red, fill] (0,-3) circle(0.05cm) node[below left] {111};
+\end{tikzpicture}
+\begin{tikzpicture}\label{8QAM}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dashed] (2.5,2.5) -- (-2.5,-2.5);
+    \draw[dashed] (-2.5,2.5) -- (2.5,-2.5);
+    \draw[dotted, red] (0,0) circle(2cm);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (45:2) circle(0.05cm) node[above left] {11};
+    \draw[red, fill] (135:2) circle(0.05cm) node[above right] {01};
+    \draw[red, fill] (225:2) circle(0.05cm) node[above left] {00};
+    \draw[red, fill] (-45:2) circle(0.05cm) node[above right] {10};
+    \draw[red, fill] (45:3) circle(0.05cm) node[right] {111};
+    \draw[red, fill] (135:3) circle(0.05cm) node[left] {101};
+    \draw[red, fill] (225:3) circle(0.05cm) node[left] {100};
+    \draw[red, fill] (-45:3) circle(0.05cm) node[right] {110};
+\end{tikzpicture}
+
+%\label{Bloch-alt}
+\tdplotsetmaincoords{0}{0}
+\begin{tikzpicture} %[scale=2,tdplot_main_coords]
+ \def\rvec{3}
+ \def\thetavec{50}
+ \def\phivec{40}
+ 
+    %Axes
+    \coordinate (O) at (0,0,0);
+    \draw[dashed, ->] (0,0,0) -- ++(3.5, 0,0) node[below,right] (x) {x};
+    \draw[dashed, ->] (0,-3.5,0) -- ++(0, 7, 0) node[above,right] (y) {y};
+    \draw[dashed, ->] (0,0,0) -- ++(0, 0, 3.9) node[below] (z) {$\omega t$};
+    \draw[] (0,-3) arc(-90:90:3 and 3);
+    \draw[] (0,3) arc (90:270:1.3 and 3);
+    \draw[] (-1.2,-1.2) arc (-113:0:3 and 1.35);
+    \draw[] (3,0,0) -- ++(0.5, 0, 0);
+    \draw[] (0,-3.5,0) -- ++(0, 0.5, 0);
+    \draw[] (0,3,0) -- ++(0, 0.5, 0);
+    \draw[] (0,0,3) -- ++(0, 0, 0.5);
+
+    % Vector
+    \tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+    \draw[red,fill] (P) circle(0.05);
+    \draw[dashed, red] (O) -- (P) node[circle] (Ptheta) {};
+    \draw[dashed, red] (O) -- (Pyz) node[circle] (Pphi) {};
+    \draw[dashed, red] (P) -- (Pyz);
+    %\draw[dashed, red] (Px) -- (Pxz);
+
+    % angles;
+    \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (P) arc (35:0:1.2) -- cycle;
+    \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (Pyz) arc [start angle=125, delta angle=-12, radius=3.9 ] -- cycle;
+    %\draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (Pyz) arc (75:60:1.2) -- cycle;
+    \draw( -0.8, 1.6) node[anchor=north west] {$\varphi$};
+    \draw( 1.3, 0.8) node[anchor=north west] {$\theta$};
+\end{tikzpicture}
+
+%\label{Bloch}
+\tdplotsetmaincoords{0}{0}
+\begin{tikzpicture} %[scale=2,tdplot_main_coords]
+ \def\rvec{3}
+ \def\thetavec{70}
+ \def\phivec{60}
+ 
+    %Axes
+    \coordinate (O) at (0,0,0);
+    \draw[->] (0,0,0) -- ++(3.5, 0,0) node[below,right] (y) {y};
+    \draw[->] (0,0,0) -- ++(0, 3.5, 0) node[above,right] (z) {z};
+    \draw[->] (0,0,0) -- ++(0, 0, 3.5) node[below] (x) {x};
+    \draw[] (0,0) circle(3);
+    \draw[orange] (-3,0) arc (180:360:3 and 1);
+    \draw[dashed, orange] (3,0) arc (0:180:3 and 1);
+
+    % Vector
+    \tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+    \draw[red,fill] (P) circle(0.05);
+    \draw[dashed, red] (O) -- (P) node[circle] (Ptheta) {};
+    \draw[dashed, red] (O) -- (Pxz) node[circle] (Pphi) {};
+    \draw[dashed, red] (P) -- (Pxz);
+    %\draw[dashed, red] (Px) -- (Pxz);
+
+    % angles;
+    \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (65:0.8) arc (65:90:0.8) -- cycle;
+    \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (-135.7:0.6) arc (-135.7:-25:0.6) -- cycle;
+    \draw( -0.1, -0.6) node[anchor=north west] {$\varphi$};
+    \draw( 0.05, 1.5) node[anchor=north west] {$\theta_B$};
+\end{tikzpicture}
+
+%\label{qQPSK}
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dashed] (2.5,2.5) -- (0,0);
+    \draw[dashed] (0,0) -- (2.5,-2.5);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {0};
+    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {1};
+    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {+};
+    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {-};
+    \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\theta=\pi/4$};
+\end{tikzpicture}
+
+%\label{Grover}
+\begin{tikzpicture}
+\coordinate (S) at (30:3);
+    \draw[red, fill] (S) circle(0.05cm)  node[right] {$\vec{S}$};
+    \draw[->, dashed] (0,0) -- (S);
+    \draw[->] (0,0) -- (3, 0) node[below] {$\vec{w_v}$};
+    \draw[->] (0,0) -- (0,3) node[right] {$\vec{w}$};
+    %\draw[dotted, red] (0,0) circle(3cm);
+\end{tikzpicture}
+
+%\label{QPSK}
+
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {0};
+    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {1};
+    \draw[red, fill] (-3,0) circle(0.05cm) node[above left] {10};
+    \draw[red, fill] (0,-3) circle(0.05cm) node[below left] {11};
+\end{tikzpicture}
+
+%

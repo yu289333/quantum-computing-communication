@@ -1,0 +1,100 @@
+\title{Quantum Information, Algorithms and Protocols}
+\author{Yuan John Jiang}
+
+\newcommand{\booksubtitle}{A Textbook for Computer Science and Engineering Students}
+\newcommand{\booklicense}{Creative Commons Zero 1.0 Universal}
+
+% Author subtitle could be a university or a geographical location, for example
+\newcommand{\authorsubtitle}{City, Country}
+
+% Create convenient commands \booktitle and \bookauthor
+\makeatletter
+\newcommand{\booktitle}{\@title}
+\newcommand{\bookauthor}{\@author}
+\makeatother
+
+% The following dimensions specify 4.75" X 7.5" content on 6 3/8" by 9 1/4"
+% paper. The paper width and height can be tweaked as required and the content
+% should size to fit within the margins accordingly.
+%
+% The (inside) bindingoffset should be larger for books with more pages. Some
+% standard recommended sizes are .375in minimum up to 1in for 600+ page books.
+% Sizes .75in and .875in are also recommended roughly at 150 and 400 pages.
+
+\renewcommand{\contentsname}{Table of Contents} % default is {Contents}
+%\makeindex % Initialize an index so we can add entries with \index
+
+% The next few commands are for creating fake content to fill out the template.
+% You should delete this (e.g.  everything up to, but not including,
+% \begin{document}) after you insert your own content.
+% Example content from Einstein's Meaning of Relativity.
+% Public domain book: http://www.gutenberg.org/ebooks/36276
+
+\frontmatter
+
+% No page numbers on the Frontispiece page
+% \thispagestyle{empty}
+
+
+% ---- Title Page ----
+% current geometry will be restored after title page
+\newgeometry{top=1.75in,bottom=.5in}
+\begin{titlepage}
+\begin{flushleft}
+
+% Title
+\textbf{\fontfamily{qcs}\fontsize{38}{50}\selectfont \booktitle Quantum Information,\\Algorithms and Protocols \booksubtitle}
+
+% Draw a line 4pt high
+\par\noindent\rule{\textwidth}{2pt}\\
+\booksubtitle
+
+% Shaded box from left to right with Subtitle
+% The text node is midway (centered).
+%\begin{tikzpicture}
+%\shade[bottom color=lightgray,top color=white]
+%    (0,0) rectangle (\textwidth, 1.2)
+%    node[midway] {\textbf{\large \textit{\booksubtitle}}};
+%\end{tikzpicture}
+
+% Edition Number
+\begin{flushright}
+\Large First Edition
+\end{flushright}
+
+\vspace{\fill}
+
+% Author and Location
+\textbf{\large \bookauthor}\\[3.5pt]
+\textbf{\large \textit{\authorsubtitle}}
+
+\vspace{\fill}
+
+% Self Publishing Logo. Free to use: CC0 license.
+% The source file is book.svg. If you change the svg, you must then convert
+% it to pdf. There are many online and offline tools available to do that.
+\begin{center}
+%\includegraphics{booksvg.pdf}\\[4pt]
+\fontfamily{lmtt}\small{Self Publishers Worldwide\\
+}
+\end{center}
+
+\end{flushleft}
+\end{titlepage}
+\restoregeometry
+% ---- End of Title Page ----
+
+% Do not show page numbers on colophon page
+\thispagestyle{empty}
+
+\begin{flushleft}
+\vspace*{\fill}
+This book was typeset using \LaTeX{} software.\\
+\vspace{\fill}
+Copyright \textcopyright{} \the\year{}  \bookauthor\\
+License: \booklicense
+\end{flushleft}
+
+% A title page resets the page # to 1, but the second title page
+% was actually page 3. So add two to page counter.
+\addtocounter{page}{2}

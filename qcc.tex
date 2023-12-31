@@ -1,0 +1,904 @@
+\documentclass[Letter,11pt]{book}
+
+\input{lib/packages}
+\input{lib/commands}
+% Content Starts Here
+\begin{document}
+
+%\include{title_page}
+
+% The asterisk excludes chapter from the table of contents.
+\addcontentsline{toc}{chapter}{Preface}
+\chapter*{Preface}
+Quantum computing and communication are hot topics. Software development kits (SDKs) including IBM Qiskit and Google Cirq have been made available to software engineers. But they are useless if the engineers are not trained with quantum algorithms and protocols, which have been described as mysterious and incomprehensible. Can engineers be taught with the algorithms and protocols without studying quantum physics? After all, the Nobel prize winning physicist and one of the best educators, Richard Feynman, says “I think I can safely say that nobody really understands quantum mechanics.”
+
+This book says "Yes!" The only concept that one needs to learn about quantum physics is that at the minuscule scale, a wave cannot be divided into any smaller portion in terms of its energy or mass. The rest of undergraduate courses on quantum physics is about solving Schrödinger equation for electron waves and has no use to software and communication engineers. On the other hand, we use Wi-Fi, cellular, cable, and optical fiber communications daily and are already familiar with many features of radio and optical waves. Further, communication engineers are even able to invent new communication protocols using the basic concepts of communication theory without going deep into solving radio and optical wave equations. The goal of this book is to use the same basic concepts, especially the concept of modulation, to help software and communication engineers understand quantum algorithms and protocols and hopefully be able to invent new ones.
+
+% Three-level Table of Contents
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+\mainmatter
+
+\chapter{Introduction}\label{Introduction}
+The advantage of quantum computing lies in the possibility of parallel computing. The use of quantum communication has been in key distribution.
+
+\section{The power of parallel computing}
+\index{Maze} problems are hard because there are too many paths to explore from the entrance to the exit. If changing the question of the problems from pinpointing the actual paths to finding the number of good paths, although seemingly dumb down, the challenge is as hard as the original. One still needs to explore all the possible paths to reach the conclusion.
+
+\begin{figure}[ht]\label{Maze}
+%\includegraphics[width=6cm]{pic/maze.png}
+
+\caption{Maze}
+\end{figure}
+
+Computer scientists have long known \index{parallel computing} is the way to speed up solutions to such problems. But how to realize parallel computing needs the help of physicists. Indeed, a physicist would suggest the following experiment to attack the problem: run water into the entrance and observe what's coming out of the exit. If we see water out of the exit, we know the maze has at least one good path.
+
+We can obtain more information if we explore the water experiment further: put several drops of water into the entrance and observe how many drops of water coming out. If three drops coming out of the exit, we can conclude that the maze has at least three good paths. We can also conclude the relative lengths of the paths by measuring the time delays of the three drops assuming water runs through all the paths at the same speed. In another word, the timing of the exiting water drops carries the length information of the paths.
+
+One problem left is whether we can determine for sure that each of the three drops corresponds to one or more paths. For this, water is not a good medium because a water drop can always be divided up into smaller drops. Having the smallest drops, which cannot be further divided, must be included in the properties of a perfect medium for our \index{parallel computing} experiments. An ideal medium
+\begin{itemize}
+    \item must be able to spread and to explore all branches even to the dead-ends,
+    \item must have one or more parameters, such as the time delay of a water drop, that can carry information about the lengths of the branches and the reflection of the dead-ends,
+    \item can be broken up into one or more smallest drops so that information carried by the individual drops can be extracted.
+\end{itemize}
+Many media possess the first and even seconds. But only \index{quantum waves} possess all three. We use Wi-Fi every day and know well that the radio wave transmitted by a cellphone can spread and explore all possible directions to find the Wi-Fi router depite where it is been placed. We also know that the radio wave can carry information to the Wi-Fi router. But can the radio wave be broken up into individual drops? The answer is yes.
+
+( Our cellphone and the Wi-Fi router cannot function at the power level of individual drops of radio waves. We need special devices to work with the individual drops of waves.)
+
+\section{The quantum power}
+ As a matter of fact, all waves at low levels of energy or mass are quantum waves. Quantum physics tells us that all waves have their smallest drops -- the \index{quanta}, which cannot be divided further in terms of their energy or mass. The very word "quantum" suggests this concept. This is the so-called particle or quantum nature of waves.
+Quantum physics also says that all matters including electrons and protons are fundamentally waves. Physicists refer the two concepts as the particle and wave dual-natures of matters. They are the essence of quantum physics. Their truthfulness has been proven by millions of experiments and more importantly by the successful application to the advancement of technologies especially the semiconductor and superconductor technologies.
+
+The first hint of quantum power for parallel computing came by the proposal of the \index{Deutsch's algorithm}\cite{1985Deutsch}. The \index{Shor's algorithm}, published in 1997, is an extension of Deutsch's algorithm in scale as we will explain. But it shocks the world by its potential power of factoring large numbers and, as a consequence, breaking modern encryption technologies.
+
+The hint of applying quantum technology to secure communication came in 1984 by the publication of the BB84 protocol\cite{BB84}. The indivisibility of a wave of one quantum prevents it from being partially tapped for eavesdropping. Further, as we will explain in the following chapter, it cannot be intercepted for eavesdropping while at the same time being reproduced for re-transmission to avoid detection because of quantum \index{no-cloning theorem}.
+
+\subsection{The quantum nature}
+To most people, particles have the image of point-like things with negligible sizes but observable locations. This image is wrong and is the cause to all the misunderstandings about quantum physics. The particle nature really refers to the fact that all matters have the smallest drops when measured by their energy or mass, and should be referred as the quantum nature. For electrons and protons, measuring their mass shows the smallest quanta. For electromagnetic waves including lights, measuring their energy shows the smallest quanta, and each quantum is called a photon.
+
+We must remember that the only parameter that describes the quantum nature of a wave is its energy or mass. If we can reduce the power level of the Wi-Fi radio wave transmitted from our cellphone to a single quantum, it still can spread and explore in all possible directions to find the Wi-Fi router.
+
+
+Whether it contains one quantum or more quanta of energy or mass does not change its size or location. Where it can spread to and the time delay it incurs are independent to whether it contains one quantum or more quanta of energy or mass. The quantum nature may be considered a feature of the electromagnetic waves and electron waves, which work with in quantum computing and communication. It gives us the precision needed for parallel computing. But information representation and parallel processing rely on other features of wave. Otherwise, paradoxes such as Einstein–Podolsky–Rosen (EPR) paradox \cite{EPR} are unavoidable.
+
+\subsection{The wave nature}
+When talking about waves, we often visualize ripples in a lake, or the surges in oceans and seas. We observe water being pushed up and then pulled down by gravity. If we shake one end of a string as shown in Fig. \ref{String}, we can observe closely and see that each section of the string vibrates and the \index{propagation} of the \index{vibration} from close to far. \index{Vibration} in time and \index{propagation} in space are the fundamental features of all waves. But can we consider the vibration of a guitar string a wave? Indeed, we can. The reason why we do not perceive propagation is that it gets reflected back and forth by the two fixed ends of the string. Therefore, propagation remains a defining feature of waves, even if their propagation is constrained in the spatial dimensions.
+
+Quantum computing and communication use only electromagnetic waves and electron waves. Electromagnetic waves are the vibration of electric and magnetic fields. We are particularly familiar with radio waves and light waves used in Wi-Fi, cellular, cable, and optical fiber communications, as they are part of our daily lives. However, we do not see the quantum nature of these waves because each has quadrillions or more quanta flowing by per second. We only see the average effect.
+
+The vibration of an electron wave is not visible as a vibrating string or directly measurable as an electromagnetic wave. But physicists do find sufficient evidence validating the Schrödinger equation that shows the vibration. And the Thomson's double slit experiment\cite{THOMSON} does show the vibration propagates. More important, the development of semiconductor and superconductor technologies is based on the understanding of the wave nature of electrons.
+
+\begin{figure}[ht]\label{String}
+%\includegraphics[width=6cm]{pic/wave-in-a-string.png}
+\caption{Wave arisen from shaking or vibrating a string.}
+\end{figure}
+
+\section{Wave and information}
+\subsection{Information representation}
+When we get our blood pressure measured in a doctor's office, the height of the mercury in a glass column represents the information of our blood pressure. The height of mercury in the column is what we actually measure and is what we use the height of a mercury in a cylinder to represent the information of our blood pressure. We see that physical characteristics, which can be measured in numbers, can be used to represent information.
+
+Information theory assumes all \index{information} can be presented as numbers. The numbers, which are often called \index{symbol}s by communication engineers, in turn are mapped to physical characteristics of waves in all communication systems as well as quantum computing devices. Mapping information to numbers is called \index{encoding}, and mapping numbers to the characteristics of a wave is called \index{modulation} by communication engineers.
+
+\begin{table}[]
+\label{information-characteristics}
+\begin{tabular}{|l|l|l|}
+\hline
+Information & Encoding numbers & Physical characteristics  \\ \hline
+Blood pressure & real number & height of mercury in a cylinder \\ \hline
+Picture & pixel 0 or 1 & Radio wave phase and amplitude (QAM) \\ \hline
+\end{tabular}
+\caption{Information represented by physical characteristics}
+\end{table}
+
+\subsection{Wave characteristics}
+In Fig. \ref{String}, the height of the rope at any location $x$ along its propagation direction and time $t$ may be described as a wave function $h(x,t)$. The simplest wave function is a sinusoidal function as drawn in the figure,
+\begin{equation}
+    h(x,t) = A sin[2\pi (\frac x \lambda - \frac t T) +\phi]
+\end{equation}
+where $A$ and $\lambda$ are respectively the amplitude and the wavelength as shown in Fig. \ref{String}. $T$ and $\phi$ are the period and phase as shown in Fig. \ref{Wave}. Shown but not labeled in Fig. \ref{String} is the polarization of the vibration, which is in the $y$ direction and is perpendicular to the propagation direction. Fig. \ref{Wave} plots the height of the string vibration in the time dimension and is characterized by period and phase. All these characteristics wavelength, amplitude, period and polarization can be modulated to represent information. But period is the inverse of frequency and is also proportional to the wavelength. Changing one of the three characteristics is equivalent to changing another and is all called frequency modulation.
+
+\begin{figure}[ht]\label{Wave}
+
+\caption{Height of the string vibration in time domain.}
+\end{figure}
+
+In radio wave communication, which includes mobile or cellphone communication we use everyday, the modulations of frequency, phase, and amplitude serves as the primary methods for information representation. In optical communication, combinations of amplitude, phase and polarization modulations are often used. In subsequent sections, we will find that quantum devices use all of these modulation schemes for information representation. A device that converts numbers to the mapped wave characteristics is called \index{modulator}, and that doing the reverse -- converting wave characteristics to numbers -- are called \index{demodulator}.
+
+\section{Constructing a quantum system}
+Like in a conventional computer, a quantum computer has memory devices too. And each memory unit is called a quantum bit or qubit, which uses  a wave of one quantum to store information. The parameters of the wave represent the the stored information. In contrast, a conventional random access memory (RAM) may use the voltage created by countless electrons accumulated at one side of the semiconductor device to represent information. A RAM can be read many times because there are countless number of electrons. A qubit, however, can only be read out once -- porting to conventional memory devices -- because there is only one quantum of wave to use.
+
+A quantum gate, like one in a conventional computer, can read information from one or several input qubits, combine or manipulate the information, and write outcomes to output qubits. A quantum gate can read, write and manipulate information carried by a wave with one or several quanta. 
+
+is a memory device with one quantum of a wave. Information is represented and stored by its wave characteristics. Unlike the memory devices in a conventional computer, a qubit can in theory store unlimited amount of information as we will discuss in chapter \ref{C-qi}. A quantum gate takes the wave from an input qubit, changes the wave characteristics according to the information in other qubits or conventional computer bits, and thus transform the information in the original input qubit. The transformed information may be stored in an output qubit. A measuring device, which sometimes called a measuring gate, measures the wave characteristics of an output qubit and stores in output information in conventional memory. However, the measurement involves energy exchange with the wave in the qubit and inevitably alters the wave characteristics irreversibly. Therefore, the measurement can extract at most one bit of information from the qubit, and whatever rest of information is altered to be unrecoverable. We will discuss this topic in detail in chapter \ref{C-qi}.
+
+Quantum circuits are composed by connecting these three types of devices into functional units. Quantum computers have software that instructs gates to transform the information in the input qubits and store resulting information in the output qubits. Quantum communication systems are also constructed by the three types of devices except the qubits are communication channels instead of memory devices.
+
+When implementing the algorithms and protocols in software, we first draw out them as quantum circuit diagrams. Our software programs would call out qubits for input and output as well as the gates for processing according to the circuit diagrams.
+\begin{verbatim}
+from qiskit import QuantumCircuit # and more packages if needed
+N=15
+a = randint(2, N) 
+
+qc =QuantuamCircuit(N+4, N)	#N+4 qubits
+For q in range(N)
+  qc.h(q)		# Hadamard gate
+qc.x(3+N)		# X gate
+\end{verbatim}
+Qubit stands for quantum bit. For quantum computing, a qubit is the data memory device that typically stores a bit of information to be processed. The storage medium is a quantum of wave, and the device includes hardware that contain the wave. For quantum communication, a qubit is the channel uses one quantum of wave to carry one bit of information. It is no difference from a radio wave or optical wave communication channel except it uses one quantum of wave at a time. Appendix \ref{A-qubit} explains the physics behind the construct and operation principles of several types of qubit devices. In Chapter \ref{C-qi} on quantum information, we will revise the notion that a qubit can stores or carries only one-bit of information. Before that, we will stay with the qubit definition implied by its name and repeated in literature.
+
+Conventional computers have no resemblance to quantum computers. Even before the appearance of modern computer, the not widely known subject of optical computing has explored the parallel computing capability of optical waves with Fourier transformation. But its application is limited and has not become a subject of learning by many. On the other hand, quantum devices have much in common with radio and optical communication devices because they all work with waves. Radio-wave communication including mobile communication and Wi-Fi is the dominating way for everyone connecting to the wired world. Mobile devices already take advantage of waves' parallel exploration capability for transmitters and receivers to find each other. The backbone of the wired world, on the other hand, is all optical fibers. The knowledge of wave communication reaches more engineering students than quantum physics and is most relevant not only to quantum communication but also to quantum computing. This chapter reviews some of the relevant subjects of communication theories especially on modulation before delving into the following chapters on the specifics of quantum communication and computing.
+
+At the top level, a communication system has an information sender, a channel and a receiver. The sender contains modulators that transfer information in the form of numbers to characteristics of waves and send the waves to the channel. The receiver has demodulators that translate wave characteristics back to information. In a quantum system, the modulators and demodulators are quantum gates. The information bits carried in a quantum channel are called qubits -- short for quantum bits.
+
+An ideal channel maintains the form and shape of the waves so that no information is lost. The equivalent in a computing system is a memory device, which receives bits of information from a writer and conveys them to the reader. Channels and memory devices, which work with quantum waves, are all qubit devices and may often be loosely referred as qubits.
+
+Quantum gates are modulators and demodulators, and are not the same as transistor gates in a conventional computer. They convert information from one form of wave to another. A circuit of quantum gates would turn a maze of data (information) to an obvious form for easy extraction and achieve the task of computation. Or a circuit can turn the data (information) to an obscure form and achieve the task of secure communication.
+
+When we talk about quantum computers, we should understand that we don't have entire computers made of all quantum devices. They will only have some chips or co-processors be replaced by chips of integrated circuits of quantum devices. Even our conventional computers have graphic processor units (GPU) in addition to the central processing units (CPU) to help speed up the processing of video display data.
+
+\chapter{Using waves to represent information}
+
+In the study of communication, modulation is the subject devoted to how information being represented by physical characteristics of waves. The wealth of knowledge can be applied to not only quantum communication protocols but also to quantum computing.
+
+Radio broadcasts first used radio waves' amplitudes to represent the volume of one's voice. This is the so called amplitude modulation (AM). The amplitude is the maximum of the vibrating electric field of the vibration instead of the maximum height of a string vibration shown in Fig. \ref{String}. Frequency modulation (FM) was later found less prone to noise in the airways than AM. That is why we now have both AM and FM on the panels of our radios. Modern radio communications, Wi-Fi and cellular, mostly use quadrature amplitude modulation (QAM) -- a combination of amplitude modulation and phase modulation (PM). Modern optical fiber communication also brings polarization modulation into the mix.
+
+Quantum devices, working with the smallest quanta of waves, use many of modulation schemes invented for communication with their own twist. Understanding how modulation works in quantum devices is the critical link for engineers to understand quantum technologies.
+
+\section{Phase modulation}
+In chapter \ref{Introduction}, the time delays of water drops traveling through the maze channels can be used to represent information. The phase of a wave reflects the relative time delay of its propagation. Phase modulation is to use a wave's phase to represent information. The phase, usually noted with symbol $\phi$, can take up the value of any real number in the range [0, 2$\pi$). Phase modulation is essential in every type of qubits, but it always works in combination with another type of modulation as we will see in the following sections.
+
+\subsection{Graphical depiction}
+In communication textbooks, we pair the amplitudes and phases of waves as polar coordinates to plot the modulation points and call the plot a constellation diagram. Such diagrams give us the most intuitive understanding of modulations involving amplitudes and phases. With phase modulation, the amplitude is a constant, let's say $A$. Naturally, the modulation points all fall on the circle of radius $A$ as shown in red in Fig. \ref{PM}.
+
+%\node [constellation_cir] at (0,0) {};
+\begin{figure}[ht]\label{PM}
+
+\caption{Constellation diagram of phase modulation}
+\end{figure}
+
+\subsection{Mathematical notation}
+We can use the polar coordinate $(A, \phi)$ as we do when plotting the constellation diagram in Fig. {PM} to represent a modulation point. We can also use complex number $A e^\phi$ to represent a modulation point. Further, we can choose any two orthogonal vectors in the diagram as the horizontal and vertical axles, and the modulation point can be written in Cartesian coordinate as $(A cos\phi, A sin\phi)$.
+
+\subsection{Digital modulation}
+In the real world, communication channels and information processing devices have noises and errors. For the fidelity of information transmission, we can only select the modulations points spaced apart by the maximum of the noises and errors. Therefore, we can only use a finite number of modulations points, which may be mapped to integer numbers to represent information. This is what we call digital modulation. Modulations that can represent real numbers are called analog modulations.
+
+All computers use digital technology if we ignore the history of using the slide rule calculators. Even abacuses are digital calculators. Communication systems however are slow to convert to digital technology. that is because for a long time, communication was mostly about voice communication -- radio broadcast and telephones, and noises and errors could be tolerated. For digital information, modulations such as AM, FM and PM often carry different names, e.g. amplitude-shift keying (ASK), frequency-shift keying (FSK) and phase-shift keying respectively (PSK).
+
+\subsection{Channel capacity and Hartley's law}
+For a communication channel, channel capacity is the maximum possible bits per second of a communication channel. When modulation is limited by noises and errors, only maximum of $M$ possible symbols -- mapped to modulation points -- can be transmitted per time slot. Assume, the communication protocol divides each second into $R$ time slots, Hartley's law gives the channel capacity to be
+\begin{equation}
+    C = R ln M.
+\end{equation}
+In theory, the maximum value of $R$ is the frequency of the carrier wave. Shannon's law relating channel capacity to signal to noise retio can easily be derived from Hartley's law if we assume noise is the only limiting factor.
+
+In a computer memory device, the number of modulation points $M$ is the amount of information that it can store. Convert to number of bits, it can store $ln M$ bits of information.
+
+\section{Quadrature phase-shift keying}
+Quadrature phase-shift keying (QPSK) is a digital phase modulation that demonstrates many principles used in quantum devices. It uses modulation points with phases 90 degree apart. A simple choice is to use $\phi = 0, 90, 180$, and $270$ degrees to represent 2-bit symbols -- 0, 1, 10, and 11 in binary. Fig-\ref{QPSK} is its constellation diagram.
+
+\begin{figure}[ht]\label{QPSK}
+
+%\includegraphics[width=6cm]{pic/4qpsk.pdf}
+\caption{QPSK constellation diagram}
+\end{figure}
+
+Communication engineers call the wave with zero degree phase the quadrature wave and the one with $90^\circ$ phase the in-phase wave. And they find any two waves with $90^\circ$ phase difference have zero overlap during measurement assuming that the waves have the same polarization. Zero overlap results in the least probability of mistaking one wave with another during measurement. As a matter of fact, any two waves with phases $90^\circ$ apart have zero overlap and are referred as orthogonal to each other.
+
+Another significance of two orthogonal waves is that the mixure of the two can produce a wave of any phase. For example, the mixing $cos\phi$ portion of the quadrature wave and $sin\phi$ portion of the in-phase wave produces a wave of phase $\phi$.
+
+\subsection{Symmetric QPSK}
+For simpler modulator and demodulator circuitry, the symmetric QPSK modulation scheme shown in the constellation diagram Fig. \ref{sQPSK} is more widely used in practice. The modulation points are $\phi = 45, 135, 225$ and $315$ degrees.
+\begin{figure}[hb]\label{sQPSK}
+
+\caption{Practical QPSK constellation diagram}
+\end{figure}
+
+\section{Polarization modulation}
+For an electromagnetic wave, the vibration of its electric field is always perpendicular to its direction of propagation just like the vibration of a string. In modern optical fiber and free space communication, \index{polarization modulation} is used in combination with phase modulation. The digital scheme, \index{dual polarization quadrature phase shift keying} (\index{DP-QPSK}), in particular is mostly used. Optical fiber communication is the backbone for all our daily communication on early. Free-space communication, on the other hand, in mostly used in earth-satellite and satellite- satellite communication. As more and more communication satellites are being launched to space by companies such as Starlink, free-space communication is becoming more and more important.
+
+So far, quantum communication experiments have all been conducted in free space or through optical fibers. Information has all been represented in qubits by a combination of phase modulation and polarization modulation of a wave. In Appendix \ref{A-qubit}, we show that the modulation in all types of qubit constructs is a combination of phase modulation plus modulation of a wave parameter mathematically equivalent to polarization modulation.
+
+As with phase modulation, any two waves whose polarizations are orthogonal to each other have zero overlap and are least prone to noise and errors during measurement. We usually use $\theata$ to note the angle of the polarization relative to the horizontal plane. $\theta$ is between $0^\circ$ and $180^\circ$. As with phase, another significance of two waves of orthogonal polarizations is that their mixture can produce a wave of any polarization. For example, mixing $cos\theta$ portion of the wave with horizontal polarization and $sin\theta$ portion of the wave of vertical polarization produces a wave of phase $\phi$. 
+
+\begin{figure}[ht]
+\includegraphics[width=10cm]{pic/Polarization-of-Light.jpg}
+\caption{Polarization}
+\label{Polarization}
+\end{figure}
+
+\subsection{Graphical depiction}
+We can replace $\phi$ with $\theta$ to draw a constellation diagram to depict polarization modulation intuitively. Fig. \ref{DP} shows the modulation points of a double polarization modulation scheme. But how can we graphically depict a modulation combining two parameters, $\theta$ and $\phi$? We can use the spherical coordinate $(A, \theta, \phi)$ to show the modulation points as shown in Fig. \ref{DP-QPSK} for DP-QPSK.
+
+Engineers usually do not use diagrams to depict modulations involving parameters other than phase and amplitude. But physicists use a Bloch diagram to show the spin and phase of an electron wave. Spin is the polarization of an electron wave. In a Bloch diagram, the amplitude $A$ is always 1.
+
+%\node [constellation_cir] at (0,0) {};
+\begin{figure}[ht]\label{DP-QPSK}
+
+\caption{Modulation points of DP-QPSK}
+\end{figure}
+
+\subsection{Mathematical notation}
+As we described in the previous section, the modulation point of a wave can be noted using the spherical coordinate $(A, \theta, \phi)$. As we will see in the following chapters, a form of vector notation called Dirac notation is mostly used.
+
+\section{Quadrature amplitude modulation}
+Quadrature amplitude modulation (QAM) is a combination of amplitude modulation and phase modulation. Modern radio communication such as Wi-Fi and mobile communications all use the digital forms of QAMs.
+\begin{figure}[ht]\label{QAM}
+\caption{Constellation diagrams of two 8QAM systems}
+\end{figure}
+
+
+\chapter{Quantum information}\label{C-qi}
+\section{Quantum concepts}
+For engineers, only two concepts of quantum physics are needed: 1. all matters are waves even the seemingly size-less electrons and protons are; 2. all waves have their smallest drops, which cannot be divided. Physicists refer the two concepts the particle and wave duality of matters. The first concept tells us that, not limited to radio and optical waves, electrons and protons can also be used to make qubits. However, the implication of the second concept is far more profound and is not explored by traditional communication theory. One implication is that analog amplitude modulation is not possible because amplitude depends on the number of quanta in the wave and can only be use for digital modulation. Second, each qubit can only be measured once.
+
+\section{Quantum measurement}
+The quantum nature is not shown until a wave is measured. The concept is simple, but leads to profound differences between measure a quantum wave and a classical wave. The most profound difference is that one quantum of a wave can only be measured once. After measurement, the quantum of wave is no longer the same as it once was. This is the so-called Bohr quantum collapse theory. Another difference is the possible values of measurement are limited to the eigen-values, which may be a concept foreign to engineering students. The differences are natural results of von Neumann's projection theory of measurement -- a highly abstract mathematical theory. To engineers, however, quantum measurement may be better understood as demodulation and resonance as described in the next chapter. 
+
+\subsection{Limitation of measurement}
+The final stage of demodulation involves measuring the wave's mass or energy. The result is always a discrete number -- 1, 2, ..., or $n$ -- quanta of mass or energy. The amplitude of the wave is usually proportional to the square root of the mass or energy and takes only discrete values although not exactly 1, 2, ... or $n$.
+
+Measurement always involve energy or mass exchange between the wave and the measurement apparatus. When measuring a photon, for example, its energy is transferred to an electron, and the movement or change in the electron induces an electrical current observable to humans. Lost all the energy to the electron, the photon is "annihilated" -- in physicists' lingo -- and cannot be measured again. The unique feature of quantum information is that we can modulate a qubit device as much information as the cardinal of real numbers but that we can only measure at most once per quantum.
+
+\subsection{Quantum terminology}
+By tradition, physicists keep on using the term particle, which may cause the biggest confusion. To most people, particles have the image of point like or of negligible sizes. Physicists believed electrons were point-like in size when JJ Thomson discovered them in 1897. But when Ernest Rutherford discovered atomic nucleus 14 years later, people raised the question: why is the size of an atom much bigger than that of its nucleus? Why wouldn't the tiny negatively charged electrons fall into the positively charged nucleus and be combined into an atom close to the size of the nucleus -- if it were to happen, we would have not seen the world as we have.
+
+Physicists refer the drop-like behavior of electrons and all other matters as the particle behavior. "Quantum" should have been the perfect word in place of particle, but we think "drop" is a better word for non-physicists to understand.
+
+Beside particle, physicists use the term "state" to refer the wave of one drop. It is the same concept as "mode" in the context of optical communication and photonics. It is used to describe a wave when the absolute amplitude value is known or unimportant. But the term carries many different meanings to engineers. We will believe it's wise to use the term "wave" in place of state. By tradition, physicists use the so-called Dirac "bra-ket" notation to label quantum states. In the ket notation, the base carrier waves are noted as $\keta{0}$ and $\keta{1}$.
+
+When talking about electrons being waves, people are often puzzled and ask what is vibrating in an electron wave. Physicists are puzzled too and have been debating the possibilities without conclusion. Engineers don't have to interject into the debate and need only know that an electron wave qubit has frequency, phase and polarization for modulating.
+
+\section{Qubit modulation}
+\subsection{Requirements on modulation}
+We have two conflicting requirements when considering how to modulate a qubit:
+\begin{itemize}
+    \item For parallel computing/exploration, the modulation points should be as many as possible.
+    \item For output, the measurable modulation points are limited to the "0" and "1" points.
+\end{itemize}
+
+The first requirement is easy to understand, and phase modulation, with modulation points $\phi \in [0, 2\pi)$, meets the requirement. The second requirement is due to that fact that one qubit has only one quantum of wave, which resonates with only one of the local oscillators in the demodulator as shown in Fig. \ref{deodulator} and never both.
+
+As described in the Appendix on qubit devices, all devices add a second modulation such as polarization, frequency, mode modulation or the like to meet the second requirement. In this book, we refer these secondary modulations a generic term, $\theta$ modulation, because all of them can be characterized by an angle value $\theta \in (-\pi/2, \pi/2]$ as discussed in the appendix on qubit devices.
+
+\subsection{Measurable modulation points}
+\subsubsection{Quadrature amplitude modulation}
+Since a wave is in quanta, 1, 2, 3, ..., or n quanta, its amplitude is discrete too although not in increment of 1, 2, 3, ..., or n. Adding amplitude modulation is by adding more qubits and can be used only for digital modulation. Amplitude modulation is always used to add code points for digital modulation and cannot be used for parallel computing.
+
+\subsection{Analog modulation}
+Analog modulation can only be used at input or in processing. For communication, each qubit actually has two channels -- $\theta$ and $\phi$. And their channel capacities per qubit duty cycle are $\theta \in (-\pi/2, \pi/2] and \phi \in [0, \pi)$. For computing, that is the capacities are the amount of information a qubit can store.
+
+\subsection{Demodulation and quantum measurement}
+When a cellphone receives a radio wave, the demodulator can divide the wave into many portions to measure the amplitudes and phases. But with a qubit, although we can adopt any of the modulation technique and put information in any of the data points $(\theta, \phi)$, we cannot divide one quantum of wave for multiple measurement.
+
+Similar to a demodulator of QPSK. a demodulator of a qubit expose the quantum of wave to two electronic resonators orthogonal to each other.  If we know the qubit is modulated by BQSK, detecting the qubit in the $\keta{0}$ wave means the qubit's phase $\theta = 0$. Further, the absence of detecting signal in the $\keta{1}$ wave also suggests $\theta = 0$ too. But if the qubit is originally modulated in any other way, we have no way of measuring the knowing the information that the qubit represents. the probability of one resonator responds to the wave depends on how much the resontor overlaps with the wave in space and time.
+
+In contrast to conventional communication and computing systems, information entered into a quibit may be lost at demodulation or measurement. That is the unique feature of quantum information.
+
+\subsection{Wave characteristics for qubit modulation}
+\begin{table}[]
+\caption{Wave characteristics for qubit modulation}
+\label{modulation-characteristics}
+\begin{tabular}{lll}
+Wave parameters &Represented numbers &Qubit design   \\
+Amplitude & Number of qubits 1, 2, ... & all qubits \\
+Phase & $\phi \in (-\pi /2, \pi /2] $& all qubits \\
+Frequency & $\theta \in (-\pi /2, \pi /2]$ & SC-IBM, Google; trapped ion - IonQ \\
+Mode & $\theta \in (-\pi /2, \pi /2]$ & Xanadu, PsiQuantum \\
+Polarization & $\theta \in (-\pi /2, \pi /2]$ & USTC \\
+Spin & $\theta \in (-\pi /2, \pi /2]$ & 
+\end{tabular}
+\end{table}
+
+\section{Mathematical notation of qubit modulation}
+From communication theory perspective, a qubit is best described by the parameter pair $(\theta, \phi)$. But other notations developed by physicists may be easier to use when working on problems involving more than one qubit. 
+\subsection{Ket notation}
+Summing up the base carriers, the superposition wave can be noted as $\keta{s} = cos{\theta} \keta{0} + e^{i \phi} sin{\theta} \keta{1}$ or simply $\keta{s} = a \keta{0} + b \keta{1}$. Here, the $+$ sign means wave addition but has no mathematical meaning. And $a$ and $b$ are complex numbers and reflect the amplitude and phase contributions to the superposition. Even with the constraint $|a|^2+ |b|^2$, this notation includes waves $e^{i\lambda} (cos{\theta} \keta{0} + e^{i \phi} sin{\theta})$ which are the same except their global phase $\lambda$.
+
+\subsection{Vector notation}
+For mathematicians and computer scientists, the physical meaning of wave addition can be ignored, and the vector notation $
+\begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}$ is best for derivation and calculation.
+
+But not all of the 4 real numbers the two complex numbers can be used independently for modulation. First, the amplitude of the wave is one to be sure that the qubit contains only one quantum $|a|^2 + |b|^2 = 1$.
+\begin{equation}
+    \begin{pmatrix}
+    cos\theta & -e^{i\lambda} sin\theta \\
+    e^{i\phi} sin\theta & e^{i(\phi + \lambda)} cos\theta
+\end{pmatrix}
+\end{equation}
+Any operation rotates the data point of a qubit on the Bloch sphere and can be described by the triplet of Euler angles, $\delta \theta, \delta \phi, \delta \lambda$. The matrix notation is
+\begin{equation}
+    \begin{pmatrix}
+        cos\delta \theta & -e^{i\delta \lambda} sin\delta \theta \\
+        e^{i \delta \phi} sin\delta \theta & e^{i \delta \phi+ \delta \lambda} cos\theta 
+    \end{pmatrix}
+\end{equation}
+
+\subsection{Binary numbers}
+
+If we measure waves in any other way than space or time, we find their smallest "drops" -- the particle nature of matter. Quantum physics started a hundred years ago when Einstein first proposed that electromagnetic waves, when measured in their energy, have the smallest drops called photons.
+
+When measuring in electric charge, physicists discovered the smallest drops first and call them electrons before they realized their wave nature.
+
+Measurement is the very thing that the quantum world is different from the classical world. In the quantum world, with an article, you only have one chance to measure it.)
+
+Digital technologies gain precision over analog technologies but lose in the amount of information they can carry. The amount of information that a modulation technique can carry relates to the size or cardinality of the set of numbers that it can represent. With analog PM, the cardinality of the set [0, 2$\pi$) is infinity and is the same as the entire set of real numbers. But the set of integers that a digital modulation represent is finite. And the amount of information that a digital communication channel carries per time slot is finite. To increase the communication speed, the cellphone industry has been trying to squeeze more and more information per time slot by adopting increased data points of QAM modulations -- 4QAM, 8QAM, 16QAM ....
+From the above description of the various types of qubits, we see that they all have the pseudo phase $\theta_p$ to characterize the 
+orthogonality or overlap among the waves in the polarization, spatial or frequency domains, and can be used represent real numbers in the $\{\theta_p \in [0, \pi/2)\}$ domain. In addition, the relative phase in the time domain of the two base carrier waves in a qubit is another independent variable that can be. Physicists usually use $\theta_q = \theta_p/2 \keta{0}$ and the Bloch sphere as in Fig. \ref{bloch} to draw an intuitive picture of the entire modulation domain of a qubit $\{\theta_q \in [0, \pi]$ and $\phi \in [0, 2\pi)\}$.
+
+\begin{table}[]
+\caption{Parameters and ranges for modulation}
+\label{modulation-parameters}
+\begin{tabular}{|l|l|l|}
+\hline Parameter &Represented numbers &Note                 \\
+\hline Amplitude &Number of qubits $\in \{1, 2, 3, ...\}$   & None \\
+\hline Phase & $\phi \in (-\pi /2, \pi /2] $& Z gate \\
+\hline Polarization angle (spatial overlap) & $\theta \in (-\pi /2, \pi /2]$ &X gate \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Graphical depictions}
+
+\subsection{Quarter sphere diagram}
+%\begin{figure}[ht]
+%\includegraphics[width=6cm]{pic/blochSphere.png}
+%\caption{Bloch sphere}
+%\label{Bloch}
+%\end{figure}
+
+\begin{figure}[ht]\label{Bloch-alt}
+\caption{Qubit modulation space}
+\end{figure}
+
+\subsection{Bloch sphere}
+\begin{figure}[ht]\label{Bloch}
+
+\caption{Bloch sphere}
+\end{figure}
+
+\subsection{Constellation diagrams}
+Constellation diagrams are familiar to engineers and are great graphical illustration of modulations involving only phase and amplitude. But quantum devices add $\theta$ modulation.
+
+\section{Mostly used modulation points}\label{Sec-Plus}
+\subsection{$\keta{1}$}
+$\keta{1}$ is one of the base waves of a qubit. However, quantum computing circuit diagrams usually assume all input waves are $\keta{0}$, and assume a $\keta{1}$ wave being transformed by an X gate from a $\keta{0}$ wave --
+$\keta{1} = X \keta{0}$ -- in ket notation. In vector notation, the $X$ gate has a matrix representation
+\begin{equation}
+    X = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}.
+\end{equation}
+In circuit notation,
+\begin{figure}[ht] \label{X1}
+\begin{quantikz}
+    \lstick{\ket{0}} & \gate{X} & \qw \rstick{\ket{1}}
+\end{quantikz}
+\caption{Use X gate to produce $\keta{1}$ wave.}
+\end{figure}
+The X gate can also be represented as $\bigoplus$. But in this book, we do not use this notation.
+
+We see that an X gate flips the bases $\keta{0}$ and $\keta{1}$ from one to another. 
+
+\subsection{The $\keta{+}$ and $\keta{-}$ waves}
+To read out from a qubit, it must be in a binary modulation. Similar to QPSK shown in Fig. \ref{qQPSK}, we can map the modulation points $\theta=0$ and $\pi/2$ to represent "0" and "1" respectively as shown in the constellation diagram Fig. \ref{QPSK} 
+\begin{figure}[hp]\label{qQPSK}
+
+%\includegraphics[width=6cm]{pic/qqpsk.jpg}
+\caption{Constenlation diagram of quantum $\theta$ shift keying}
+\end{figure}
+
+The $\keta{+}$ wave is a superposition wave of the $\keta{0}$ and $\keta{1}$ waves and is best used as the input wave for parallel processing.
+\begin{figure}[ht]\label{H+}
+
+\begin{quantikz}
+    \lstick{\ket{0}} & \gate{H} & \qw \rstick{\ket{+}}
+\end{quantikz}
+\caption{Use H gate to produce $\keta{+}$ wave.}
+\end{figure}
+
+The $\keta{-}$ wave is also a superposition wave of the $\keta{0}$ and $\keta{1}$ waves, but is mostly used as the input wave phase kickback algorithm, which will be described in the following chapter.
+\begin{figure}[ht]
+\begin{quantikz}
+    \lstick{\ket{0}} & \gate{X} & \gate{H} & \qw \rstick{\ket{-}}
+\end{quantikz}
+\caption{Use H gate to produce $\keta{-}$ wave.}
+\label{H-}
+\end{figure}
+
+\section{Quantum gates for information processing}
+Qubits are memory devices or communication channels. Quantum gates are processing devices that can change the modulation of $\theta$ and phase $\phi$. As desired by the algorithms, the gates are concatenated or connected into circuits. Amplitude or the number of qubits is never changed until demodulation when qubits are measured. Measurements absorb the energy of qubits to extract digital data from them.
+
+In the ket notation developed by physicists, a qubit gate operation is a quantum operator and can be noted by a letter $G$. In vector notation, a gate process can always be represented by a matrix. For example,
+\begin{equation}
+    \begin{pmatrix}
+    cos\theta & e^{i\phi} sin\theta \\
+    e^{-i\phi} sin\theta & cos\theta
+    \end{pmatrix}
+\end{equation}
+which is unitary.
+A algorithm or protocol is always depicted by a circuit diagram or series of matrix calculations. In circuit diagram, a qubit is shown as a line, and a gate as a rectangle.
+
+\section{Hadamard gate}
+Hadamard gate rotates the polarization $\theta$ of a qubit by 45 degrees. Its circuit symbol is letter "H" enclosed in a square. Rotating a $\keta{0}$ qubit 45 degrees obvious becomes a qubit of 45 degree polarization.
+\begin{figure}[ht]
+\begin{quantikz}
+    \qw & \gate{H} &\qw
+\end{quantikz}
+\caption{Hadamard gate}
+\label{Hadamard}
+\end{figure}
+
+\section{Pauli X, Y and Z gates}
+A Z rotates a qubit's phase $\phi$ by $180^{\circ}$ or $\pi$. A X gate exchanges $\keta{0}$ and $\keta{1}$. A Y gate exchanges $\keta{0}$ and $\keta{1}$ with additional phase change. They are best expressed in the vector notation as the Pauli matrices:
+\begin{equation}
+\begin{array}{rl}
+    \sigma_1 & = \sigma_x = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix} \\
+    \sigma_2 & = \sigma_y = \begin{pmatrix}
+        0 & -i \\
+        i & 0
+    \end{pmatrix} \\
+    \sigma_3 & = \sigma_z = \begin{pmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{pmatrix}
+\end{array}
+\end{equation}
+
+\chapter{Quantum communication protocols}
+
+\section{BB84 protocol}
+Encryption is used in everyday Internet communication. Encryption conceals the credit card numbers and passwords, which we send to the websites, from hackers or adversaries, who can eavesdrop the communication channels. Charles Bennett and Gilles Brassard proposed in 1984 a quantum encryption protocol\cite{BB84}. Named after the authors as the BB84 protocol, it secures communication from eavesdropping over the classical one-time-pad (OTP) encryption protocol\cite{Schneier} by taking advantage of the fact that a qubit cannot be divided for wire-tapping. Let's first describe how BB84 encrypts data as a version of the classical OTP protocol before describing how anti-eavesdropping protocol is added.
+
+\subsection{BB84 as an encryption protocol}
+By tradition, all communication encryption protocol is narrated as the scenario that Alice wants to transmit a series of data bits to Bob but fears Eve may eavesdrop the communication channel\cite{Schneier}. The encryption portion of the protocol goes like
+- Alice has a second series of random bits of equal length to the data bits, which is the encryption key.
+- Depending on the value of the key bit, 0 or 1, the transmitted data qubit uses either the $0^\circ$ or $45^\circ$ modulation base.
+- Bob has the same series of key bits, and uses either the $0^\circ$ or $45^\circ$ modulation base to measure the received qubit.
+
+%\begin{comment}[ht]
+%\begin{tikzpicture}
+ %   \path (-5, 0) node[anchor=east] (start) {$\keta{0}$}
+ %   (-5,-2) node[Gate] (data) {Data bits}
+ %   (-5,2) node[Gate] (key) {Key bits}
+  %  (-4,0) node[Gate](dataCoder) {I/Z}
+   % (-2,0% node[Gate](keyCoder) {I/H}
+%    (2,0)%%% node[Gate] (keyDecoder) {I/H}
+%    (4,0)%% node[Gate] (meter) {$\nearrow$}
+%    (4,2)%% node[Gate] (keyD) {D-key bits} (keyDecoder)
+%    (5,0)%% node[anchor=west] (output) {output};
+%    \draw%% (start) -- (dataCoder) -- (keyCoder) -- (keyDecoder) -- (meter) -- (output);
+%    \draw%[->] (data.east) -| (dataCoder.south);
+%    \draw%[->] (key.east) -| (keyCoder.north);
+%    \draw[->] (keyD.west) -| (keyDecoder.north);
+%\end{tikzpicture}
+%\caption{BB84 circuit}
+%\label{BB84}
+%\end{comment}
+
+\begin{figure}[ht]
+\begin{quantikz} %[wire types={q,c}]
+    \lstick{Alice' data bits}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{X} & \gate{H} &\qw & \gate{H} & \meter{} &\cw \rstick{data output} \\
+    \lstick{Alice' key bits}  & \cw & \cwbend{-1} & & \cwbend{-1} & \cw \rstick{Bob's key bits}
+\end{quantikz}
+\caption{BB84 circuit}
+\label{BB84}
+\end{figure}
+
+\subsection{Performance}
+Channels: one.
+Input Processing:
+Output processing:
+Transmission rate: one bit per qubit duty cycle.
+
+\subsection{Adding authentication to BB84 protocol}
+A quantum protocol such as BB84 is immune to wire-tapping, but like other protocols, it is vulnerable to attacks if Eve intercepts the qubits from Alice and send Bob qubits produced by herself. Not part of the BB84 protocol, the standard approach to detect such attacks is to add $m$ authentication bits, which are bits known to both Alice and Bob in advance, to every $n$ data bits:$a_1 a_2 ... a_m d_1 d_2 ...d_n$. If Bob finds the authentication bits not what he expects, he suspects the block's authenticity discards it.
+
+\subsection{Key distribution}
+All OTP protocols such as BB84 are theoretically beautiful but are not practical because they require encryption keys to be equal lengths as the data messages. It is a chicken and egg dilemma: how does Alice shares or distributes the series of secret key bits to Bob at the first place? Conventional public key exchange protocols are the current solutions. But they have many problems. They require expansive computation and may be broken by the power of quantum computing.
+
+BB84 protocol and the quantum protocols following it do not depend on expansive computation. They recognize the fact that keys are random numbers. And key distribution or sharing can afford to lose some candidate key bits and does not require all candidate key bits being accepted by Bob. Alice can distribute all the candidate key bits to Bob. And Bob and Alice only need to agree on which of the candidate bits are "good" to use.
+
+BB84 modifies the above protocol for key distribution in the following way:
+- Alice generates two blocks of random bits of equal length with one block being the data bits -- or candidate key bits -- and another as the "encryption" key bits.
+- Alice pairs the bits 00, 01, 10, or 11, and send it to Bob in the quantum channel (the qubit) mapped to the modulation points shown \ref{qQPSK}. Anyone who measures the qubit and gets a result of "0" cannot distinguish the actual code point is "00" or "10". So the original data is encrypted.
+- Bob does not have the "encryption" key bits that Alice uses but has a series of key bits out of his random generation. And Bob demodulates each received qubit using his key bit and obtain his data bits.
+- Alice and Bob then use a conventional communication channel to compare their corresponding key bits. If they agree, Alice and Bob keeps the candidate data bit. Otherwise, the candidate bit is discarded.
+
+With many of the original data bits from Alice being discarded, what is good of BB84? The good part is that the kept data bits can be used as the key for future encryption. Therefore, BB84 is considered a quantum key distribution protocol. The quantum channel guarantees that it cannot be tapped. But it cannot prevent an eavesdropper Eve from intercepting the qubits in the channel. Eve may intercept the qubits without sending anything to Bob and may also attempt to reproduce the qubit to send to Bob. Because of the no-cloning theorem, Eve cannot reproduce the qubit to disguise the interception. So, key distribution with BB84 guarantees keys' confidentiality and integrity although the rate of key transmission may suffer from interception.
+
+\section{2-qubit operations}
+In conventional computers, 8, 16 or 32 bits are joined together to a unit of one byte, word or UINT32. Quantum circuits have their ways to join qubits into new units. If we look into 2 waveguide qubits, we see 4 waveguides, which we can label as $V_0$, $V_1$, $W_0$ and $W_1$. If we join the first two, we can make a superposition wave $a\keta[V]{0}+b\keta[V]{1}$ and allow only one quantum of wave in it. If we join the first and the third, physicists may call the new unit a joint wave while we keep the tradition of this book to call it a joint wave. Physicists note the new unit as $\keta[V]{0} \keta[W]{0}$ or simply $\keta{0}\keta{0}$. For quantum computing and communication, we allow two quanta in the joint wave.
+
+\section{Control gates}
+Assume $f(x)$ is a binary function mapping $x \in {0,1}$ to ${0,1}$. The control-f gate takes input waves $\keta{x}\keta{y}$, where $x$ and $y$ are either 0 or 1, and produce the output waves as shown below.
+\begin{figure}[ht]
+\begin{quantikz}
+    \lstick{\ket{x}}  & \ctrl{1}  & \qw \rstick{\ket{x}} \\
+    \lstick{\ket{y}} & \gate{f} &\qw \rstick{\ket{y\bigoplus f(x)}}
+\end{quantikz}
+\caption{Control-f gate}
+\label{c-f}
+\end{figure}
+A particularly important type of control gates is the control-NOT or C-NOT gates, in which the $f$ is the Pauli $X$. A C-NOT gate is best described in vector notation as matrix
+\begin{equation}
+    \begin{pmatrix}
+1 & 0 & 0 &0 \\
+0 & 1 & 0 &0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\end{equation}
+
+\section{Mostly used modulation points}
+\subsection{The measurable points}
+From 4 orthogonal waves, we have 4 joint waves $\keta{0}\keta{0}$, $\keta{0}\keta{1}$, $\keta{1}\keta{0}$ and $\keta{1}\keta{1}$, which are also orthogonal waves. We can use them as the base waves to represent 2-bit binary numbers 00, 01, 10 and 11. It's impossible to draw any 4-dimensional object using the 4 orthogonal base waves. But the constellation of QAM modulation diagram in Fig. \ref{QAM} shows to some extend the phase relation among the base waves except that two pairs of the waves in QPSK are 180-degree different in phase instead of orthogonal.
+
+%\begin{figure}[ht]
+%\begin{tikzpicture}
+%    \draw[->] (-3.5,0) -- (3.5, 0);
+ %   \draw[->] (0,-3.5) -- (0,3.5);
+  %  \draw[dotted, red] (0,0) circle(3cm);
+  %  \draw[red, fill] (2,0) circle(0.05cm) node[below right] {0};
+   % \draw[red, fill] (0,2) circle(0.05cm) node[above right] {1};
+    %\draw[red, fill] (3,0) circle(0.05cm) node[below right] {10};
+%    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {11};
+%\end{tikzpicture}
+%\caption{Constellation diagrams of two qubits}
+%\label{QAM}
+%\end{figure}
+
+\subsection{Bell states}
+Like in the cases of one qubit and QPSK, we can also use superpositions of the above base waves to come up with a new set of base waves:
+\begin{equation}
+\begin{array}{rl}
+    \keta{\Phi^{+}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}+\keta{1}\keta{1}),\\
+    \keta{\Phi^{-}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}-\keta{1}\keta{1}),\\
+    \keta{\Psi^{+}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}+\keta{1}\keta{0}),\\
+    \keta{\Psi^{-}} =& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}-\keta{1}\keta{0}).
+\end{array}
+\end{equation}
+The second set of base waves can be considered 45 degree rotated from the first set. Physicists call them Bell state waves and use the funny symbols to note them. They are in the form $cos\theta |b_i> + sin\theta |b_j>$. They are no longer separable waves.
+
+We can use 8 waves from the 2 sets of bases to represent numbers of 3 bits as shown in Fig. \ref{8QAM}.
+
+\section{Design patterns}
+
+\subsection{Producing Bell states}
+\begin{figure}[ht]
+\begin{quantikz}
+    \lstick{\ket{+}}  & \ctrl{1} & \qw \rstick[2]{\ket{\Phi^+}} \\
+    \lstick{\ket{0}} & \gate{X} &\qw 
+\end{quantikz}
+\caption{Producing Bell states}
+\label{BS}
+\end{figure}
+Changing the input waves from $\keta{+}$ to $\keta{-}$ or from $\keta{0}$ to $\keta{1}$, we can obtain the other Bell states.
+
+\section{Superdense coding}
+Superdense coding is also called dense coding. With the consideration of two qubits as one wave, modulation of one qubit is modulating the shared $\theta$ of the entanged wave. The modulation appears to be upon one qubit. But the information is actually coded into two qubits.
+
+The operation first creates entanglement $\keta{\Phi^{+}}$.
+
+\begin{table}[]
+\caption{Modulate one qubit twice to encode 2 bits}
+\label{DenseCodingTable}
+\begin{tabular}{lll}
+Digital input & Modulating operation & gate                 \\
+00 & None   & None \\
+01 & $90 degree$& Z gate \\
+10 & Mirror switch $\keta{0}$ and $\keta{1} $ &X gate \\
+11 & Mirror switch $\keta{0}$ and $\keta{1}$ and $90 degree$ &X gate
+\end{tabular}
+\end{table}
+
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & &\lstick{Alice' 2nd bit}  & \cwbend{2} \\
+    & & \lstick{1st bit}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \gate{Z} & \gate{X} &\ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Bob's 1st bit} \\
+    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{1} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{2} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{3} & \targ{} & \qw & \meter{} & \cw \rstick{Bob's 2nd bit}
+\end{quantikz}
+\caption{Superdense coding circuit}
+\label{DenseCoding}
+\end{figure}
+
+\section{Teleportation}
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & \lstick{Alice' wave a\ket{0}+b\ket{1}}  & \ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Alice' 1st bit} \\
+    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \targ{} & \qw& \meter{} &\cw \rstick{Alice' 2nd bit} \\
+    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=2mm}, label style={yshift=-38mm}]{1} & \qw & \qw & \qw \rstick{Bob's wave}
+\end{quantikz}
+\caption{Teleportation circuit}
+\label{Teleportation}
+\end{figure}
+
+Similar to dense coding, quantum teleportation is to modulate an analog signal to one qubit of a $|BS1>$ two-qubit wave. The analog signal comes in the form of a qubit, which we call it the signal qubit. And the wave may be written as $a \keta{0} + b\keta{1}$.
+\begin{equation}\label{}
+\begin{array}{rl}
+    & (a \keta{0} + b\keta{1}) \frac 1 {\sqrt 2}(\keta{0}\keta{0}+\keta{1}\keta{1}) \\
+    = & \frac 1 {\sqrt 2}| (\keta{0}\keta{0}+\keta{1}\keta{1}) (a \keta{0} + b\keta{1}) \\
+    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{0}-\keta{1}\keta{1}) (a \keta{0} - b\keta{1}) \\
+    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}+\keta{1}\keta{0}) (a \keta{0} + b\keta{1}) \\
+    +& \frac 1 {\sqrt 2}| (\keta{0}\keta{1}-\keta{1}\keta{0}) (a \keta{0} - b\keta{1})
+\end{array}
+\end{equation}
+
+\begin{table}[]
+\caption{Modulate one qubit to encode 2 bits}
+\label{TeleportationTable}
+\begin{tabular}{lr}
+Alice's output $d_1 d_0$ & Bob's qubit  \\
+00 & $a\keta{0}+b\keta{1}$ \\
+01 & $a\keta{1}+b\keta{0}$ \\
+10 & $a\keta{0}-b\keta{1}$  \\
+11 & $a\keta{1}-b\keta{0}$ 
+\end{tabular}
+\end{table}
+
+Alice has a qubit with information S and shares a pair of qubits with Bob. The pair is one of the 4 known eigenwaves and has 2 bits of information. The total input information is therefore S+2. At the output, Alice measures the first 2 qubits against the same 4 eigenwaves and tells Bob the result, which has 2 bits of information. If no information is lost, the information in the 3rd qubit should be S.
+
+\section{Quantum secure direct communication (QSDC)}
+QSDC is an adaptation of quantum teleportation to key distribution. The key transmission rate is 1 bit per qubit duty cycle and is a much improvement over the BB84 protocol.
+
+\chapter{Deutsch's and related algorithms}
+
+\section{Deutsch's algorithm}
+A one-bit function $f$ mapping \{0,1\} -\> \{0,1\} can have 4 possible outputs, which are 2 bits of information. But the outputs belong to 2 categories, constant or balanced, which are an 1-bit information as of $f(1)+f(0)$. We can't obtain the 2-bit information using one operation but can obtain the 1-bit information if we feed the function with the $\keta{+}$ qubit:
+\begin{equation}\label{DeutschF1}
+\begin{array}{rl}
+    U_f(\frac 1 {\sqrt 2} (\keta{0}+\keta{1}) ) = & \frac 1 {\sqrt 2} (e^{2\pi i f(0)} \keta{0}+ e^{2\pi i f(1)} \keta{1}) \\
+    = & \frac 1 {\sqrt 2} e^{2\pi i f(0)} (\keta{0}+ e^{2\pi i [f(1)-f(0)]} \keta{1})
+\end{array}
+\end{equation}
+
+From above derivation, we see that it takes one operation of the $F$ gate to evaluate both $f(0)$ and $f(1)$. But the result still requires two measurements, one to determine $f(0)$ and the other to determine $f(1)-f(0)$. For two measurements, we need the help of another qubits.
+
+\subsection{Phase kick back}
+\begin{figure}[ht]
+\begin{quantikz}
+    \lstick{\ket{x=0/1}}  & \ctrl{1} & \qw \rstick{$(-1)^{f(x=0/1)}$ \ket{x=0/1}} \\
+    \lstick{\ket{-}} & \gate{f} &\qw \rstick{\ket{-}} 
+\end{quantikz}
+\caption{Producing Bell states}
+\label{phaseKick}
+\end{figure}
+
+With the help of a C-NOT gate, the 2 bits of information modulated in one qubit can be transfered to two qubits and therefore can be all extracted.
+
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\begin{quantikz}[scale=1.3]
+    \lstick{\ket{0}} & \gate{H} & \ctrl{1} \slice{$(-1)^{f(0)}$\ket{0}+$(-1)^{f(1)}$ \ket{1} }  & \gate{H} & \meter{} &\cw \rstick{$f(1)-f(0)$} \\
+    \lstick{\ket{1}} & \gate{H} & \gate{f} &\qw \rstick{\ket{-}}
+\end{quantikz}
+\caption{Deutsch's algorithm circuit}
+\label{Deutsch}
+\end{figure}
+
+\subsection{Performance}
+Processing: two quantum gates - one operation per gate; one measurement.
+Memory: one qubit for the processing. But for output, two qubits are required.
+
+
+\section{Mostly used modulation points}
+\subsection{Measurement bases}
+The measurement base waves are $\keta{x_0}\keta{x_1}\keta{x_2} ...\keta{x_{n-1}}=\prod^{n-1}_{i=0}$, where $x_i in \{0, 1\}$.
+
+\subsection{Evenly mixed wave and Fourier bases}
+Expanding on the idea of the $\keta{+}$ wave in \ref{Sec-Plus}, we can have a wave
+\begin{equation}
+\begin{array}{rl}
+    \keta{s_0} &= \frac 1 {\sqrt{2}} (\keta[0]{0}+\keta[0]{1}) \frac 1 {\sqrt{2}} (\keta[1]{0}+\keta[1]{1})
+    ... \frac 1 {\sqrt{2}} (\keta[n-1]{0}+\keta[n-1]{1}) \\
+    &= \frac 1 {2^{n/2}} (\keta{b_0}+\keta{b_1}+...+\keta{b_{N-1}})
+ \end{array}
+\end{equation}
+which is an evenly mixture of the $n$-qubit bases. But what are the orthogonal waves similar to the $\keta{-}$ of one qubit?
+\begin{equation}
+\begin{array}{rl}
+\keta{s_k} &= \frac 1 {\sqrt{2}} ({\keta{0}}_0+{\keta{1}}_0)
+    \frac 1 {\sqrt{2}} ({\keta{0}}_1+e^{\frac {k*2 \pi i} 2}{\keta{1}}_1)
+    ...  \frac 1 {\sqrt{2}} ({\keta{0}}_{n-1}+e^{\frac {(n-1)*2\pi i} 2^(n-1)}{\keta{1}}_{n-1}) \\
+    ... \\
+    &= \frac 1 {\sqrt{N}} \prod^{n-1}_{l=0} ({\keta{0}}_l+e^{\frac {k\times l \times 2\pi i} 2^l}{\keta{1}}_l) where k=0, 1, ...N-1.
+\end{array}
+\end{equation}
+Like the $\keta{+}$ and $\keta{-}$ waves, each of the $\{\keta{s_k}, k=0, 1, ... N-1\}$ waves is a mixture of all the base waves, but they have different orientations in the $N$ dimension Hilbert space.
+
+\section{Design patterns}
+
+\subsection{Producing equal superposition}
+
+\subsection{Quantum Fourier transform}
+Classical discrete Fourier transform maps a set of $N$ complex numbers ${x_0, x_1, ..., x_{N-1}}$ to another $N$ complex numbers
+\begin{equation}
+    y_k = \frac 1 {\sqrt{N}} \sum^{N-1}_{n=0} x_n\omega_{N}^{-nk}, k = 0, 1, 2, ..., N-1,
+\end{equation}
+where $w_N = e^{\frac {2\pi i} N }$. For physicists and engineers, the numbers ${y_n}$ help to reflect prominently the periodic patterns such as their frequency in $x_n$. For the same purpose, quantum Fourier transform is defined mathematically as follow but is easier to be realized by quantum gates:
+\begin{equation}
+    y_k = \frac 1 {\sqrt{N}} \sum^{N-1}_{n=0} x_n\omega_{N}^{xk}, k = 0, 1, 2, ..., N-1,
+\end{equation}
+where $x = x_0 + x_1 2^1 + x_2 2^2 + ... +x_{N-1} 2^{N-1}$. In vector notation, $F_N$ is a unitary matrix, and its $i, j$ element is
+\begin{equation}
+    f_{i,j} = \omega^{i.j}.
+\end{equation}
+This matrix is the same matrix as for the discrete Fourier transform. Therefore, quantum Fourier transform is equivalent to discrete Fourier transform.
+
+\subsubsection{Complexity}
+
+\subsection{Phase estimation}
+\subsubsection{Complexity}
+
+\section{Grover's algorithm}
+Like the Deutsch's algorithm, the Grover's algorithm also assumes a blackbox function $f(x)$ whose variable $x$ is a $n$-bit binary variable. Its result is a single-bit value and is always 1 except for a few unknown $x=x_w$ at which $f(x_w)=-1$. The goal of the algorithm is to find the $x_w$. Lov Grover proposed in 1996 that quantum computer can solve it faster than conventional computers.
+
+Let's assume there is one and only one solution $x_w$ as an example, and note $x_w$ as $w_{n-1}...w_i...w_1 w_0$ in binary where $w_i = 0 or 1$, and $\Vec{w} = (0, 0, ..., 1 at i=w, ..., 0)^T$ as a $2^n-1$ dimensional vector. Using classical computers, we'd feed each of the $2^n -1$ possible numbers of $x_w$ at a time to $f$ to test whether the result equals $-1$. The worst case is that we have to do $2^n-1$ evaluations of $f(x)$ to find out $x_w$. We of course wish to explore all the possible $x_w$ at the same time. We naturally choose $\vec{S} = \frac 1 {\sqrt{2^n}} (1, 1, ...1)^T$, which is the sum of all the bases of the qubits, to feed the oracle function $f$.
+
+We know, $\vec{S} = \vec{S} - \frac 1 {\sqrt{2^n}} \vec{w}) + \frac 1  {\sqrt{2^n}} \vec{w}$. Apparently, $\vec{S_1}  = \vec{S} - \frac 1 {\sqrt{2^n}} \vec{w}$ is a vector orthogonal to $\vec{w}$, and applying the $F$ gate to it does not change its phase. Therefore, $F(\vec{S}) = F(\vec{S_1}) + F(\frac 1  {\sqrt{2^n}} \vec{w})  = \vec{S_1} - \frac 1 {\sqrt{2^n}} \vec{w}$. We see that 
+\begin{itemize}
+    \item applying the $F$ gate turns vector $\vec{S}$ toward $-\vec{w}$
+    \item applying the $F$ gate to $\vec{S_1}$ makes no change.
+\end{itemize}
+Therefore, can we apply $F$ gate $2^n$ times and turn $\vec{S}$ completely to $-\vec{w}$? But applying $F$ gate once more will change the phase of the $\vec{w}$ vector back. We need to change the sign of vector $\vec{w}$ first while preserving its angle with $\vec{S}$ before applying $F$ gate again. This can be accomplished by apply gate $U_S = 2 \vec{S}X\vec{S} -I$, which flip $\vec{w}$ around the vector $\vec{S}$. However, when implementing this flip, we need to rotate $vec{S}$ to the $\vec{0}$, do the flip, and rotate the frame back to $\vec{S}$.
+
+\begin{figure}[ht]\label{Grover}
+
+\caption{Applying F gate}
+\end{figure}
+
+\subsection{Complexity}
+
+\section{Simon's algorithm}
+The Simon's algorithm assumes a blackbox oracle function $f(x)$ whose variable $x$ is a $n$-bit binary variable. Its results are $m$-bit values that are periodic, but the period $t$ is unknown -- $f(x+t)=(fx)$ for all $x$. How do we find the period $t$? Of course, we are tempted to play the trick again of feeding $\vec{S} = \frac 1 {\sqrt{2^n}} (1, 1, ...1)^T$ to the oracle function $f$. We have
+$f(\vec{S}) = \frac 1  {\sqrt{2^n}} \sum_x f(x)$.
+
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & &\lstick{Alice' 2nd bit}  & \cwbend{2} \\
+    & & \lstick{1st bit}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{H} &\ctrl{1} & \gate{Z} & \gate{X} &\ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Bob's 1st bit} \\
+    \lstick{\ket{0}} & \qw      & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{BS1} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{BS2} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{BS3} & \targ{} & \qw & \meter{} & \cw \rstick{Bob's 2nd bit}
+\end{quantikz}
+\caption{Simon's algorithm}
+\label{Simon}
+\end{figure}
+
+\subsection{Complexity}
+Using conventional computer, finding the period takes $2^{n/2}$ operations.
+
+\section{Shor's algorithm}
+Much of modern day cryptography is based on the difficulty of factoring large integer numbers. Almost all Internet connections from our mobile phones and computers are based on AES, which is a private key encryption algorithm, and RSA or DH algorithms for key exchange.
+
+For a positive integer $M$, how can we find out whether it has factors? A naive approach is to iterate over
+$a=2, 3, ..., [M/2]$ one by one to see whether $M$ modulo $a$ is zero or $M mod a = 0$. Mathematicians have found a shortcut basing on the fact that if a pair of positive integers $a < N$ and $r$ exist, such that $a^r = 1(mod M)$, and that if they exist and $r$ is an even number, $(a^{r/2}+1)(a^{r/2}-1) = 0 (mod M)$. $r$ is called the order of $a$. The ranges of $a$ and $r$ are much smaller than $[M/2]$. But, beside some trivial solutions, iterating over all the possible $a$ and $r$ is still a daunting task. Peter Shor, in his 1997 monumental paper\cite{1997Shor}, described a quantum algorithm, which finds the existence of $r$ and its value without iteration for every given $a$.
+
+With all the design patterns, which we have learned so far, how would we design such an algorithm? We may simply extend the ideas behind the Deutsch's algorithm to the $n$ dimension, where $n$ is the closest integer for $M < 2^n$.
+1. feed the function $f(x) = a^x (Mod M)$ with the evenly mix quantum waves $\keta{s_0}$
+2. use phase kickback to transfer the values of $f(j), j\in \{0,N-1\}$, which should have periodicity of $r$, to the phases of the waves in the Fourier base
+3. use phase estimate to reveal the information containing $r$.
+
+For phase kickback to work, we need to find an eigen-waves of $U_f$,
+\begin{equation}\label{keta_u}
+    \keta{u} = \sum^{r-1}_{j=0} c_j \keta{a^j (mod M)}.
+\end{equation}
+If we assume the eigen-values are $e^{2\pi i \frac k r}$ where $k=0, 1, 2, ..., r-1$. We derive the corresponding eigen-waves to be
+\begin{equation}\label{keta_uk}
+    \keta{u_k} = \frac 1 {\sqrt{r}} \sum^{r-1}_{j=0} e^{-{\frac {2\pi} r} kj} \keta{a^j (mod M)}
+\end{equation}
+
+However, we don't know the value of $r$ at the first place except the trivial $u_0$. How can we produce any of the non-trivial eigen waves to feed the operator $U_f$? Fortunately, the even mixture of the eigen waves
+\begin{equation}\label{sum_u}
+    \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0}\keta{u_k} = \frac 1 r \sum^{r-1}_{k=0} \sum^{r-1}_{j=0} e^{-{\frac {2\pi} r} kj} \keta{a^j (mod M)} = \sum^{r-1}_{j=0} \delta_j,0 \keta{a^j (mod M)} = \keta{1}
+\end{equation}
+is a wave that we know how to produce. Feed it to the control-$U_f$ with $j$ being the control-variable value, we have
+\begin{equation}\label{ctrl_u}
+\begin{array}{rl}
+ \sum^{N-1}_{j=0} \keta{j} \keta{1} \xrightarrow{U_{f(j)}} & \sum^{N-1}_{j=0} \keta{j} U_{f(j)} \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0}\keta{u_k}\\
+    = & \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0} \sum^{N-1}_{j=0} \keta{j} e^{2\pi i \frac kj r} \keta{u_k}\\
+    = & \frac 1 {\sqrt{r}} \sum^{r-1}_{k=0} \keta{s_{k/r}} \keta{u_k}
+\end{array}
+\end{equation}
+
+\subsection{Circuit diagram}
+\begin{figure}[ht]
+\includegraphics[width=12cm]{pic/Shor_algorithm.eps}
+\caption{Circuit of Shor's algorithm}
+\label{ShorAlgorithm}
+\end{figure}
+
+\subsection{Complexity}
+
+\section{Boson sampling algorithms}
+
+\subsection{Complexity}
+
+\chapter{Noise, and error correction}
+\section{Channel capacity}
+According to Shannon theorem, under noise, the channel capacity is $C = 2B (1+SNR)$.
+
+
+\chapter*{Appendix: Quantum devices}\label{A-qubit}
+\section{Types of waves by propagating characteristics}
+Radio-frequency (RF) electromagnetic waves are used for mobile communications including Wi-Fi. They can spread to everywhere if not being blocked or confined by reflective matters. Light waves -- electromagnetic waves with wavelength ranging from sub-micron to a few microns -- are used for optical communications. They can be channeled by optical waveguides such as optical fibers to explore different paths. They are confined in two dimensions -- the lateral dimensions -- but propagate in the dimension along the axes of the waveguides or fibers. Communication, quantum or not, must use propagating waves, of course. With difficulties, propagating waves may also be used in quantum computing.
+
+Without confinement, a wave can propagate through out space and time and does not have definite size or location. If an electromagnetic wave is confined in three dimensions, such as in a microwave oven, the wave cannot propagate anywhere other than being reflected back and forth within the confinement. And only standing waves of specific frequencies can exist. The allowed frequencies are discrete. Standing waves are good for storing information. Superconductor qubits are built by standing waves of electrons as we describe below. Standing waves may be best visualized and understood by the vibrations of a guitar string. When a string is plucked, the propagation of the vibrations are stopped and reflected by the two fixed ends. Only the waves whose phases coincide after a complete round trip of reflection survive while the other waves cancel each other and die off.
+
+Another type of waves, which we may call trapped waves, are not confined by anything with boundaries but are trapped by forces extending to infinity. Electrons in an atom are trapped waves by the electric force of the nucleus' positive charges. The waves extend to infinity but are concentrated within a nanometer around the nucleus. Trapped waves are also good for storing information. Trapped-ion qubits are built by trapped electron waves.
+
+\section{Qubits and gates for free space communication}
+Free space communication is mostly used for satellite- satellite communication. There is no substance in space to degrade the power of the light wave. Free space communication can also be used for ship-ship communication if the distance is not too far.
+
+A free space optical qubit uses one optical wave of horizontal polarization to represent the binary number 0 and is thus label $\keta{0}$. It uses the one of vertical polarization to represent 1 and is labeled $\keta{1}$. The two waves have the same frequency and amplitude. They are orthogonal to each other of course. A wave of polarization angle $\theta_p$ can be considered the superposition of the two base waves: the $\keta{0}$ wave contributes $cos\theta_p$ amount in amplitude while the $\keta{1}$ wave contributes $sin\theta$.
+
+Polarization modulation is also used in optical fiber communication. For example, dual polarization quadrature phase shift keying (DP-QPSK) modulation is a widely used.
+
+\section{Optical waveguide qubits and gates}
+Another type of qubits uses lights confined in optical waveguides or fibers. We use the optical wave in waveguide A to represent the binary number 0 and label it $\keta{0}$. We use the one in waveguide B to represent 1 and label it $\keta{1}$. The two waves have the same frequency and amplitude. They don't overlap and are of course orthogonal to each other. If we bring the two waveguides together to overlap (using an optical coupler), we get a superposition wave that is a sum of both waves. If the sum has $cos\theta$ amount in amplitude from $\keta{0}$ wave contributes and $sin\theta_p$ amount in amplitude from the $\keta{1}$ wave, we can use the value $\theta_p$ to characterize the superposition wave.
+
+\begin{figure}[ht]\label{Fiber}
+%\includegraphics[width=6cm]{pic/wguideQubit.png}
+%\caption{Waveguide qubit}
+\caption{A waveguide qubit comprised by two single-mode optical fibers}
+\end{figure}
+
+\subsection{Optical waveguide quantum computing chip}
+If we take a look at the Xanadu.ai M-8 quantum computing chip, we see it very much ressembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters ressemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two. The chip has 8 entrances and 8 exits and can build $8^8$ possible paths.
+
+Quantum physics tells us that all matters are waves and in addition, they all have the smallest quanta, which cannot be divided finer when measured in their energy or mass. A wave, like water, can spread in space and propagate in time through all possible paths and give us the power of parallel computing. The drop-like behavior gives us the needed precision. Physicists refer the drop-like behavior the particle nature of matters. But the term particle unavoidably suggests minuscule in size and clarity in trajectory, and leads to avoidable puzzles and paradoxes with waves' spread in space and propagation in time. We should imagine or interpret electrons and electromagnetic waves like water drops: they can spread in space and propagate in time, may be subjected to constraints such as reflective objects, but show the smallest quanta when measured by energy or mass.
+
+\section{Superconductor qubits}
+A superconductor transmon qubit is similar to the string of a guitar and uses the first two standing waves, which resonate at the first and second harmonic frequencies respectively, to represent the integers of "0" and "1". Such a qubit is constructed by two superconductors separated by a layer of insulator. The insulator is thin enough for electrons to move ("tunnel") back and forth from one superconductor to another without loss of energy. But traveling through the insulator leads to delays (phase delays) of the electrons. The back-and-forth movement (vibration) of the electrons between the two superconductors resonate as standing waves at periods fractions of the delay. typically, the first fundamental frequency and the first harmonic are used to represent "0" and "1".
+\begin{figure}[ht]
+\includegraphics[width=12cm]{pic/supercQubit.jpg}
+\caption{Josephson junction}
+\label{Superconductor}
+\end{figure}
+
+\begin{figure}[ht]
+\includegraphics[width=12cm]{pic/superGates.jpg}
+\caption{Superconductor gates.}
+\label{superGates}
+\end{figure}
+
+\chapter{Appendix: Quantum gates}
+
+\subsection{C-NOT gate}
+\subsection{Phase kick back}
+
+\subsection{Generator}
+How a qubit is put in the wave of "0" or "1" depends on the specific implementation. A quantum circuit diagram is usually drawn with a qubit starts in the "0" or occasionally in the "1" wave.
+
+\subsection{Hadamard gate}
+To modulate a qubit in the 10 or 11 wave, a $\theta_pm = 45$ degree phase shifter in the constellation diagram is needed. In the Bloch sphere, a $\theta_q =90, \phi=0$ phase shift is needed. Such a phase shifter is called a Hadamard gate. In the ket notation, $|11> = 1 over [\sqrt 2] (\keta{0} + \keta{1})$ and $|10> = 1 over [\sqrt 2] (\keta{0} - \keta{1})$. So, as a vector transformation, the Hadamard gate is a transformation matrix:
+\begin{equation}
+    \frac 1 {\sqrt 2}
+    \begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix}
+\end{equation}
+
+
+%\backmatter
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\chapter*{Bibliography}
+\bibliographystyle{unsrt}
+   \bibliography{qcc}
+
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+\end{document}
