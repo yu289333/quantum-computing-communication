@@ -7,35 +7,104 @@
 
 \begin{document}
 
+%\label{Demodulator-DP1}
+\begin{tikzpicture}[scale=1]
+    \path
+    (-3,0) node[anchor=east] (input) {wave input}
+    (-2,0) node[circle, draw=black] (split) {$\prec$}
+    (0,2) node[Gate] (tsp) {$M$}
+    (0,-2) node[Gate] (bsp) {$M$};
+     
+    \path 
+    (-2,2) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
+    (-2,-2) node [text width=60, align=center, anchor=east] (H) {horizontal polarization}
+    (1,2) node [anchor=west] (bit01) {$(\theta=\frac \pi 2)$}
+    (1,-2) node [anchor=west] (bit00) {$(\theta=0)$};
 
-\begin{tikzpicture}[scale=0.5]
-    \def\R{4} % Outer radius
-    \def\Rb{3} % Outer radius
-    \def\r{1} % Inner radius
-    \def\L{6} % Half Length of the tube
-    \def\S{4.2} % half Shift distance between tubes
-    \def\I{5} % increment
-
-    % Left tube
-    \draw[blue!10,fill] (0,0,\L) circle (\R);   
-    \draw[red!30,fill] (0,0,\L) circle (\r);    
-    %\draw[decorate,decoration=zigzag] (-\S,0,-\L) circle (\Rb);
-%    \foreach \t in {-40,-35,...,123} {
-%        \fill[blue!20] ({\R*cos(\t+\I)}, {\R*sin(\t+\I)}, \L) -- ({\R*cos(\t)}, {\R*sin(\t)}, \L) 
-%        -- ({\Rb*cos(\t)}, {\Rb*sin(\t)}, -\L) -- ({\Rb*cos(\t+\I)}, {\Rb*sin(\t+\I)}, -\L) -- cycle;
-    \foreach \t in {-45,-40,...,125} {
-        \fill[blue!20] (xyz cylindrical cs:radius=\R, angle=\t, z=\L) -- (xyz cylindrical cs:radius=\R, angle=\t+\I, z=\L) -- (xyz cylindrical cs:radius=\Rb, angle=\t+\I, z=-\L) -- (xyz cylindrical cs:radius=\Rb, angle=\t, z=-\L)        -- cycle;
-    }
-
-  \draw (0,0,0) -- (xyz cylindrical cs:radius=1);
-  \draw (0,0,0) -- (xyz cylindrical cs:radius=1,angle=90);
-  \draw (0,0,0) -- (xyz cylindrical cs:z=1);
-
-%    \begin{axis}
-%      \addplot3+[data cs=polarrad,domain=0:2*pi] (\x,1,2*\x);
-%    \end{axis}
-    
+    \draw (input) -- (split) |- (tsp);
+    \draw (split) |- (bsp);
+    \draw (split.east) node[text width=60, align=center, anchor=west] {polarization splitter};
+    \draw (tsp.south east) node[text width=60, align=center, anchor=north] {single photon detector};
 \end{tikzpicture}
+
+%\label{Demodulator-DP2}
+\begin{tikzpicture}[scale=1]
+    \path
+    (-3,0) node[anchor=east] (input) {wave input}
+    (-2,0) node[circle, draw=black] (split) {$\prec$}
+    (0,2) node[circle, draw=black] (tsp) {$\prec$}
+    (0,-2) node[circle, draw=black] (bsp) {$\prec$}
+    (0,3) node[Gate] (tphi90) {$90^\circ$}
+    (0,-1) node[Gate] (bphi90) {$90^\circ$}
+    (2,4) node[Gate] (td1) {$M$}
+    (1,1) node[Gate] (td2) {$M$}
+    (1,0) node[Gate] (bd1) {$M$}
+    (2,-3) node[Gate] (bd2) {$M$}
+    (4,0.5) node[circle, draw=black] (gg) {$\succ$}
+    (5.5,0.5) node[circle, draw=black] (lo) {$LO$};
+
+    \path (3,4) node[anchor=west] (bit11) {two-wave mixer and }
+    (3,-3) node [anchor=west] (bit00) {$(\theta=0, \phi=0$ or $-\pi)$}
+    (-2,1.5) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
+    (-2,-1.5) node [text width=60, align=center, anchor=east] (H) {horizontal polarization};
+%    (2,1) node [anchor=west] (bit10) {$(\theta=\frac \pi 2, \phi=$0 or $-\pi)$}
+%    (2,0) node [anchor=west] (bit01) {$(\theta=0, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
+
+    \draw (input) -- (split) |- (tsp) -- (tphi90) |- (td1);
+    \draw (split) |- (bsp) -- (bphi90) |- (bd1);
+    \draw (tsp) |- (td2);
+    \draw (bsp) |- (bd2);
+    \draw (gg.west) -- (td1.south);
+    \draw (gg.west) -- (td2.east);
+    \draw (gg.west) -- (bd1.east);
+    \draw (gg.west) -- (bd2.north);
+    \draw (gg) -- (lo);
+    \draw (split) node[text width=60, align=center, anchor=south west] {polarization splitter};
+%    \draw (tsp.south west) node[text width=40, anchor=north east] {50:50 splitter};
+    \draw (bsp.south west) node[text width=40, anchor=north east] {50:50 splitter};
+    \draw (tphi90.west) node[anchor=east] {phase shifter};
+    \draw (bphi90.east) node[anchor=west] {phase shifter};
+%    \draw (td1.south east) node[text width=60, align=center, anchor=north west] {single photon detector};
+\end{tikzpicture}
+
+%\label{Demodulator-DP2}
+\begin{tikzpicture}[scale=1]
+    \path
+    (-3,0) node[anchor=east] (input) {wave input}
+    (-2,0) node[circle, draw=black] (split) {$\prec$}
+%    (-2,1) node[Gate] (theta90) {$90^\circ$}
+    (0,2) node[circle, draw=black] (tsp) {$\prec$}
+    (0,-2) node[circle, draw=black] (bsp) {$\prec$}
+    (0,3) node[Gate] (tphi90) {$90^\circ$}
+    (0,-1) node[Gate] (bphi90) {$90^\circ$}
+    (2,4) node[Gate] (td1) {$M$}
+    (2,1) node[Gate] (td2) {$M$}
+    (2,0) node[Gate] (bd1) {$M$}
+    (2,-3) node[Gate] (bd2) {$M$};
+     
+    \path (3,4) node[anchor=west] (bit11) {$(\theta=\frac \pi 2, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
+    (3,1) node [anchor=west] (bit10) {$(\theta=\frac \pi 2, \phi=$0 or $-\pi)$}
+    (3,0) node [anchor=west] (bit01) {$(\theta=0, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
+    (3,-3) node [anchor=west] (bit00) {$(\theta=0, \phi=0$ or $-\pi)$}
+    (-2,2) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
+    (-2,-2) node [text width=60, align=center, anchor=east] (H) {horizontal polarization};
+
+    \draw (input) -- (split) |- (tsp) -- (tphi90) |- (td1);
+    \draw (split) |- (bsp) -- (bphi90) |- (bd1);
+    \draw (tsp) |- (td2);
+    \draw (bsp) |- (bd2);
+    \draw (split) node[text width=60, align=center, anchor=south west] {polarization splitter};
+    \draw (tsp.east) node[anchor=west] {50:50 splitter};
+    \draw (bsp.east) node[anchor=west] {50:50 splitter};
+    \draw (tphi90.west) node[anchor=east] {phase shifter};
+    \draw (bphi90.east) node[anchor=west] {phase shifter};
+    \draw (td1.south east) node[text width=90, align=center, anchor=north] {two-wave mixer and coherent detector};
+\end{tikzpicture}
+
+%\label{Demodulator}
+%  \draw (0,0,0) -- (xyz cylindrical cs:radius=3);
+%  \draw (0,0,0) -- (xyz cylindrical cs:radius=3,angle=90);
+%  \draw (0,0,0) -- (xyz cylindrical cs:z=3);
 
 \begin{tikzpicture}%[z={(10:10mm)},x={(-45:5mm)}]
   \def\wave{
