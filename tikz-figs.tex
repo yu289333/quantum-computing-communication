@@ -37,6 +37,76 @@
 \draw (20,7) -| (18,8); \draw (19,7) -- (19,6);
 \end{tikzpicture}
 
+\begin{figure}[h]\label{MazeStain}
+\begin{tikzpicture}[scale=0.5]
+% Water
+\fill[blue!20] (-3,9.5) circle (2);
+%\fill[blue!20] (18.5,0.5) circle (0.5);
+%\fill[blue!20] (21,0.5) circle (0.5);
+\fill[red!30] (13.5,2.2) circle (0.5);
+\fill[blue!20] (15.5,3.8) circle (0.5);
+
+% outer lines
+\draw (0,10) -| (20,1) -- +(-1,0);
+\draw (20,0) -| (0,9) -| (1,7) -- (3,7);
+\draw (2,7) |- (5,6) |- (6,3) -- (6,2);
+\draw (5,3) -| (4,4);
+\draw (5,5) -| (3,4) -| (1,6); \draw (1,5) -- (2,5);
+
+% bottom row
+\draw (0,2) -| (2,1) -| (3,3) -- (1,3); \draw (3,2) -| (5,1);
+\draw (1,0) -- (1,1);
+\draw (4,0) -- (4,1);
+\draw (8,0) |- (9,1) |- (10,6) -- (10,7); \draw (8,4) -- (9,4); \draw (8,5) -- (9,5);
+
+\draw (10,0) |- (13,4) |- (15,5) |- (14,4) |- (15,1) |- (16,3) |- (14,6) |- (13,9);
+\draw (10, 2) -| (11,3); \draw (12,4) |- (11,1);
+ \draw[red] (13,3) -- (14,3);
+\draw (16,4) -| (19,5) -| (18,6) -| (17,5);
+\draw (14,7) -| (13,6) -| (12,5) -- (10,5); \draw (14,8) -- (16,8);
+
+\draw (13,0) -- (13,1);
+\draw (16,0) |- (17,2) |- (18,3) |- (17,1);
+\draw (20,3) -| (19,2);
+
+% top row
+\draw (4,10) |- (6,7) |- (7,6); \draw (4,8) -- (2,8) |- (3,9); \draw (5,7) |- (6,9);
+\draw (7,10) -- (7,7); \draw (7,8) -- (6,8);
+\draw (9,10) |- (11,9);
+\draw (12,10) |- (11,7); \draw (11,6) |- (8,8) |- (7,5) |- (6,1);
+\draw (12,8) -- (13,8); \draw (9,8) -- (9,7); \draw (7,4) -| (6,5); \draw (7,2) -- (8,2);
+\draw (15,10) |- (19,9) -- (19,8); \draw (17,9) |- (15,7);
+\draw (20,7) -| (18,8); \draw (19,7) -- (19,6);
+\end{tikzpicture}
+\caption{Maze with stained water drops}
+\end{figure}
+
+\label{wifiRoom}
+\begin{tikzpicture}
+\draw[green, very thick] (0,0) rectangle (8,5);
+\draw (1,3) node(router) [rectangle, draw] {router};
+\draw (6,3) node(phone) [rectangle, draw] {phone};
+\draw (5,1) node(computer) [rectangle, draw] {computer};
+\draw (10,2) node(eavesdropper) [rectangle, draw] {eavesdropper};
+\end{tikzpicture}
+
+%\label{Room-WiFi}
+\begin{tikzpicture}
+\draw[green, very thick] (0,0) rectangle (8,5);
+\draw (1,3) node(router) [rectangle, draw] {router};
+\draw (6,3) node(phone) [rectangle, draw] {phone};
+\draw (5,1) node(computer) [rectangle, draw] {computer};
+\draw (10,2) node(eavesdropper) [rectangle, draw] {eavesdropper};
+\end{tikzpicture}
+
+%\label{AirDrop}
+\begin{tikzpicture}
+\draw[green, very thick] (0,0) rectangle (8,5);
+\draw (1,3) node(router) [rectangle, draw] {Alice'};
+\draw (6,1) node(computer) [rectangle, draw] {Bob's};
+\draw (9,2.5) node(eavesdropper) [rectangle, draw] {Eve's};
+\end{tikzpicture}
+
 %\label{String}
 \begin{tikzpicture}[line join=round, line cap=round]
 
@@ -118,15 +188,15 @@
     \path %(-5,0) node[anchor=east] (start) {Wave} 
     (-3.5,-0.8) node[circle, draw=black] (lo) {$\sim$}
     (-3.5,0.8) node[Gate] (p90) {$90^\circ$}
-    (0,2) node[Gate, text width=30] (tm) {$0/180\circ$}
-    (0,-2) node[Gate, text width=30] (bm) {$0/180\circ$}
+    (0,2) node[Gate, text width=30] (tm) {$0/180^\circ$}
+    (0,-2) node[Gate, text width=30] (bm) {$0/180^\circ$}
     (2,0) node[circle, draw=black] (add) {$\Sigma$}
      (3,0) node[anchor=west] (output) {wave output};
     \draw (lo.east) node[anchor=west] {carrier wave generator};
-    \draw (add.west) node[anchor=east] {wave mixer};
+    \draw (add.west) node[anchor=east] {signal wave mixer};
     \draw (p90.east) node[anchor=west] {phase shifter};
-    \draw (tm.north east) node[anchor=west] {variable phase shifter};
-    \draw (bm.south east) node[anchor=west] {variable phase shifter};
+    \draw (tm.north east) node[anchor=west] {controlled phase shifter};
+    \draw (bm.south east) node[anchor=west] {controlled phase shifter};
     \draw (lo) -- (p90) |- (tm) -| (add);
     \draw (lo) |- (bm) -| (add);
     \draw (add) -- (output);
@@ -135,6 +205,36 @@
     \draw[double] (even) -| (tm);
     \draw[double] (odd) -| (bm);
 \end{tikzpicture}
+
+\begin{figure}[ht]\label{modulator1}
+\label{modulator1}
+\begin{tikzpicture}
+    \path
+    (-2,-1) node[circle, draw=black] (lo) {$\sim$}
+    (0,-1) node[circle, draw=black] (splitter) {$\prec$}
+    (0,1) node[Gate] (p90) {$90^\circ$}
+    (0,3) node[Gate] (ta) {$180^\circ$}
+    (0,-3) node[Gate] (ba) {$180^\circ$}
+    (3,0) node[circle, draw=black] (coupler) {$\succ$}
+     (4,0) node[text width=60, align=center, anchor=west] (output) {signal wave output};
+    \path (-2,3) node[text width=50, align=left, anchor=east] (even) {data input - even bits}
+    (-2,-3) node [text width=50, align=left, anchor=east] (odd) {data input - odd bits};
+
+    \draw (lo.north) node[text width=80, align=center, anchor=east] {wave generator};
+    \draw (splitter.south east) node[text width=40, align=center, anchor=west] {50:50 splitter};
+    \draw (p90.north west) node[text width=40, align=center, anchor=east] {phase shifter};
+    \draw (ta.north) node[anchor=south] {controlled phase shifter};
+    \draw (ba.south) node[anchor=north] {controlled phase shifter};
+    \draw (coupler.north west) node[text width=40, align=center, anchor=east] {coupler};
+    \draw (coupler) -- (output);
+    \draw (ba) -- (splitter) -- (p90) -- (ta) -| (coupler) |- (ba);
+    \draw (lo) -- (splitter);
+    \draw[double] (even) -- (ta);
+    \draw[double] (odd) -- (ba);
+\end{tikzpicture}
+
+\caption{QPSK modulator circuit}
+\end{figure}
 
 %\label{Demodulator}
 \begin{tikzpicture}[scale=0.8]
@@ -165,6 +265,69 @@
     \draw (split) -- (input);    
 \end{tikzpicture}
 
+\tdplotsetmaincoords{60}{110}
+
+\begin{figure}
+\begin{tikzpicture}[tdplot_main_coords, scale=1.5]
+
+% Define colors
+\definecolor{electriccolor}{RGB}{255,0,0}
+\definecolor{magneticcolor}{RGB}{0,0,255}
+
+% Draw coordinate axes
+\draw[-latex] (0,0,0) -- (2,0,0) node[right] {$z$};
+\draw[-latex] (0,0,0) -- (0,6,0) node[right] {$x$};
+\draw[-latex] (0,0,0) -- (0,0,2) node[right] {$y$};
+
+% Draw propagation arrow
+\draw[-latex,thick] (0, 5.5,0) -- (0,6,0) node[below] {Propagation};
+
+% Draw electric field wave (red)
+\draw[electriccolor,thick,variable=\t,domain=-0.2:5.2,samples=54] 
+  plot ({0,\t, sin(\t*180)*0.8});
+
+% Draw magnetic field wave (blue)
+\draw[magneticcolor,thick,variable=\t,domain=-0.3:5.2,samples=55] 
+  plot ({sin(\t*180)*0.6},\t,0);
+
+% Add labels for E and B fields
+\node[electriccolor] at (0, 0.4,1.15) {$E$};
+\node[magneticcolor] at (0.9, 0.43,0) {$B$};
+
+% Add field direction indicators
+\foreach \x in {0.5} {
+  \draw[-latex,electriccolor] (0,\x,0) -- (0,\x,{sin(\x*180)});
+  \draw[-latex,magneticcolor] (0,\x,0) -- ({sin(\x*180)*0.6},\x,0);
+}
+\end{tikzpicture}
+\caption{Electric and Magnetic Fields of a Linearly Polarized Light}
+\end{figure}
+
+%\label{Modulator-DP-QPSK}
+\begin{tikzpicture}
+    \path
+    (-2,-1) node[circle, draw=black] (lo) {$\sim$}
+    (0,-1) node[circle, draw=black] (splitter) {$\prec$}
+    (0,1) node[Gate] (p90) {$90^\circ$}
+    (0,3) node[Gate] (ta) {$M$}
+    (0,-3) node[Gate] (ba) {$M$}
+    (3,0) node[circle, draw=black] (coupler) {$\succ$}
+     (4,0) node[text width=60, align=center, anchor=west] (output) {signal wave output};
+    \path (-2,3) node[text width=50, align=left, anchor=east] (even) {2-bit data input}
+    (-2,-3) node [text width=50, align=left, anchor=east] (odd) {2-bit data input};
+
+    \draw (lo.north) node[text width=80, align=center, anchor=east] {wave generator};
+    \draw (splitter.south east) node[text width=40, align=center, anchor=west] {50:50 splitter};
+    \draw (p90.east) node[text width=40, align=center, anchor=west] {polarizer};
+    \draw (ta.north east) node[anchor=south] {QPSK modulator};
+    \draw (coupler.west) node[text width=40, align=center, anchor=east] {coupler};
+    \draw (coupler) -- (output);
+    \draw (ba) -- (splitter) -- (p90) -- (ta) -| (coupler) |- (ba);
+    \draw (lo) -- (splitter);
+    \draw[double] (even) -- (ta);
+    \draw[double] (odd) -- (ba);
+\end{tikzpicture}
+
 %\label{Demodulator-DP-QPSK}
 \begin{tikzpicture}[scale=1]
     \path
@@ -176,8 +339,8 @@
     \path 
     (-2,2) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
     (-2,-2) node [text width=60, align=center, anchor=east] (H) {horizontal polarization}
-    (1,2) node [anchor=west] (bit01) {output - 2 bits}
-    (1,-2) node [anchor=west] (bit00) {output - 2 bits};
+    (1,2) node [anchor=west] (bit01) {data output - 2 bits}
+    (1,-2) node [anchor=west] (bit00) {data output - 2 bits};
 
     \draw[double] (tsp) -- (bit01);
     \draw[double] (bsp) -- (bit00);
@@ -187,7 +350,6 @@
     \draw (split.east) node[text width=60, align=center, anchor=west] {polarization splitter};
     \draw (tsp.north east) node[anchor=south] {QPSK demodulator};
 \end{tikzpicture}
-
 
 %\label{Demodulator-QP}
 \begin{tikzpicture}[scale=1]
@@ -200,8 +362,8 @@
     \path 
     (-2,2) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
     (-2,-2) node [text width=60, align=center, anchor=east] (H) {horizontal polarization}
-    (1,2) node [anchor=west] (bit01) {$(\theta=\frac \pi 2)$}
-    (1,-2) node [anchor=west] (bit00) {$(\theta=0)$};
+    (1,2) node [anchor=west] (bit01) {$\keta{1}$}
+    (1,-2) node [anchor=west] (bit00) {$(\keta{0}$};
 
     \draw (input) -- (split) |- (tsp);
     \draw (split) |- (bsp);
@@ -209,7 +371,136 @@
     \draw (tsp.south east) node[text width=60, align=center, anchor=north] {single photon detector};
 \end{tikzpicture}
 
+%\label{PolarModulation}
+\begin{figure}[ht]
+\begin{tikzpicture}
+    \draw[->] (-3.5,0) -- (3.5, 0);
+    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[dotted, red] (0,0) circle(3cm);
+    \draw[red, fill] (30:3) circle(0.05cm);
+    \draw[dashed] (1,0) arc (0:30:1) node[right, pos=0.6]{$\theta$};
+    \draw[dashed] (30:0.1) -- (30:2.9) node[pos=0.5, rotate = 30, above] {A=1};
+\end{tikzpicture}
+\caption{Polarization modulation}
+\end{figure}
+
+%\label{DP-QPSK}
+\tdplotsetmaincoords{75}{110}
+\pgfmathsetmacro{\h}{3.53}
+\pgfmathsetmacro{\hn}{-3.53}
+\pgfmathsetmacro{\r}{5}
+\pgfmathsetmacro{\rn}{-5}
+\pgfmathsetmacro{\ang}{105}
+\begin{tikzpicture}[tdplot_main_coords]
+\tdplotsetcoord{P1}{\r}{45}{45}
+\tdplotsetcoord{P2}{\r}{-45}{45}
+\tdplotsetcoord{P3}{\r}{45}{-45}
+\tdplotsetcoord{P4}{\r}{-45}{-45}
+
+\tdplotsetcoord{P5}{\r}{135}{45}
+\tdplotsetcoord{P6}{\r}{-135}{45}
+\tdplotsetcoord{P7}{\r}{135}{-45}
+\tdplotsetcoord{P8}{\r}{-135}{-45}
+
+\shade[ball color=gray, tdplot_screen_coords, opacity=0.10] (0,0,0) circle [radius=\r];
+
+% xy plane
+\tdplotdrawarc[gray]{(0,0,0)}{5}{-75}{\ang}{};
+\tdplotdrawarc[dashed, gray]{(0,0,0)}{\r}{\ang}{285}{};
+% yz plane
+\tdplotsetthetaplanecoords{90}
+\tdplotdrawarc[tdplot_rotated_coords, gray!70]{(0,0,0)}{\r}{-38}{157}{};
+\tdplotdrawarc[tdplot_rotated_coords,dashed, gray]{(0,0,0)}{\r}{150}{335}{};
+
+% xyz axes
+\draw[dashed, gray!50] (\rn,0,0) -- (0,0,0); \draw[gray!50] (0,0,0) -- (\r,0,0);
+\draw[gray!55] (0,\rn,0) -- (0,\r,0);
+\draw[gray!60] (0,0,\rn) -- (0,0,\r);
+\draw[thick, -Stealth] (\r,0,0) -- (9,0,0) node[black, left] {$x$};
+\draw[thick, -Stealth] (0,\r,0) -- (0,7,0) node[black, right] {$y$};
+\draw[thick, -Stealth] (0,0,\r) -- (0,0,7) node[black, left] {$z$};
+
+% points
+\fill[red] (P1) circle (0.1); \fill[red!50] (P2) circle (0.1);
+\fill[red] (P3) circle (0.1); \fill[red!50] (P4) circle (0.1);
+\fill[red] (P5) circle (0.1); \fill[red!50] (P6) circle (0.1);
+\fill[red] (P7) circle (0.1); \fill[red!50] (P8) circle (0.1);
+\node[above] at (P1) {$(\frac \pi 4, \frac \pi 4)$};
+\node[below] at (P2) {$(\frac \pi 4, \frac {5\pi} 4)$};
+\node[above right] at (P4) {$(\frac \pi 4, \frac {3\pi} 4)$};
+\node[below left] at (P3) {$(\frac \pi 4, \frac {7\pi} 4)$};
+\node[above] at (P5) {$(\frac {3\pi} 4, \frac \pi 4)$};
+\node[above] at (P6) {$(\frac {3\pi} 4, \frac {5\pi} 4)$};
+\node[above right] at (P8) {$(\frac {3\pi} 4, \frac {3\pi} 4)$};
+\node[below left] at (P7) {$(\frac {3\pi} 4, \frac {7\pi} 4$};
+
+\draw[dashed, red!70] (0,0,0) -- (2.5, 2.5, 0) -- (P1) -- cycle;
+\draw[dashed, red!30] (0,0,\h) circle (\h);
+\draw[dashed, red!30] (0,0,\hn) circle (\h);
+
+\tdplotsetthetaplanecoords{45}
+\tdplotdrawarc[tdplot_rotated_coords, -Latex]{(0,0,0)}{2}{0}{45}{anchor=north east}{$\theta$}
+
+\draw [thick, -Latex, canvas is xy plane at z=0] (2,0) arc [start angle=0, end angle=45, radius=2];
+\node at (2,0.5,-0.3) {$\phi$};
+
+\end{tikzpicture}
+
+%\label{Demodulator-Polar}
+\begin{tikzpicture}[scale=1]
+    \path
+    (-3,0) node[anchor=east] (input) {wave input}
+    (-2,0) node[circle, draw=black] (split) {$\perp$}
+    (0,2) node[Gate] (tsp) {$M$}
+    (0,-2) node[Gate] (bsp) {$M$};
+     
+    \path 
+    (-2,1) node [anchor=east] (V) {vertical polarization}
+    (-2,-1) node [anchor=east] (H) {horizontal polarization}
+    (1,2) node [anchor=west] (bit01) {1}
+    (1,-2) node [anchor=west] (bit00) {0};
+
+    \draw (input) -- (split) |- (tsp);
+    \draw (split) |- (bsp);
+    \draw (split.east) node[anchor=west] {polarization wave splitter};
+    \draw (tsp.south east) node[anchor=north] {detector};
+\end{tikzpicture}
+
 %\label{Demodulator-DP2}
+\begin{tikzpicture}[scale=1]
+    \path
+    (-3,0) node[anchor=east] (input) {wave input}
+    (-2,0) node[circle, draw=black] (split) {$\prec$}
+%    (-2,1) node[Gate] (theta90) {$90^\circ$}
+    (0,2) node[circle, draw=black] (tsp) {$\prec$}
+    (0,-2) node[circle, draw=black] (bsp) {$\prec$}
+    (0,3) node[Gate] (tphi90) {$90^\circ$}
+    (0,-1) node[Gate] (bphi90) {$90^\circ$}
+    (2,4) node[Gate] (td1) {$M$}
+    (2,1) node[Gate] (td2) {$M$}
+    (2,0) node[Gate] (bd1) {$M$}
+    (2,-3) node[Gate] (bd2) {$M$};
+     
+    \path (3,4) node[anchor=west] (bit11) {$(\theta=\frac \pi 2, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
+    (3,1) node [anchor=west] (bit10) {$(\theta=\frac \pi 2, \phi=$0 or $-\pi)$}
+    (3,0) node [anchor=west] (bit01) {$(\theta=0, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
+    (3,-3) node [anchor=west] (bit00) {$(\theta=0, \phi=0$ or $-\pi)$}
+    (-2,2) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
+    (-2,-2) node [text width=60, align=center, anchor=east] (H) {horizontal polarization};
+
+    \draw (input) -- (split) |- (tsp) -- (tphi90) |- (td1);
+    \draw (split) |- (bsp) -- (bphi90) |- (bd1);
+    \draw (tsp) |- (td2);
+    \draw (bsp) |- (bd2);
+    \draw (split) node[text width=60, align=center, anchor=south west] {polarization splitter};
+    \draw (tsp.east) node[anchor=west] {50:50 splitter};
+    \draw (bsp.east) node[anchor=west] {50:50 splitter};
+    \draw (tphi90.west) node[anchor=east] {phase shifter};
+    \draw (bphi90.east) node[anchor=west] {phase shifter};
+    \draw (td1.south east) node[text width=90, align=center, anchor=north] {two-wave mixer and coherent detector};
+\end{tikzpicture}
+
+%\label{Demodulator-DP3}
 \begin{tikzpicture}[scale=1]
     \path
     (-3,0) node[anchor=east] (input) {wave input}
@@ -249,129 +540,106 @@
 %    \draw (td1.south east) node[text width=60, align=center, anchor=north west] {single photon detector};
 \end{tikzpicture}
 
-%\label{PolarModulation}
-\begin{figure}[ht]
-\begin{tikzpicture}
-    \draw[->] (-3.5,0) -- (3.5, 0);
-    \draw[->] (0,-3.5) -- (0,3.5);
-    \draw[dotted, red] (0,0) circle(3cm);
-    \draw[red, fill] (30:3) circle(0.05cm);
-    \draw[dashed] (1,0) arc (0:30:1) node[right, pos=0.6]{$\theta$};
-    \draw[dashed] (30:0.1) -- (30:2.9) node[pos=0.5, rotate = 30, above] {A=1};
-\end{tikzpicture}
-\caption{Polarization modulation}
-\end{figure}
-
-%\label{DP-QPSK}
+%\label{Elliptical}
 \tdplotsetmaincoords{75}{110}
 \pgfmathsetmacro{\h}{3.53}
 \pgfmathsetmacro{\hn}{-3.53}
 \pgfmathsetmacro{\r}{5}
 \pgfmathsetmacro{\rn}{-5}
+\pgfmathsetmacro{\ang}{105}
+
 \begin{tikzpicture}[tdplot_main_coords]
 \tdplotsetcoord{P1}{\r}{45}{45}
-\tdplotsetcoord{P2}{\r}{-45}{45}
-\tdplotsetcoord{P3}{\r}{45}{-45}
-\tdplotsetcoord{P4}{\r}{-45}{-45}
+\tdplotsetcoord{P2}{\r}{90}{45}
 
-\tdplotsetcoord{P5}{\r}{135}{45}
-\tdplotsetcoord{P6}{\r}{-135}{45}
-\tdplotsetcoord{P7}{\r}{135}{-45}
-\tdplotsetcoord{P8}{\r}{-135}{-45}
-
-\shade[ball color=gray, tdplot_screen_coords, opacity=0.10] (0,0,0) circle [radius=\r];
-
-\tdplotdrawarc[gray]{(0,0,0)}{5}{-75}{105}{}; \tdplotdrawarc[dashed, gray]{(0,0,0)}{\r}{105}{285}{};
+% xy plane
+\tdplotdrawarc[black]{(0,0,0)}{\r}{-77}{\ang}{};
+\tdplotdrawarc[dashed, gray]{(0,0,0)}{\r}{\ang}{285}{};
+% yz plane
 \tdplotsetthetaplanecoords{90}
-\tdplotdrawarc[tdplot_rotated_coords, gray!70]{(0,0,0)}{\r}{-38}{157}{};
-\tdplotdrawarc[tdplot_rotated_coords,dashed, gray]{(0,0,0)}{\r}{150}{335}{};
+\tdplotdrawarc[tdplot_rotated_coords, gray!30]{(0,0,0)}{\r}{0}{90}{};
+\tdplotdrawarc[tdplot_rotated_coords, gray!35]{(0,0,0)}{\r}{-50}{0}{};
+\tdplotdrawarc[tdplot_rotated_coords,dashed, gray!50]{(0,0,0)}{\r}{270}{305}{};
+% apparent yz plane
+\tdplotsetthetaplanecoords{\ang}
+\tdplotdrawarc[tdplot_rotated_coords, gray]{(0,0,0)}{\r}{-90}{90}{};
 
-\draw[gray!50] (\rn,0,0) -- (\r,0,0);
-\draw[gray!55] (0,\rn,0) -- (0,\r,0);
-\draw[gray!60] (0,0,\rn) -- (0,0,\r);
+% axes
+\draw[dashed, gray!50] (\rn,0,0) -- (0,0,0); \draw[gray!50] (0,0,0) -- (\r,0,0); %x
+\draw[gray!55] (0,\rn,0) -- (0,\r,0); %y
+\draw[gray!60] (0,0,0) -- (0,0,\r); %z
 
 \draw[thick, -Stealth] (\r,0,0) -- (9,0,0) node[black, left] {$x$};
 \draw[thick, -Stealth] (0,\r,0) -- (0,7,0) node[black, right] {$y$};
 \draw[thick, -Stealth] (0,0,\r) -- (0,0,7) node[black, left] {$z$};
 
-\fill[red] (P1) circle (0.1); \fill[red!50] (P2) circle (0.1);
-\fill[red] (P3) circle (0.1); \fill[red!50] (P4) circle (0.1);
-\fill[red] (P5) circle (0.1); \fill[red!50] (P6) circle (0.1);
-\fill[red] (P7) circle (0.1); \fill[red!50] (P8) circle (0.1);
-\node[above] at (P1) {$(\frac \pi 4, \frac \pi 4)$};
-\node[below] at (P2) {$(\frac \pi 4, \frac {5\pi} 4)$};
-\node[above right] at (P4) {$(\frac \pi 4, \frac {3\pi} 4)$};
-\node[below left] at (P3) {$(\frac \pi 4, \frac {7\pi} 4)$};
-\node[above] at (P5) {$(\frac {3\pi} 4, \frac \pi 4)$};
-\node[above] at (P6) {$(\frac {3\pi} 4, \frac {5\pi} 4)$};
-\node[above right] at (P8) {$(\frac {3\pi} 4, \frac {3\pi} 4)$};
-\node[below left] at (P7) {$(\frac {3\pi} 4, \frac {7\pi} 4$};
-
-\draw[dashed, black!70] (0,0,0) -- (2.5, 2.5, 0) -- (P1); \draw[dashed, red!60] (0,0,0) -- (P1); %cycle;
-\draw[dashed, red!30] (0,0,\h) circle (\h);
-\draw[dashed, red!30] (0,0,\hn) circle (\h);
+% Coordination point
+\fill[red] (P1) circle (0.1);
+\draw[dashed, red!60] (0,0,0) -- (P1);
+\draw[dashed, red!70] (0,0,0) -- (2.5, 2.5, 0) -- (P1); 
+\draw[dashed, red!70] (0,0,0) -- (P2);
 
 \tdplotsetthetaplanecoords{45}
 \tdplotdrawarc[tdplot_rotated_coords, -Latex]{(0,0,0)}{2}{0}{45}{anchor=north east}{$\theta$}
+\tdplotdrawarc[tdplot_rotated_coords, dashed, red!45]{(0,0,0)}{\r}{0}{90}{};
 
 \draw [thick, -Latex, canvas is xy plane at z=0] (2,0) arc [start angle=0, end angle=45, radius=2];
 \node at (2,0.5,-0.3) {$\phi$};
 
 \end{tikzpicture}
 
-%\label{Demodulator-DP1}
-\begin{tikzpicture}[scale=1]
+\label{Modulator-qubit}
+\begin{tikzpicture}[scale=0.8]
     \path
-    (-3,0) node[anchor=east] (input) {wave input}
-    (-2,0) node[circle, draw=black] (split) {$\perp$}
-    (0,2) node[Gate] (tsp) {$M$}
-    (0,-2) node[Gate] (bsp) {$M$};
+    (-4,0) node[circle, draw=black] (lo) {$\sim$}
+    (-2,0) node[Gate] (p90) {$\Delta \theta$}
+    (0,0) node[circle, draw=black] (splitter) {$\prec$}
+    coordinate[] (H) at (0,-2)
+    (2,3) node[Gate] (ta) {$\Delta \phi$}
+    (4,0) node[circle, draw=black] (coupler) {$\succ$}
+     (5,0) node[text width=60, align=center, anchor=west] (output) {signal wave output};
+
+    \draw (lo.north) node[text width=80, align=left, anchor=south] {initial wave};
+    \draw (p90.south) node[text width=40, anchor=north] {polarizer};
+    \draw (splitter.east) node[text width=40, align=center, anchor=west] {polarization splitter};
+
+    \draw (ta.east) node[anchor=south west] {phase shifter};
+    \draw (coupler.south) node[text width=40, align=right, anchor=north east] {coupler};
+    \draw (output) -- (coupler) |- (ta) -| (splitter)
+    node[above=2.5, text width=60, align=center, anchor=north east] {vertical polarization};
+    \draw (lo) -- (p90) -- (splitter) -- (H) -| (coupler)
+    node[below=2, anchor=east] {horizontal polarization};
+\end{tikzpicture}
+
+\begin{figure}\label{Demodulator-qubit}
+\begin{tikzpicture}
+    \path
+    (-3,0) node[text width=40, align=center, anchor=east] (input) {signal wave input}
+    (-2,0) node[circle, draw=black] (split) {$\prec$}
+    (0,2) node[Gate] (tsp) {$D$}
+    (0,-2) node[Gate] (bsp) {$D$};
      
     \path 
-    (-2,1) node [anchor=east] (V) {vertical polarization}
-    (-2,-1) node [anchor=east] (H) {horizontal polarization}
-    (1,2) node [anchor=west] (bit01) {1}
-    (1,-2) node [anchor=west] (bit00) {0};
+    (-2,2) node [text width=65, align=center, anchor=east] (V) {vertical polarization}
+    (-2,-2) node [text width=70, align=center, anchor=east] (H) {horizontal polarization}
+    (1,2) node [anchor=west] (bit01) {output}
+    (1,-2) node [anchor=west] (bit00) {output};
 
+    \draw[double] (tsp) -- (bit01);
+    \draw[double] (bsp) -- (bit00);
+    
     \draw (input) -- (split) |- (tsp);
     \draw (split) |- (bsp);
-    \draw (split.east) node[anchor=west] {polarization wave splitter};
-    \draw (tsp.south east) node[anchor=north] {single photon detector};
+    \draw (split.east) node[text width=40, align=center, anchor=west] {polarization splitter};
+    \draw (tsp.north east) node[anchor=south] {detector};
 \end{tikzpicture}
+    \caption{Qubit demodulation circuit block diagram}
 
-%\label{Demodulator-DP2}
-\begin{tikzpicture}[scale=1]
-    \path
-    (-3,0) node[anchor=east] (input) {wave input}
-    (-2,0) node[circle, draw=black] (split) {$\prec$}
-%    (-2,1) node[Gate] (theta90) {$90^\circ$}
-    (0,2) node[circle, draw=black] (tsp) {$\prec$}
-    (0,-2) node[circle, draw=black] (bsp) {$\prec$}
-    (0,3) node[Gate] (tphi90) {$90^\circ$}
-    (0,-1) node[Gate] (bphi90) {$90^\circ$}
-    (2,4) node[Gate] (td1) {$M$}
-    (2,1) node[Gate] (td2) {$M$}
-    (2,0) node[Gate] (bd1) {$M$}
-    (2,-3) node[Gate] (bd2) {$M$};
-     
-    \path (3,4) node[anchor=west] (bit11) {$(\theta=\frac \pi 2, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
-    (3,1) node [anchor=west] (bit10) {$(\theta=\frac \pi 2, \phi=$0 or $-\pi)$}
-    (3,0) node [anchor=west] (bit01) {$(\theta=0, \phi=\frac \pi 2$ or $-\frac \pi 2)$}
-    (3,-3) node [anchor=west] (bit00) {$(\theta=0, \phi=0$ or $-\pi)$}
-    (-2,2) node [text width=60, align=center, anchor=east] (V) {vertical polarization}
-    (-2,-2) node [text width=60, align=center, anchor=east] (H) {horizontal polarization};
-
-    \draw (input) -- (split) |- (tsp) -- (tphi90) |- (td1);
-    \draw (split) |- (bsp) -- (bphi90) |- (bd1);
-    \draw (tsp) |- (td2);
-    \draw (bsp) |- (bd2);
-    \draw (split) node[text width=60, align=center, anchor=south west] {polarization splitter};
-    \draw (tsp.east) node[anchor=west] {50:50 splitter};
-    \draw (bsp.east) node[anchor=west] {50:50 splitter};
-    \draw (tphi90.west) node[anchor=east] {phase shifter};
-    \draw (bphi90.east) node[anchor=west] {phase shifter};
-    \draw (td1.south east) node[text width=90, align=center, anchor=north] {two-wave mixer and coherent detector};
-\end{tikzpicture}
+\begin{quantikz}
+    \lstick{input qubit} \qw & \meter{}  & \cw \rstick{output bit}
+\end{quantikz}
+    \caption{Qubit readout quantum circuit diagram}
+\end{figure}
 
 %\label{Fiber}
 \begin{tikzpicture}[scale=0.5]

@@ -1,0 +1,59 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 400 300
+%%Title: Linearly Polarized Light
+%%Creator: Claude AI Assistant
+%%EndComments
+
+/inch {72 mul} def
+
+% Define colors
+/red {1 0 0 setrgbcolor} def
+/blue {0 0 1 setrgbcolor} def
+/black {0 0 0 setrgbcolor} def
+
+% Draw coordinate axes
+black
+1 setlinewidth
+50 50 moveto 350 50 lineto stroke  % x-axis
+50 50 moveto 50 250 lineto stroke  % y-axis
+
+% Draw propagation arrow
+2 setlinewidth
+340 50 moveto 350 50 lineto 345 55 lineto 345 45 lineto 350 50 lineto fill
+
+% Draw electric field wave (red)
+red
+1.5 setlinewidth
+newpath
+50 150 moveto
+0 1 50 {
+  50 add exch
+  dup 25 mul 3.14159 div sin 80 mul 150 add
+  exch lineto
+} for
+stroke
+
+% Draw magnetic field wave (blue)
+blue
+1.5 setlinewidth
+newpath
+50 50 moveto
+0 1 50 {
+  50 add dup
+  25 mul 3.14159 div sin 60 mul 50 add
+  exch lineto
+} for
+stroke
+
+% Add labels
+/Helvetica findfont 12 scalefont setfont
+black
+355 45 moveto (x) show
+45 255 moveto (y) show
+200 30 moveto (Direction of propagation) show
+200 260 moveto (Linearly Polarized Light: Electric and Magnetic Fields) show
+360 150 moveto (E) show
+200 10 moveto (B) show
+
+showpage
+%%EOF

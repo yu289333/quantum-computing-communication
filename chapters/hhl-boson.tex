@@ -1,0 +1,38 @@
+\section{HHL algorithm}
+Harrow, Hassidim, and Lloyd (HHL) algorithm approximately solves linear equation $A x = b$ where $x$ and $b$ are $n$ dimensional vectors and $A$ is a $n x n$ hermitian matrix of complex numbers. The problem would be solved if we knew the orthonormal eigen-vectors ${v_i}, i=1, 2, ...n$ and the eigen-values ${\lambda_i}$ of $A$ because the eigen-values of $A^{-1}$ are  ${1/\lambda_i}$. By writing vector $b$ in terms of the eigen-vectors $b = {\sum^n}_{i=1} \beta_i v_i$, we can achieve our goal
+\begin{equation}
+    x = A^{-1} b = \sum^{n}_{i=1} \frac {\beta_i} {\lambda_i} v_i .
+\end{equation}
+
+Drawing from the technique used in the Deautsch's and Shor's algorithms, we need to "kick up" the eigen-values to the phases. Let's try
+\begin{equation}\label{hhl-1}
+    {\sum^n}_{i=1} \beta_i e^{i t \lambda_i} \keta{v_i}
+\end{equation}
+where $t$ is a constant to be determined soon. With the circuit of phase estimation, we then can bring the phases down to the second set of qubits
+\begin{equation}\label{hhl-2}
+    {\sum^n}_{i=1} \beta_i e^{i t \lambda_i} \keta{v_i} \keta{t\lambda_i}.
+\end{equation}
+We then apply controlled rotation gate to kick values of the second set of qubits to the $\theta$ of the third set of qubits, which contains only one, and have
+\begin{equation}\label{hhl-3}
+    \sum_{i=1}^n \beta_i e^{i t \lambda_i} \keta{v_i} \keta{t\lambda_i} \keta{cos\theta_i=\frac 1 {t\lambda_i}}.
+\end{equation}
+
+\subsection{Circuit diagram}
+\begin{figure}[h]\label{HHL}
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    \lstick{\ket{0}} & \qwbundle{1} & \qw               & \qw       & \qw       & targ{RY}  & \meter{} &\cw \rstick{} \\
+    \lstick{\ket{0}} & \qwbundle{n} &\gate{H^{\otimes n}} &\ctrl{1}     & \gate{IQFT} & \ctrl{-1} & \qw &\gate{QFT} &\ctrl{1}       &\qw \rstick{Bob's 1st bit} \\
+    \lstick{\ket{b}} & \qwbundle{n} & \qw               & \targ{e^{itA}} & \qw       &\qw       &\qw    &\qw       &\targ{$e^{-itA}$} & \qw \rstick{{\ket{x}}}
+\end{quantikz}
+\caption{HHL algorithm}
+\end{figure}
+
+\subsection{Complexity}
+
+\section{Boson sampling algorithms}
+
+\section{Complexity}
+
+\section{Noise, and error correction}
+\section{Channel capacity}
+According to Shannon theorem, under noise, the channel capacity is $C = 2B (1+SNR)$.
