@@ -5,67 +5,19 @@
 
 \begin{document}
 
-%\label{DP-QPSK}
-\tdplotsetmaincoords{75}{110}
-\pgfmathsetmacro{\h}{3.53}
-\pgfmathsetmacro{\hn}{-3.53}
-\pgfmathsetmacro{\r}{5}
-\pgfmathsetmacro{\rn}{-5}
-\pgfmathsetmacro{\ang}{105}
-\begin{tikzpicture}[tdplot_main_coords]
-\tdplotsetcoord{P1}{\r}{45}{45}
-\tdplotsetcoord{P2}{\r}{-45}{45}
-\tdplotsetcoord{P3}{\r}{45}{-45}
-\tdplotsetcoord{P4}{\r}{-45}{-45}
+%\label{2CDMA}
+\begin{tikzpicture}[scale=1.5]
+    \draw[->] (-0.5,5) -- (2.5,5)  node[pos=1.02,below] {$t$};
+    \draw[->] (0,4.5) -- (0,8.5) node[pos=0.99,left] {$A$};
+    \draw[red] (0,5) -- (0,8) -- (0.98,8) -- (0.98,5) -- (1,5)
+    node[pos=1.02,below, black] {$\frac T 2$} -- (1,8) -- (1.98,8) -- (1.98,5)
+    node[pos=1.02,below, black] {$T$};
 
-\tdplotsetcoord{P5}{\r}{135}{45}
-\tdplotsetcoord{P6}{\r}{-135}{45}
-\tdplotsetcoord{P7}{\r}{135}{-45}
-\tdplotsetcoord{P8}{\r}{-135}{-45}
-
-\shade[ball color=gray, tdplot_screen_coords, opacity=0.10] (0,0,0) circle [radius=\r];
-
-% xy plane
-\tdplotdrawarc[gray]{(0,0,0)}{5}{-75}{\ang}{};
-\tdplotdrawarc[dashed, gray]{(0,0,0)}{\r}{\ang}{285}{};
-% yz plane
-\tdplotsetthetaplanecoords{90}
-\tdplotdrawarc[tdplot_rotated_coords, gray!70]{(0,0,0)}{\r}{-38}{157}{};
-\tdplotdrawarc[tdplot_rotated_coords,dashed, gray]{(0,0,0)}{\r}{150}{335}{};
-
-% xyz axes
-\draw[dashed, gray!50] (\rn,0,0) -- (0,0,0); \draw[gray!50] (0,0,0) -- (\r,0,0);
-\draw[gray!55] (0,\rn,0) -- (0,\r,0);
-\draw[gray!60] (0,0,\rn) -- (0,0,\r);
-\draw[thick, -Stealth] (\r,0,0) -- (9,0,0) node[black, left] {$x$};
-\draw[thick, -Stealth] (0,\r,0) -- (0,7,0) node[black, right] {$y$};
-\draw[thick, -Stealth] (0,0,\r) -- (0,0,7) node[black, left] {$z$};
-
-% points
-\fill[red] (P1) circle (0.1); \fill[red!50] (P2) circle (0.1);
-\fill[red] (P3) circle (0.1); \fill[red!50] (P4) circle (0.1);
-\fill[red] (P5) circle (0.1); \fill[red!50] (P6) circle (0.1);
-\fill[red] (P7) circle (0.1); \fill[red!50] (P8) circle (0.1);
-\node[above] at (P1) {$(\frac \pi 4, \frac \pi 4)$};
-\node[below] at (P2) {$(\frac \pi 4, \frac {5\pi} 4)$};
-\node[above right] at (P4) {$(\frac \pi 4, \frac {3\pi} 4)$};
-\node[below left] at (P3) {$(\frac \pi 4, \frac {7\pi} 4)$};
-\node[above] at (P5) {$(\frac {3\pi} 4, \frac \pi 4)$};
-\node[above] at (P6) {$(\frac {3\pi} 4, \frac {5\pi} 4)$};
-\node[above right] at (P8) {$(\frac {3\pi} 4, \frac {3\pi} 4)$};
-\node[below left] at (P7) {$(\frac {3\pi} 4, \frac {7\pi} 4$};
-
-\draw[dashed, red!70] (0,0,0) -- (2.5, 2.5, 0) -- (P1) -- cycle;
-\draw[dashed, red!30] (0,0,\h) circle (\h);
-\draw[dashed, red!30] (0,0,\hn) circle (\h);
-
-\tdplotsetthetaplanecoords{45}
-\tdplotdrawarc[tdplot_rotated_coords, -Latex]{(0,0,0)}{2}{0}{45}{anchor=north east}{$\theta$}
-
-\draw [thick, -Latex, canvas is xy plane at z=0] (2,0) arc [start angle=0, end angle=45, radius=2];
-\node at (2,0.5,-0.3) {$\phi$};
-
+    \draw[->] (-0.5,0) -- (2.5, 0)  node[pos=1.02,below] {$t$};
+    \draw[->] (0,-3.5) -- (0,3.5) node[pos=0.99,left] {$A$};
+    \draw[red] (0, 0) -- (0, 3) -- (0.98, 3) -- (0.98, 0) -- (1,0)
+    node[pos=6,above, black] {$\frac T 2$} -- (1,-3) -- (2,-3) -- (2,0)
+    node[pos=1.02,above, black] {$T$};
 \end{tikzpicture}
-
 
 \end{document}

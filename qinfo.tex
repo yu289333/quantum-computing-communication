@@ -553,7 +553,7 @@ Modulating a qubit is no different from that described in the previous chapter. 
 \end{figure}
 
 \subsection{Demodulation and the readout limitation}
-Demodulation is reading out the information from a wave. Physicists call this mechanism measurement. It involves energy transfer from a qubit to an electronic device, which is shown in the polarization demodulator circuit block diagram as a detector in Fig. \ref{Demodulator-qubit}. The circuitry is the same for a qubit and a conventional signal wave. For either one, the polarization splitter splits the wave into horizontal and vertical polarization components to resonate with the electrons in the detectors. To demodulate a conventional signal wave, the electric currents generated in the detectors should be proportional to $cos^2\theta$ and $sin^2\theta$ respectively. Therefore, the parameter $\theta$ can be obtained from the ratio of the currents from the two detectors.
+Demodulation is reading out the information from a wave. Physicists call it measurement. It involves energy transfer from a qubit to an electronic device, which is shown in the polarization demodulator circuit block diagram as a detector in Fig. \ref{Demodulator-qubit}. The circuitry is the same for a qubit and a conventional signal wave. For either one, the polarization splitter splits the wave into horizontal and vertical polarization components to resonate with the electrons in the detectors. To demodulate a conventional signal wave, the electric currents generated in the detectors should be proportional to $cos^2\theta$ and $sin^2\theta$ respectively. Therefore, the parameter $\theta$ can be obtained from the ratio of the currents from the two detectors.
 
 The relative phase parameter in a qubit may carry information. But the demodulator does not contain the phase demodulators as the one for DP-QPSK shown in Fig. \ref{Demodulator-DP-QPSK} has because adding them requires adding two more (entangled) qubits as local reference waves and is impractical to have. Therefore phases of the wave components are not measured. And whatever information carried in the phases is lost.
 
@@ -845,13 +845,11 @@ The qubit is at either the $\keta{1}$ or $\keta{-}$ modulation point, and a Hada
 The algorithm leaves the function $f(x)$ as a variable to be given at implementation time and gate $U_f$ to be determined. If we are given $f(x) = x \bigoplus 1$, the $U_f$ gate can be implemented using the $X$ gate.
 
 \chapter{Qubit Multiplexing}\label{c-qubitMultiplexing}
-The smallest information-carrying unit of a conventional computer is a bit stored in a pair of transistors. From there, 8, 16, 32, or 64 bits are used together as units like a byte, INT16, INT32, or FLOAT for processing. All these units are of fixed sizes. The advantage of graphics processing units (GPU)\index{GPU} lies in their capability to process such units of multiple bits in parallel.
+The smallest information-carrying unit of a conventional computer is a bit stored in a pair of transistors. From there, 8, 16, 32, or 64 bits are used together as units like a byte, INT16, INT32, or FLOAT for processing. All these units are of fixed sizes. The advantage of graphics processing units (GPU)\index{GPU} lies in their capability to process units of multiple bits in parallel.
 
-Digital computers have explored the technique of parallel computing, another term of parallel processing, to increase computing power. That means a big chunk of numbers can be computed or processed simultaneously. The advantage of graphics processing units (GPU)\index{GPU} over central processing units (CPU)\index{CPU} is in their parallel computing capability. Without GPUs, the explosion of artificial intelligence (AI)\index{AI} technologies could not come. 
+In communication, multiplexing is a technology that combines several carrier waves to transmit simultaneously to increase information transmission. The challenge is how allocate to and combine the waves so that the resources are fairly and efficiently used by all transmitting users.
 
-In communication, multiplexing is a technology that combines several carrier waves to transmit simultaneously to increase information transmission. The difficulty is how allocate and combine the waves so that the resources are fairly used by all transmitting users and yet mostly efficiently used.
-
-One simple multiplexing technique, frequency-division multiplexing\index{frequency-division multiplexing} (FDM)\index{FDM}, divides up the bandwidth into narrow frequency bands called channels and assigns different channels to different users. Another simple technique, called time-division multiplexing\index{time-division multiplexing} (TDM)\index{TDM}, divides up a big time slot into smaller ones and assign different small ones to transmit different user data -- simultaneously within the big time slot although not simultaneously within a small time slot. From these simple schemes, advanced multiplexing techniques, such as orthogonal frequency-division multiplexing\index{orthogonal frequency-division multiplexing} (OFDM)\index{OFDM} and code-division multiple access\index{code-division multiple access} (CDMA)\index{CDMA}, and their variants have given power to modern wireless communication including Wi-Fi, and 4G and 5G cellular communication.
+One simple multiplexing technique, frequency-division multiplexing\index{frequency-division multiplexing} (FDM)\index{FDM}, divides up the bandwidth into narrow frequency bands called channels and assigns different channels to different users. Another simple technique, called time-division multiplexing\index{time-division multiplexing} (TDM)\index{TDM}, divides up a big time slot into smaller ones, which as called chips, and assign different chips to transmit different user data -- simultaneously within the big time slot although not simultaneously within each chip. From these simple schemes, advanced multiplexing techniques, such as orthogonal frequency-division multiplexing\index{orthogonal frequency-division multiplexing} (OFDM)\index{OFDM} and code-division multiple access\index{code-division multiple access} (CDMA)\index{CDMA}, and their variants have given power to modern wireless communication including Wi-Fi, and 4G and 5G cellular communication.
 
 Similar multiplexing techniques are used in quantum computing and communication. For computing, multiplexing allows information carried by all the qubits processed simultaneously to increase computing power. For communication, multiplexing is often used for encryption.
 
@@ -889,28 +887,37 @@ Graphically, all the multiplexing points lie on a $N$-dimensional sphere with a 
 CDMA can be considered a progression of TDM. In TDM, a bit is transmitted in time slot $T$ as a wave. The wave for value "1" is zero in phase, and the one for "0" has a $\pi$ phase. What happens if we have $N$ cellphones that need to transmit? TDM would shorten the time slot to $T/N$ and assign a smaller time slot, called a chip, to one cellphone. But this would require each cellphone's data bits to be represented by short voltage pulses (each of $T/N$ in duration) with a long idle period. Pulsed at $N$ times shorter duration, the electronics are costly yet less utilized. For this reason alone, simple TDM is not efficient for resource allocation.
 
 CDMA is advantageous for this and many other reasons. It allows the electric signal in each cellphone to remain the same -- pulses of $T$ in duration. But each cellphone transmits a wave in each of the chips. In other words, they all transmit waves in all chips simultaneously. Of course, the waves from each cellphone must be different from the ones from another so that the base station can distinguish one from another.
+\begin{figure}
+    \centering
+\label{2CDMA}
+\begin{tikzpicture}[scale=1.5]
+    \draw[->] (-0.5,5) -- (2.5,5)  node[pos=1.02,below] {$t$};
+    \draw[->] (0,4.5) -- (0,8.5) node[pos=0.99,left] {$A$};
+    \draw[red] (0,5) -- (0,8) -- (0.98,8) -- (0.98,5) -- (1,5)
+    node[pos=1.02,below, black] {$\frac T 2$} -- (1,8) -- (1.98,8) -- (1.98,5)
+    node[pos=1.02,below, black] {$T$};
+
+    \draw[->] (-0.5,0) -- (2.5, 0)  node[pos=1.02,below] {$t$};
+    \draw[->] (0,-3.5) -- (0,3.5) node[pos=0.99,left] {$A$};
+    \draw[red] (0, 0) -- (0, 3) -- (0.98, 3) -- (0.98, 0) -- (1,0)
+    node[pos=6,above, black] {$\frac T 2$} -- (1,-3) -- (2,-3) -- (2,0)
+    node[pos=1.02,above, black] {$T$};
+\end{tikzpicture}
+    \caption{CDMA}
+\end{figure}
 
 Let's use the example of $N=2$ -- only two cell phones. The waves in each cellphone are generated in a fixed pattern of 2 pulses in each time slot. The amplitudes of the waves generated by the phones are $1/{\sqrt{2}} (1,1)$ and $1/{\sqrt{2}} (1,-1)$ respectively. The 2nd cellphone's square-wave-pulse pattern, for example, is shown in Fig. \ref{}. A negative pulse is a wave $\pi$ out of phase. When the data bit is "1," this cellphone transmits the 2 pulsed waves as shown in the figure. If the data bit is "0," the pulsed waves are transmitted with phases flipped by $\pi$. All 2 cellphones' patterns may be represented by the rows in this matrix
 \begin{equation}\label{e-CDMA2}
-   \frac 1 {\sqrt{2}} \begin{pmatrix} %https://www.mathworks.com/matlabcentral/answers/1728850-simulate-a-cdma-system-for-4-users-using-codes-of-length-4-samples-chips-over-a-frequency-select
+  \begin{pmatrix} %https://www.mathworks.com/matlabcentral/answers/1728850-simulate-a-cdma-system-for-4-users-using-codes-of-length-4-samples-chips-over-a-frequency-select
     1 & 1  \\
     1 & -1
     \end{pmatrix}.
 \end{equation}
-The matrix is called the 2-dimensional Walsh matrix. There is a Walsh matrix for any $2^n$ dimension.
-
-Only the normalized 2-dimensional Walsh matrix, which is the Hadamard transformation,
-\begin{equation}
-    H = \frac 1 {\sqrt{2}}
-    \begin{pmatrix}
-    1 & 1  \\
-    1 & -1  
-    \end{pmatrix}
-\end{equation}
-finds use in quantum information. The matrix transforms the single-qubit basis waves into the $\keta{+}$ and $\keta{-}$ waves. Nevertheless, the idea is clear: the advanced multiplexing schemes can be built on any $N$-dimensional unitary transformation matrix.
+The matrix is called the 2-dimensional Walsh matrix. The normalized 2-dimensional Walsh matrix is actually the Hadamard transformation matrix that transforms the $\keta{0}$ and $\keta{1}$ waves to $\keta{+}$ and  $\keta{-}$ waves. The higher dimensional Walsh matrices have not been used in any published quantum algorithms or protocols.
+finds use in quantum information. The matrix transforms the single-qubit basis waves into the $\keta{+}$ and $\keta{-}$ waves.
 
 \subsection{Bell waves}
-The Walsh matrices have not been used in qubit multiplexing. But if we stack two 2-dimensional Walsh matrix into a 4-dimensional matrix,
+If we stack two 2-dimensional Hadamard matrices to become a 4-dimensional diagonal block matrix,
 \begin{equation}
 \frac 1 {\sqrt{2}}
   \begin{pmatrix}
@@ -928,7 +935,8 @@ it transform the 4 basis waves of 2 qubits into what are called the Bell states 
     \keta{B_{10}} =& \frac 1 {\sqrt 2} (\keta{0}\keta{0}-\keta{1}\keta{1}),\\
     \keta{B_{11}} =& \frac 1 {\sqrt 2} (\keta{0}\keta{1}-\keta{1}\keta{0}).
 \end{array}
-
+\end{equation}
+\begin{equation}
 \begin{pmatrix} %https://www.mathworks.com/matlabcentral/answers/1728850-simulate-a-cdma-system-for-4-users-using-codes-of-length-4-samples-chips-over-a-frequency-select
     1 & 1 & 1 & 1 \\
     1 & -1 & 1 & -1 \\
@@ -975,7 +983,6 @@ Cleve etal\cite{Cleve_1998} proposed what is called control-$f$ gate to build th
 \caption{Control-f gate}
 \label{ctrl_f}
 \end{figure}
-
 
 Assume $f(x)$ is a binary function mapping $x \in {0,1}$ to ${0,1}$. The control-f gate takes input waves $\keta{x}\keta{y}$, where $x$ and $y$ are either 0 or 1, and produces the output waves as shown below.
 \begin{figure}[h]
@@ -1067,7 +1074,7 @@ An algorithm or protocol is always depicted by a circuit diagram or series of ma
 \chapter{Quantum Communication Protocols}\label{c-comm}
 Encryption is used in everyday Internet communication. Encryption conceals the credit card numbers and passwords we send to e-commerce websites. But we don't know whether or not the communication is being tapped for eavesdropping. Various national security agencies routinely tap and monitor our communications with international parties.
 
-The significant use of quantum technology in communication is its anti-eavesdropping feature. If a communication carrier is a qubit, which has a wave of only one quantum, partial tapping is impossible. Eavesdropping can only be accomplished by intercepting the qubit. Further, the eavesdropper may attempt to clone the intercepted qubit and transmit the clone to the receiver to avoid detection. In this chapter, we discuss how quantum communication protocols can be designed to overcome the security challenges.
+The significant use of quantum technology in communication is its anti-eavesdropping feature. If a communication carrier is a qubit, which has a wave of only one quantum, partial tapping is impossible. Eavesdropping can only be accomplished by intercepting the qubit. Further, the eavesdropper may attempt to clone the intercepted qubit and transmit the cloned to the receiver in order to avoid detection. In this chapter, we discuss how quantum communication protocols can be designed to overcome the security challenges.
 
 \section{Superdense coding}\label{S-denseCoding}
 Superdense coding is also called dense coding. It can be used as a communication encryption protocol. Like the BB84 protocol, it takes advantage of the fact that a qubit can be modulated in each transmission time slot to carry 2-bit information, which cannot be extracted by any eavesdropper. Instead of the assistance of a classical channel as in BB84, it extracts the 2 bits at the receiving end with the assistance of a second qubit entangled with the first. The second qubit may be regarded as the encryption key shared between Alice and Bob.
