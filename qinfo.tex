@@ -11,17 +11,11 @@
 % The asterisk excludes the chapter from the table of contents.
 \addcontentsline{toc}{chapter}{Preface}
 \chapter*{Preface}
-Quantum computing and communication are hot topics. Software development kits (SDKs) including IBM Qiskit and Google Cirq have been made available to software engineers. But they are useless if the engineers including programmers are not trained with quantum algorithms and protocols, which have been described as mysterious and incomprehensible. Can engineers be taught the algorithms and protocols without studying quantum physics? After all, the Nobel prize-winning physicist and one of the best educators, Richard Feynman, says “I think I can safely say that nobody really understands quantum mechanics.”
+Quantum computing and communication are hot topics. Software development kits (SDKs) including IBM Qiskit and Google Cirq have been made available to software engineers. But they are useless if engineers, including programmers, are not trained in quantum algorithms and protocols, which have been described as mysterious and incomprehensible. Can engineers be taught algorithms and protocols without studying quantum physics? After all, the Nobel Prize-winning physicist and one of the best educators, Richard Feynman, says 'I think I can safely say that nobody really understands quantum mechanics.'
 
-This book says "Yes!" The only concept that one needs to learn about quantum physics is that all waves can be separated into discrete units that cannot be divided further. Beyond this concept, the rest of all quantum physics courses are about solving Schrödinger or Dirac equations for electron waves. Engineers don't need it. Everyone is already familiar with waves, especially from our daily use of Wi-Fi, cellular, cable, and optical fiber communications which use electromagnetic waves. Communication engineers can even design communication systems including protocols without learning how to solve wave equations.
+This book says "Yes!" The only concept that one needs to learn about quantum physics is that all waves can be separated into discrete units that cannot be divided further. Beyond this concept, the rest of all quantum physics courses are about solving Schrödinger or Dirac equations for electron waves. Engineers do not need it. Everyone is already familiar with waves, especially from our daily use of Wi-Fi, cellular, cable, and optical fiber communications which use electromagnetic waves. Communication engineers can even design communication systems that include protocols without learning how to solve wave equations.
 
-That is because electrical engineering has developed a great wealth of knowledge on information theory, and modulation theory, which is about how information can be represented and communicated. Computer science has developed a great bundle of algorithms on how information can be efficiently processed. Physics, on the other hand, has studied the opposite of information -- entropy or noise -- in depth. That is why the fancy terms such as entanglement are so incomprehensible. Quantum information is better studied on top of the knowledge developed by engineers. When through this book, engineers should be able to invent new algorithms and protocols without physicists.
-
-\section{Arrangement of this book}
-The first chapter \ref{c-intro} gives an overview of the concepts of quantum physics and how they are applied to quantum technologies. The next chapter \ref{c-modulation} reviews communication modulation theory that serves as the foundation of the quantum information discussion in chapter \ref{c-qinfo}. Quantum information differs from the classical theory because of the limitation of quantum measurement. Chapter \ref{c-comm} studies several quantum communication protocols, which use one to three qubits and are easy to understand. The rest focus on several n-qubit algorithms including Shor's algorithm and are arranged by design patterns. If any reader is interested in knowing how quantum qubits and gates work at the physical level, Appendix \ref{A-qubit} is reserved for this subject.
-
-\section{Nomenclature and notations}
-When studying quantum information, information theory and communication theory are the foundations. Their nomenclature and notations are the best. When studying quantum algorithms and protocols, the Direc bra-ket notation and quantum circuit diagrams standardized by physicists, are most convenient and effective.
+That is because communication scientists and engineers have developed a great wealth of knowledge starting from Shannon's information theory to modulation and multiplexing theory. Computer science has developed a great bundle of algorithms on how information can be efficiently processed. Physics, on the other hand, has studied the opposite of information, entropy or noise, in depth. That is why fancy terms such as entanglement are so incomprehensible. Quantum information is better studied on top of the knowledge developed by engineers. In this book, engineers should be able to invent new algorithms and protocols without physicists.
 
 % Three-level Table of Contents
 \setcounter{tocdepth}{3}
@@ -30,49 +24,101 @@ When studying quantum information, information theory and communication theory a
 \mainmatter
 
 \chapter{Introduction}\label{c-intro}
-We are in an information explosion world. But what is information? It is difficult to come up with a definition. We all know it when we see it. When we are in a doctor's office to have our blood pressure measured, for example, the nurse reads out a number in millimeters. Why is our vital information presented in millimeters? That is because, not very long ago, the height of the mercury in a glass column is used as the indicator of blood pressure. This fact suggests that information\index{information} can be represented as numbers and carried or displayed as values of some physical parameters such as the height of a mercury column.
+We are in the era of information explosion. The explosively growing AI technology depends on learning enormous amounts of information. It also produces information. The computing power in the whole world is not enough. All the GPU chips have been sold out. Nvidia's stocks are rocking higher and higher. Technologists and venture capitalists hope that quantum-processing units (QPUs), which have higher computing power than GPUs, can come to the rescue. It is anticipated that we will enter the era of quantum computing in 2030.
 
-We do not know whether all information can be represented as numbers, but our experience tells us that we can technically equate information with useful numbers. Information explosion means we have more and more numbers to be stored by memory devices, to be processed or computed by computers, and to be transmitted by communication systems. Quantum computing is for increasing the power of information processing or number computation. Quantum communication is for securing communication channels and more. Quantum information is about how numbers can be carried, computed, and transmitted by quantum waves. According to Google's online dictionary, "A quantum (plural: quanta) is the smallest discrete unit of a phenomenon." Of course, a lot more about quantum will be defined, explained, and studied in this book.
+The hardware technologies of quantum computing are advancing fast. But what about the software? Where are the software engineers who can program QPUs? One may ask. The sad reality is that we have a great shortage. Quantum information is a hard subject and is only taught as a graduate course in some universities. This book takes a new approach and aims to teach this subject to undergraduate information engineering students, including computer science students. The goal is for them to understand how quantum computing algorithms and communication protocols work so that they can implement the algorithms and protocols as software programs. In our hope, better students may even go on designing their algorithms and protocols.
 
-\section{Why quantum}
-\subsection{The advantages of analog and digital technologies}
-Information technologies have now mostly converted from analog to digital. Not long ago, we used blood pressure meters with columns of mercury. Probably some of us still listen to the AM and FM radios in cars. Analog technologies seem to be something old waiting to die out. The truth is that analog technologies have the advantage of carrying more information. We choose digital technologies only to rid of noise.
+Quantum information is the subject about using quantum waves to carry, transmit, and process information. A quantum bquantum quantum wave is a qubit. physics seems to be a hard subject. Quantum phenomena mystery, puzzles, and paradoxes about. How can a Schrodinger cat be both dead and alive at the same time? How can a photon be a wave and a particle at the same time? A student has to wade through the confusing verbal descriptions and get to the math of quantum physics to understand the subject. This book takes a different approach. To cut through the particle-wave duality confusion, it describes a photon as a wave with one unit of energy. Based on established information theory and communication theory, the book focuses on teaching the 1-1 relation between information and wave parameters.
 
-Analog technologies represent information as real numbers while digital ones as integers. That is the fundamental difference between the two types of technologies. In the digital world, a real number is rounded off and represented as two integers, the significant and the exponent. The round-off portion is information all lost during the analog-to-digital conversion. The real number $\pi$ may represented in a computer as the integer pair $(31415926, -7)$, which means $31415926*10^{-7}$. The rest $0.5358979...*10^{-7}$ is all lost.
+\section{Information technology}
+\subsection{What is information}
+What is information? It seems to be difficult to come up with a definition. We all know it when we see it because we use it every day. Usefulness must be one of its essential characteristics.
 
-The smallest information-carrying device of a digital computer is a bit, constructed by a pair of transistors. The device's voltage is used to represent information. Two voltage values are used to represent the binary numbers 0 and 1, which are also called a bit number. We could have added more voltage values between the chosen two to increase the numbers being represented. We even could have used all the values, the real numbers, between the chosen two and increased the amount of information represented to infinity -- the case of analog technology. But noise would have obscured the added values and made them useless. Digital technologies gain the advantage of accuracy by sacrificing the amount of information carried and processed. 
+When we are in a doctor's office to have our blood pressure measured, for example, the nurse reads out a number in millimeters. Why is our vital information presented in millimeters? That is because, not very long ago, the height of the mercury in a glass column was used as the indicator of blood pressure. This fact suggests that information\index{information} can be represented as numbers and carried or displayed as values of some physical parameters such as the height of a mercury column.
 
-Can we take advantage of the information-carrying capacity of analog technologies while avoid the noise problem? Physics tells us that noise is random energy bursts, thermal energy, in particular. But voltage is the potential energy of charged particles and is prone to noise. We should not use any parameter related to energy to represent information. Physics says, waves such as electromagnetic waves have many parameters such as phase and polarization, which are not related to energy.
+Not all information is represented as numbers, some is spoken, and some is written. But for information technology, information equates to useful numbers. That is the definition through out the book.
 
-Yes, that is the idea behind quantum computing:
-- separate a wave into discrete elementary waves
-- use two real-number parameters of each wave to carry information
-- process or manipulate the parameters of all the elementary waves simultaneously to achieve parallel processing.
-Why waves and not transistors? Noise! Just about all noise on earth for electronic and optical devices is of some form of thermal energy. If no energy exchange, noise is minimized. Altering a light wave's polarization angle is like changing the direction of a bowling ball's momentum and requires no energy injection. In physicists' words, the transformation of such parameters is unitary. Changing the direction of a bowling ball is a unitary transformation. Changing its speed is not and requires energy exchange.
+\subsection{The three levels of information technology}
+Shannon (Claude Shannon, 1916-2001) was born into an ordinary family in Michigan, USA. Most of his contributions resulted from his communication theory research at Bell Labs. Among these, information theory serves as the theoretical foundation for all information technologies, far surpassing its applications in communication. Shannon is rightfully called the father of information theory, and no one else deserves this title.
 
-Another good news is from quantum physics, which says that the energy (or mass) of each of the elementary waves is a fixed value -- a quantum. Adding energy to a wave means adding another elementary wave to it, and the energy increase must be exactly the value of a quantum. This is the so-called quantum nature of waves. It has added the phrase "quantum leap" into our everyday language.
+Communication theory divides the process of information processing and transmission into the following steps:
+Encoding -> Modulation -> Transmission -> Demodulation -> Decoding.
+Encoding converts information in whatever original format to numbers, which are called symbols or codes. Decoding reverses the process. Modulation is to map symbols to electromagnetic wave parameters, and the wave is transmitted to the remote receiver. The receiver measures the wave parameters and maps them back to symbols. That completes the demodulation process.
 
-To engineers, the energy parameter of a wave is an integer number and may carry only digital information. Each of the elementary waves that we use to carry analog information is called a quantum bit or qubit for short. The quantum nature determines that qubits are relatively immune to noise because noise injection requires a quantum leap. However, it also sets the limit of qubit readout. It requires energy exchange or transfer to an electronic readout device and is an analog-to-digital data conversion mechanism. Only a binary bit information can be read out from a qubit. This may be why "bit" is in the name of qubit.
+We see that information technology can be viewed from three levels as shown in Fig. \ref{3levels}
+\begin{figure}\label{3levels}
+\begin{flushleft}
+\begin{tikzpicture}[
+info/.style={rounded rectangle, draw=black, minimum size=30, align=center},
+symbol/.style={chamfered rectangle, draw=black, very thick, minimum size=40, align=center},
+carrier/.style={rounded corners, draw=black, very thick, minimum size=60, align=center},
+]
 
-The readout limitation narrows the scope that quantum computing has the advantage. But for communication, it can be an advantage for security. The following example shows how.
+% Define a grid using coordinates
+\coordinate (grid1) at (0,0);      % Top-left
+\coordinate (grid2) at (5,0);      % Top-center
+\coordinate (grid3) at (10,0);      % Top-right
+\coordinate (grid4) at (0,-3);     % Middle-left
+\coordinate (grid5) at (5,-3);     % Middle-center
+\coordinate (grid6) at (10,-3);     % Middle-right
+\coordinate (grid7) at (0,-7);     % Bottom-left
+\coordinate (grid8) at (5,-7);     % Bottom-center
+\coordinate (grid9) at (10,-7);     % Bottom-right
 
-\subsection{The Wi-Fi security problems}\label{Sec-example-wifi}
-Electromagnetic waves are used in almost all our communication systems. We see them as light if the wave frequency is in the visible range. The ones used for optical fiber communications are just below the visible frequency range, but we still call them light. The ones used for cable, cellular, and Wi-Fi communications are in the radio frequency range. They are certainly invisible to our naked eyes. But everyone uses them every day and is familiar with them.
+% Nodes at grid points
+\node[info] (in) at (grid1) {Input\\information};
+\node[info] (proc) at (grid2) {Information\\processing};
+\node[info] (out) at (grid3) {Output\\information};
 
-Many parameters of electromagnetic waves can be used to carry information. Their parallel exploration ability is another advantage. Before the age of Wi-Fi and cellular communication, we have to find where the network connectors are in the walls to plug in our computers. With Wi-Fi, or computer finds the Wi-Fi router by receiving the radio wave sent in all directions. The radio wave explores all directions in parallel to reach the computer. The broadcasting feature of the communication is a bane, however, for security: the message sent from the Wi-Fi router to my cell phone can be received by an eavesdropping device outside the home. It was once a big concern about using Wi-Fi until encryption was added to the link layer, in the Open System Interconnection (OSI) 7-layer jargon, of the Wi-Fi protocols. Still, the solution has its limit. It would be desirable to have a physical layer solution to fend off eavesdropping.
+\node[symbol] (sym_in) at (grid4) {Input\\numbers};
+\node[symbol] (sym_proc) at (grid5) {Algorithms and\\software code};
+\node[symbol] (sym_out) at (grid6) {Output\\numbers};
 
-One naive thinking is to reduce the power of the wave from the router so that only my cell phone can receive the message. But what if the eavesdropper's device is extremely sensitive and can receive the wave at any power level? Indeed, the eavesdropper can still receive the wave until the router lowers the power to contain only a quantum of energy. At this point, the eavesdropper has to capture the entire wave or nothing at all. The wave cannot be split for partial reception. But if the eavesdropper captures the entire wave, I am alerted of the absence of the wave and would suspect the presence of an eavesdropper. This is one of the ideas behind quantum communication and solves the eavesdropping problem halfway. But continuing with the quantum nature of waves, we can add encryption to the solution, for which we will leave the details to Section-\ref{S-BB84}.
+\node[carrier] (qubit) at (grid7) {Carrier wave\\parameters};
+\node[carrier] (gate) at (grid8) {Unitary\\transformation};
+\node[carrier] (qubit_out) at (grid9) {Carrier wave\\parameters};
 
-\begin{figure}[h]\label{Room-WiFi}
-\begin{tikzpicture}
-\draw[green, very thick] (0,0) rectangle (8,5);
-\draw (1,3) node(router) [rectangle, draw] {router};
-\draw (6,3) node(phone) [rectangle, draw] {phone};
-\draw (5,1) node(computer) [rectangle, draw] {computer};
-\draw (10,2) node(eavesdropper) [rectangle, draw] {eavesdropper};
+% Draw levels
+\draw (in.west) node[text width=80, align=center, anchor=east] {Information\\level};
+\draw (sym_in.west) node[text width=80, align=center, anchor=east] {Number-symbol\\level};
+\draw (qubit.west) node[text width=80, align=center, anchor=east] {Carrier\\level};
+
+% Draw connecting arrows
+\draw[->, thick] (in) to (proc);
+\draw[->, thick] (proc) to (out);
+\draw[->, very thick] (in) to node[left, color=blue] {encoding} (sym_in);
+\draw[->, thick] (sym_in) to (sym_proc);
+\draw[->, thick] (sym_proc) to (sym_out);
+\draw[->, thick] (proc) to node[right, align=left] {design\\programming} (sym_proc);
+\draw[->, thick] (sym_out) to node[left, color=blue] {decoding} (out);
+\draw[->, very thick] (sym_in) to node[left, color=blue] {modulation} (qubit);
+\draw[->, thick] (qubit) to (gate);
+\draw[->, thick] (gate) to (qubit_out);
+\draw[->, thick] (sym_proc) to node[right] {execute} (gate);
+\draw[->, thick] (qubit_out) to node[left, color=blue] {demodulation} (sym_out);
+
 \end{tikzpicture}
-\caption{Wi-Fi}
+\end{flushleft}
+    \caption{Information technology can be viewed on three level. The terms with blue font are standard communication terms.}
 \end{figure}
+
+Shannon discovered the relation between the abstract information and numbers on the number-symbol level. Communication theory calls useful numbers symbols, which may have different meanings in other fields. We will call it the number-symbol level to avoid confusion. At this level, Turing invented the hypothetical Turing machine to study and test algorithms. An algorithm is valid only when it can be run and tested on a Turing machine.
+
+With Shannon's discovery, studies of information technology, including the study of quantum information technology, can concentrate on the number-symbol and the carrier levels without consideration at the abstract information level.
+
+Relating numbers or symbols to carrier wave parameters is one of the focuses of communication theory called modulation. It is also the focus of quantum information. Demodulation is the reverse of modulation in communication systems. However, it is not the case with quantum systems. Read out from qubits encounters a bottleneck imposed by the fact that each qubit has one unit of energy for measurement.
+
+\subsection{Measuring information}
+The most important usage of Shannon's encoding theory is to design compression coding. JPEG, and MPEG encoding technologies have been invented for the storage and transmission of photo and video information using minimal numbers of bits or bytes. To measure the amount of information in a series of symbols or numbers, Shannon entropy takes into account the probability of each symbol or number being used. It is the yardstick of how compact a compression encoding can be.
+
+The focus of this book is on the number-symbol and carrier levels. We assume all numbers on the number-symbol level are equally useful. And therefore, we equate the amount of information to the number of symbols or codes.
+
+\subsection{Errors}
+The height of the mercury column in a blood pressure meter is a real number. Apparently, not the entire range of real numbers is useful. Even within the useful range of 0-300mm, a read-out number may be tainted with errors. If we see the mercury column height is 120.5mm, is it accurate? The tilt of the column may produce what's called systematic error. Environmental factors like table vibrations may introduce random errors. Even 120.5mm is accurate, is it more useful to us than 121mm? If not, we may just take it easy and use only integer readings. Using only integers to represent information is called digital information. Using real numbers is called analog information.
+
+AM and FM radios are probably the only analog communication we still use today. When listening to them, once in a while we hear noise, which is random errors. Therefore, random errors are also called noise in communication. Random errors cannot be corrected. Modern communication technologies all use digital information to avoid systematic errors and get around random errors.
+
+In quantum technologies, the numbers carried by qubits are real numbers -- analog technology. But reading out from the qubits to conventional devices is an analog-digital conversion process, and quantization errors, which is a type of systematic error, may appear. Such quantization errors are rooted in quantum measurement and cannot be improved by equipment improvement. How to get around this fundamental limitation of qubit readout is the focal subject of quantum information.
 
 \section{The quantum theory}
 Quantum physics tells us that any wave has its lowest unit -- a quantum\index{quantum} --  when measured by its energy or mass. Plank was the first to toy with the idea. But Einstein was the first to hypothesize this nature of light and called the smallest unit light quantum. Before that, scientists had assumed the energy of light could be dimmed as low as one wishes. What Einstein called a light quantum is today called a photon by physicists. The nature of having the smallest unit is often called the particle nature of matter by physicists nowadays, although calling it the quantum nature is the most accurate.
@@ -154,6 +200,54 @@ Electrons are called particles for historical reasons. When they are trapped to 
 
 For quantum computing and communication, qubits\index{qubit} -- waves with one quantum of energy or mass in each -- are used to carry information. Appendix-\ref{A-qubit} describes several types of qubits including how they are separated and which wave parameters they use to carry information. The superconductor type is constructed by two superconductors with a thin layer of insulator sandwiched in between. It is not based on any of the fundamental particles, e.g. photons, electrons, and quarks. Physicists have found the energy of the electrons vibrating from one superconductor to another has discrete values. Physicists call such a vibrating wave a pseudo particle. Qubits are easier to make from pseudo particles. But for simplicity, the rest of the book assumes qubits use light or electromagnetic waves.
 
+\section{Why quantum}
+\subsection{The advantages of analog and digital technologies}
+Information technologies have now mostly converted from analog to digital. Not long ago, we used blood pressure meters with columns of mercury. Probably some of us still listen to the AM and FM radios in cars. Analog technologies seem to be something old waiting to die out. The truth is that analog technologies have the advantage of carrying more information. We choose digital technologies only to rid of noise.
+
+Analog technologies represent information as real numbers while digital ones as integers. That is the fundamental difference between the two types of technologies. In the digital world, a real number is rounded off and represented as two integers, the significant and the exponent. The round-off portion is information all lost during the analog-to-digital conversion. The real number $\pi$ may represented in a computer as the integer pair $(31415926, -7)$, which means $31415926*10^{-7}$. The rest $0.5358979...*10^{-7}$ is all lost.
+
+The smallest information-carrying device of a digital computer is a bit, constructed by a pair of transistors. The device's voltage is used to represent information. Two voltage values are used to represent the binary numbers 0 and 1, which are also called a bit number. We could have added more voltage values between the chosen two to increase the numbers being represented. We even could have used all the values, the real numbers, between the chosen two and increased the amount of information represented to infinity -- the case of analog technology. But noise would have obscured the added values and made them useless. Digital technologies gain the advantage of accuracy by sacrificing the amount of information carried and processed. 
+
+Can we take advantage of the information-carrying capacity of analog technologies while avoid the noise problem? Physics tells us that noise is random energy bursts, thermal energy, in particular. But voltage is the potential energy of charged particles and is prone to noise. We should not use any parameter related to energy to represent information. Physics says, waves such as electromagnetic waves have many parameters such as phase and polarization, which are not related to energy.
+
+Yes, that is the idea behind quantum computing:
+- separate a wave into discrete elementary waves
+- use two real-number parameters of each wave to carry information
+- process or manipulate the parameters of all the elementary waves simultaneously to achieve parallel processing.
+Why waves and not transistors? Noise! Just about all noise on earth for electronic and optical devices is of some form of thermal energy. If no energy exchange, noise is minimized. Altering a light wave's polarization angle is like changing the direction of a bowling ball's momentum and requires no energy injection. In physicists' words, the transformation of such parameters is unitary. Changing the direction of a bowling ball is a unitary transformation. Changing its speed is not and requires energy exchange.
+
+Another good news is from quantum physics, which says that the energy (or mass) of each of the elementary waves is a fixed value -- a quantum. Adding energy to a wave means adding another elementary wave to it, and the energy increase must be exactly the value of a quantum. This is the so-called quantum nature of waves. It has added the phrase "quantum leap" into our everyday language.
+
+To engineers, the energy parameter of a wave is an integer number and may carry only digital information. Each of the elementary waves that we use to carry analog information is called a quantum bit or qubit for short. The quantum nature determines that qubits are relatively immune to noise because noise injection requires a quantum leap. However, it also sets the limit of qubit readout. It requires energy exchange or transfer to an electronic readout device and is an analog-to-digital data conversion mechanism. Only a binary bit information can be read out from a qubit. This may be why "bit" is in the name of qubit.
+
+The readout limitation narrows the scope that quantum computing has the advantage. But for communication, it can be an advantage for security. The following example shows how.
+
+\subsection{The Wi-Fi security problems}\label{Sec-example-wifi}
+Electromagnetic waves are used in almost all our communication systems. We see them as light if the wave frequency is in the visible range. The ones used for optical fiber communications are just below the visible frequency range, but we still call them light. The ones used for cable, cellular, and Wi-Fi communications are in the radio frequency range. They are certainly invisible to our naked eyes. But everyone uses them every day and is familiar with them.
+
+Many parameters of electromagnetic waves can be used to carry information. Their parallel exploration ability is another advantage. Before the age of Wi-Fi and cellular communication, we have to find where the network connectors are in the walls to plug in our computers. With Wi-Fi, or computer finds the Wi-Fi router by receiving the radio wave sent in all directions. The radio wave explores all directions in parallel to reach the computer. The broadcasting feature of the communication is a bane, however, for security: the message sent from the Wi-Fi router to my cell phone can be received by an eavesdropping device outside the home. It was once a big concern about using Wi-Fi until encryption was added to the link layer, in the Open System Interconnection (OSI) 7-layer jargon, of the Wi-Fi protocols. Still, the solution has its limit. It would be desirable to have a physical layer solution to fend off eavesdropping.
+
+One naive thinking is to reduce the power of the wave from the router so that only my cell phone can receive the message. But what if the eavesdropper's device is extremely sensitive and can receive the wave at any power level? Indeed, the eavesdropper can still receive the wave until the router lowers the power to contain only a quantum of energy. At this point, the eavesdropper has to capture the entire wave or nothing at all. The wave cannot be split for partial reception. But if the eavesdropper captures the entire wave, I am alerted of the absence of the wave and would suspect the presence of an eavesdropper. This is one of the ideas behind quantum communication and solves the eavesdropping problem halfway. But continuing with the quantum nature of waves, we can add encryption to the solution, for which we will leave the details to Section-\ref{S-BB84}.
+
+\begin{figure}[h]\label{Room-WiFi}
+\begin{tikzpicture}
+\draw[green, very thick] (0,0) rectangle (8,5);
+\draw (1,3) node(router) [rectangle, draw] {router};
+\draw (6,3) node(phone) [rectangle, draw] {phone};
+\draw (5,1) node(computer) [rectangle, draw] {computer};
+\draw (10,2) node(eavesdropper) [rectangle, draw] {eavesdropper};
+\end{tikzpicture}
+\caption{Wi-Fi}
+\end{figure}
+
+
+\section{Application of quantum information}
+We are in an information explosion world. In recent years, the rise of AI has further fueled the creation of even more information. ChatGPT’s responses have become quite powerful, yet no one is satisfied — we all expect even more advanced AI. However, the computational power of current computer chips is not sufficient. Major AI companies have already bought out the most powerful GPU chips, driving Nvidia’s stock higher every day. Even with the most powerful GPUs today, training a large language model can take months or even up to a year. So, is there anything more powerful than GPUs? The answer is QPUs—quantum processing units or quantum computers!
+
+Quantum computing is the number one application of quantum information theory. Quantum communication is the second. It has the potential to make encryption key distribution more secure than existing technologies. However, many scientists doubt its importance when comparing the security improvement comparing over the cost.
+
+As a third application, quantum information may be the foundation of studying future-generation devices for integrated circuits. Current chips of integrated circuits are built by transistors as the fundamental devices, whose sizes are now in the nanometers and have met their limits. Any smaller devices may not rely on accumulative physical parameters such as current or voltage to carry information and may need to use individual quantum waves to carry information.
+
 \section{Constructing a quantum computer}
 The core of a quantum computer may use quantum waves to store and process information. However, other components of the computer still uses conventional computer hardware and software. We interact with the computer just like with any other computer. We can even use most of the general-purpose programming languages such as Python to program the quantum computer. Only the portion of a program that needs the power of quantum computing invokes a quantum circuit.
 
@@ -230,13 +324,13 @@ In communication textbooks, amplitudes and phases of waves are paired as polar c
 \caption{Phase modulation constellation diagram}
 \end{figure}
 
-The polar coordinate $(A, \phi)$ can also be written in Cartesian coordinates as $(A cos\phi, A sin\phi)$ or as a complex number $A e^{i\phi}$. The latter two notations are most useful for mathematical derivation.
+The polar coordinate $(A, \phi)$ can also be written in Cartesian coordinates as $(A cos\phi, A sin\phi)$ or as a complex number $A e^{i\phi}$. The polar coordinate notation is easier for geographic understanding. The latter two notations are most useful for mathematical derivation.
 
 From the constellation diagram and the Cartesian notation, we see that any modulation point can be regarded as a 2-dimensional vector, which can be decomposed into two vectors, one in the horizontal direction, and the other in the vertical direction. A wave with zero degrees of phase is a vector in the horizontal direction and is called a quadrature wave\index{quadrature wave} by communication engineers. One with $90^\circ$ of phase is a vector in the vertical direction and is called an in-phase wave\index{in-phase wave}.
 
-Indeed, in practice, any wave can be split into two waves, one in-phase, and the other quadrature. And, any in-phase wave and quadrature wave can be combined into one. The amplitudes and phases of the two components and the combined can be determined by vector addition or decomposition. Combining two or more waves is called superposition\index{superposition}, a term used by both engineers and physicists. Mathematically, the in-phase and quadrature waves are the vector basis of all waves when represented as vectors in the constellation diagram. Physicists may call them the basis waves.
+In practice, any wave can be split into two waves, one in-phase, and the other quadrature whose amplitudes can be determined by the vector decomposition. And, any in-phase wave and quadrature wave can be combined into one whose amplitude and phase can be determined by vector addition of the component waves. or decomposition. Combining two or more waves is called superposition\index{superposition}, a term used by both engineers and physicists. The in-phase and quadrature waves are the vector basis of all waves when represented as vectors in the constellation diagram. We may call them the basis waves.
 
-Worth noting, that the selection of the waves with phases of zero and 90 degrees is arbitrary. A wave can be split into a pair of waves whose phases are $90^\circ$ apart. Mathematically, such a pair of waves forms the orthogonal basis of a Hilbert space. To engineers, the advantage of using two orthogonal waves is that they have zero overlap with each other and are maximally distinguishable during demodulation or information readout. This feature will be shown in depth in Section-\ref{Sec-demodulator}.
+Worth noting, the selection of the waves with phases of zero and 90 degrees is arbitrary. A wave can be split into any pair of waves whose phases are $90^\circ$ apart. Mathematically, such a pair of waves forms the orthogonal basis of a Hilbert space. To engineers, the advantage of using two orthogonal waves is that they have zero overlap with each other and are maximally distinguishable during demodulation or information readout. This feature will be shown in depth in Section-\ref{Sec-demodulator}.
 
 subsection{Digital modulation}
 In the real world, each element in the communication channels and information processing devices can have noise and errors. We must select the modulation points sufficiently apart so that they are not obscured by noise and errors. Therefore, we can only use a finite number of modulation points to which only some integers can be mapped. Digital modulation gains accuracy while sacrificing information-carrying capacity.
@@ -847,13 +941,16 @@ The algorithm leaves the function $f(x)$ as a variable to be given at implementa
 \chapter{Qubit Multiplexing}\label{c-qubitMultiplexing}
 The smallest information-carrying unit of a conventional computer is a bit stored in a pair of transistors. From there, 8, 16, 32, or 64 bits are used together as units like a byte, INT16, INT32, or FLOAT for processing. All these units are of fixed sizes. The advantage of graphics processing units (GPU)\index{GPU} lies in their capability to process units of multiple bits in parallel.
 
-In communication, multiplexing is a technology that combines several carrier waves to transmit simultaneously to increase information transmission. The challenge is how allocate to and combine the waves so that the resources are fairly and efficiently used by all transmitting users.
+\section{Multiplexing techniques}
+In communication, multiplexing is a technology that combines several carrier waves to transmit simultaneously to increase information transmission. The challenge is how to allocate and combine the waves so that the resources are fairly and efficiently used by all transmitting users.
 
+\subsection{TDM and FDM}
 One simple multiplexing technique, frequency-division multiplexing\index{frequency-division multiplexing} (FDM)\index{FDM}, divides up the bandwidth into narrow frequency bands called channels and assigns different channels to different users. Another simple technique, called time-division multiplexing\index{time-division multiplexing} (TDM)\index{TDM}, divides up a big time slot into smaller ones, which as called chips, and assign different chips to transmit different user data -- simultaneously within the big time slot although not simultaneously within each chip. From these simple schemes, advanced multiplexing techniques, such as orthogonal frequency-division multiplexing\index{orthogonal frequency-division multiplexing} (OFDM)\index{OFDM} and code-division multiple access\index{code-division multiple access} (CDMA)\index{CDMA}, and their variants have given power to modern wireless communication including Wi-Fi, and 4G and 5G cellular communication.
 
 Similar multiplexing techniques are used in quantum computing and communication. For computing, multiplexing allows information carried by all the qubits processed simultaneously to increase computing power. For communication, multiplexing is often used for encryption.
 
 In appearance, all the cellphones transmit simultaneously, and interference or cross-talk will result in the cellphone tower's receiver. In reality, the receiver sees zero cross-talk current. The total electrical current induced in the detector of the receiver is proportional to the intensity of the sum of the 4 waves integrated over the time slot $T$. A cross-talk current would arise from the integration of the multiplication of the waves from any two cellphones. In other words, the overlap of the waves from any two cellphones is zero. This fact is reflected in the matrix rows in Eq. \ref{e-CDMA}: the vector product of each pair of rows is zero. In other words, the vectors represented by the rows are orthogonal to each other. 
+CDMA can be considered a progression of TDM. In TDM, a bit is transmitted in time slot $T$ as a wave. The wave for value "1" is zero in phase, and the one for "0" has a $\pi$ phase. What happens if we have $N$ cellphones that need to transmit? TDM would shorten the time slot to $T/N$ and assign a smaller time slot, called a chip, to one cellphone. But this would require each cellphone's data bits to be represented by short voltage pulses (each of $T/N$ in duration) with a long idle period. Pulsed at $N$ times shorter duration, the electronics are costly yet less utilized. For this reason alone, simple TDM is not efficient for resource allocation.
 
 \section{Mathematical notation}
 
@@ -883,37 +980,8 @@ Information carried by the multiplex is now in the $N$ complex parameters ${x_j,
 
 Graphically, all the multiplexing points lie on a $N$-dimensional sphere with a radius if we don't consider duplication. Of course, we can't plot this sphere in a constellation diagram like that in Fig. \ref{bloch-Elliptical}. The majority of the points are not in simple multiplex and cannot be represented by $2n$ real parameters $(\theta_1, \phi_1; \theta_2, \phi_2; ... \theta_n, \phi_n)$ or the equivalent ket notation $\keta{s_1} \keta{s_2} ... \keta{s_n}$. To physicists, these points are entangled waves. To engineers, they are non-simple multiplexes.
 
-\section{CDMA and Bell waves}
-CDMA can be considered a progression of TDM. In TDM, a bit is transmitted in time slot $T$ as a wave. The wave for value "1" is zero in phase, and the one for "0" has a $\pi$ phase. What happens if we have $N$ cellphones that need to transmit? TDM would shorten the time slot to $T/N$ and assign a smaller time slot, called a chip, to one cellphone. But this would require each cellphone's data bits to be represented by short voltage pulses (each of $T/N$ in duration) with a long idle period. Pulsed at $N$ times shorter duration, the electronics are costly yet less utilized. For this reason alone, simple TDM is not efficient for resource allocation.
+\section{Bell waves}
 
-CDMA is advantageous for this and many other reasons. It allows the electric signal in each cellphone to remain the same -- pulses of $T$ in duration. But each cellphone transmits a wave in each of the chips. In other words, they all transmit waves in all chips simultaneously. Of course, the waves from each cellphone must be different from the ones from another so that the base station can distinguish one from another.
-\begin{figure}
-    \centering
-\label{2CDMA}
-\begin{tikzpicture}[scale=1.5]
-    \draw[->] (-0.5,5) -- (2.5,5)  node[pos=1.02,below] {$t$};
-    \draw[->] (0,4.5) -- (0,8.5) node[pos=0.99,left] {$A$};
-    \draw[red] (0,5) -- (0,8) -- (0.98,8) -- (0.98,5) -- (1,5)
-    node[pos=1.02,below, black] {$\frac T 2$} -- (1,8) -- (1.98,8) -- (1.98,5)
-    node[pos=1.02,below, black] {$T$};
-
-    \draw[->] (-0.5,0) -- (2.5, 0)  node[pos=1.02,below] {$t$};
-    \draw[->] (0,-3.5) -- (0,3.5) node[pos=0.99,left] {$A$};
-    \draw[red] (0, 0) -- (0, 3) -- (0.98, 3) -- (0.98, 0) -- (1,0)
-    node[pos=6,above, black] {$\frac T 2$} -- (1,-3) -- (2,-3) -- (2,0)
-    node[pos=1.02,above, black] {$T$};
-\end{tikzpicture}
-    \caption{CDMA}
-\end{figure}
-
-Let's use the example of $N=2$ -- only two cell phones. The waves in each cellphone are generated in a fixed pattern of 2 pulses in each time slot. The amplitudes of the waves generated by the phones are $1/{\sqrt{2}} (1,1)$ and $1/{\sqrt{2}} (1,-1)$ respectively. The 2nd cellphone's square-wave-pulse pattern, for example, is shown in Fig. \ref{}. A negative pulse is a wave $\pi$ out of phase. When the data bit is "1," this cellphone transmits the 2 pulsed waves as shown in the figure. If the data bit is "0," the pulsed waves are transmitted with phases flipped by $\pi$. All 2 cellphones' patterns may be represented by the rows in this matrix
-\begin{equation}\label{e-CDMA2}
-  \begin{pmatrix} %https://www.mathworks.com/matlabcentral/answers/1728850-simulate-a-cdma-system-for-4-users-using-codes-of-length-4-samples-chips-over-a-frequency-select
-    1 & 1  \\
-    1 & -1
-    \end{pmatrix}.
-\end{equation}
-The matrix is called the 2-dimensional Walsh matrix. The normalized 2-dimensional Walsh matrix is actually the Hadamard transformation matrix that transforms the $\keta{0}$ and $\keta{1}$ waves to $\keta{+}$ and  $\keta{-}$ waves. The higher dimensional Walsh matrices have not been used in any published quantum algorithms or protocols.
 finds use in quantum information. The matrix transforms the single-qubit basis waves into the $\keta{+}$ and $\keta{-}$ waves.
 
 \subsection{Bell waves}
@@ -927,7 +995,7 @@ If we stack two 2-dimensional Hadamard matrices to become a 4-dimensional diagon
     0 & 0 & 1 & 1
     \end{pmatrix}
 \end{equation}
-it transform the 4 basis waves of 2 qubits into what are called the Bell states or Bell waves, named after John Bell. In ket notation, they are:
+it transforms the 4 basis waves of 2 qubits into what are called the Bell states or Bell waves, named after John Bell. In ket notation, they are:
 \begin{equation}
 \begin{array}{rl}
     \keta{B_{00}} =& \frac 1 {\sqrt 2} (\keta{0}\keta{0}+\keta{1}\keta{1}),\\
@@ -1014,13 +1082,13 @@ A particularly important type of control gate is the control-NOT or C-NOT gate, 
 \end{figure}
 Changing the input waves from $\keta{+}$ to $\keta{-}$ or from $\keta{0}$ to $\keta{1}$, we can obtain the other Bell states.
 
-\section{OFDM and Fourier waves}
+\section{Fourier waves}
 OFDM is a extension of FDM. Its set of basis waves is the discrete Fourier transform (DFT) of the set of FDM basis waves. We can apply the same technique and derive the set of Fourier basis waves from the $n$ qubits. If the initial N-dimensional basis vectors are $\keta{b_i}, i=1,2, \cdots, N$, the transformed basis vectors are
 \begin{equation}
-    \keta{{F}_i} = \sum_{j=0, 1, 2, \cdots , N-1} e^{- 2 \pi \frac {ij} N} \keta{b_j}
+    \keta{F_k} = \sum_{j=0, 1, 2, \cdots , N-1} e^{ 2 \pi i \frac {kj} N} \keta{b_j}
 \end{equation}
-where $i=0, 1, \cdots, N$.
-If we assume $\omega = e^{- 2 \pi/N}$, the transformation matrix is
+where $k=0, 1, \cdots, N-1$.
+If we assume $\omega = e^{ 2 \pi/N}$, the transformation matrix is
 \begin{equation}
     W = \frac 1 {\sqrt{N}}
     \begin{pmatrix}
@@ -1031,26 +1099,28 @@ If we assume $\omega = e^{- 2 \pi/N}$, the transformation matrix is
 1 & \omega^{N-1} & \cdots & \omega^{(N-1)(N-1)}
 \end{pmatrix}
 \end{equation}
-This matrix is one of the so-called Vandermonde matrices.
+This matrix is a type of Vandermonde matrix.
 
+The first Fourier basis wave is the even-superposition wave:
 \begin{equation}
 \begin{array}{rl}
-    \keta{e_n} &= \frac 1 {\sqrt{2}} (\keta[0]{0}+\keta[0]{1}) \frac 1 {\sqrt{2}} (\keta[1]{0}+\keta[1]{1})
-    ... \frac 1 {\sqrt{2}} (\keta[n-1]{0}+\keta[n-1]{1}) \\
-    &= \frac 1 {2^{n/2}} (\keta{b_0}+\keta{b_1}+...+\keta{b_{N-1}})
+    \keta{F_0} &= \frac 1 {\sqrt{N}} ( \sum_{j=0, 2, ..., N} \keta{b_j} ) \\
+    \frac 1 {\sqrt{2}} (\keta[0]{0}+\keta[0]{1}) \frac 1 {\sqrt{2}} (\keta[1]{0}+\keta[1]{1})
+    ... \frac 1 {\sqrt{2}} (\keta[n-1]{0}+\keta[n-1]{1}).
  \end{array}
 \end{equation}
-which is an evenly mixture of the $n$-qubit bases. But what are the orthogonal waves similar to the $\keta{-}$ of one qubit?
+It suggests that the wave is the multiplexing of the $\keta{+}$ waves.
+
+For any $k=0, 1, ...N-1$, we can write
 \begin{equation}
 \begin{array}{rl}
-\keta{s_k} &= \frac 1 {\sqrt{2}} ({\keta{0}}_0+{\keta{1}}_0)
+\keta{F_k} &= \frac 1 {\sqrt{2}} ({\keta{0}}_0+{\keta{1}}_0)
     \frac 1 {\sqrt{2}} ({\keta{0}}_1+e^{\frac {k*2 \pi i} 2}{\keta{1}}_1)
     ...  \frac 1 {\sqrt{2}} ({\keta{0}}_{n-1}+e^{\frac {(n-1)*2\pi i} 2^(n-1)}{\keta{1}}_{n-1}) \\
     ... \\
-    &= \frac 1 {\sqrt{N}} \prod^{n-1}_{l=0} ({\keta{0}}_l+e^{\frac {k\times l \times 2\pi i} 2^l}{\keta{1}}_l) where k=0, 1, ...N-1.
+    &= \frac 1 {\sqrt{N}} \prod^{n-1}_{l=0} ({\keta{0}}_l+e^{\frac {k \times 2\pi i} 2^l}{\keta{1}}_l).
 \end{array}
 \end{equation}
-Like the $\keta{+}$ and $\keta{-}$ waves, each of the $\{\keta{s_k}, k=0, 1, ... N-1\}$ waves is a mixture of all the base waves, but they have different orientations in the $N$ dimension Hilbert space.
 
 \subsection{Quantum gates}
 Qubits are memory devices or communication channels. Quantum gates are processing devices that can change the modulation of $\theta$ and phase $\phi$. As desired by the algorithms, the gates are concatenated or connected into circuits. Other than measuring gates, no gate changes the amplitude of the qubits in a circuit. Therefore, all gate transformations are unitary and can be expressed as
@@ -1157,23 +1227,6 @@ Alice' output $d_1 d_0$ & Bob's qubit  \\
 
 \chapter{Phase kick back}\label{c-Deutsch}
 
-\section{Deutsch-Jozsa algorithm}
-Deutsch-Jozsa algorithm\cite{Deutsch_Jozsa} proposed by Deutsch and Jozsa extends the problem concerning the original Deutsch algorithm to determine the type of a black-box function $f$ that maps ${0,1}^n \to {0,1}$. Clearly, the single-qubit gate shown in \ref{Deutsch} cannot be used. A quantum gate needs equal number of input and output qubits.
-
-\subsection{Circuit diagram}
-\begin{figure}[h]
-\begin{quantikz}[scale=1.3]
-    \lstick{\ket{+}} & \ctrl{1} \slice{[$(-1)^{f(0)}$\ket{0}+$(-1)^{f(1)}$ \ket{1}]\ket{-} }  & \gate{H} & \meter{} &\cw \rstick{$f(1)-f(0)$} \\
-    \lstick{\ket{-}} & \gate{U_f} &\qw \rstick{\ket{-}}
-\end{quantikz}
-\caption{Deutsch-Jozsa algorithm circuit}
-\label{Deutsch-Jozsa}
-\end{figure}
-
-\subsection{Performance}
-Processing: two quantum gates - one operation per gate; one measurement.
-Memory: one qubit for the processing. But for output, two qubits are required.
-
 
 \section{Phase kick back}
 \begin{figure}[h]
@@ -1201,20 +1254,37 @@ where $x = x_0 + x_1 2^1 + x_2 2^2 + ... +x_{N-1} 2^{N-1}$. In vector notation, 
 \end{equation}
 This matrix is the same matrix as for the discrete Fourier transform. Therefore, quantum Fourier transform is equivalent to discrete Fourier transform.
 
-\subsubsection{Complexity}
+\subsection{Complexity}
+
+\section{Deutsch-Jozsa algorithm}
+Deutsch-Jozsa algorithm\cite{Deutsch_Jozsa} proposed by Deutsch and Jozsa extends the problem concerning the original Deutsch algorithm to determine the type of a black-box function $f$ that maps ${0,1}^n \to {0,1}$. The single-qubit gate shown in \ref{Deutsch} cannot be used. A quantum gate needs an equal number of input and output qubits.
+
+\subsection{Circuit diagram}
+\begin{figure}[h]
+\begin{quantikz}[scale=1.3]
+    \lstick{\ket{+}} & \ctrl{1} \slice{[$(-1)^{f(0)}$\ket{0}+$(-1)^{f(1)}$ \ket{1}]\ket{-} }  & \gate{H} & \meter{} &\cw \rstick{$f(1)-f(0)$} \\
+    \lstick{\ket{-}} & \gate{U_f} &\qw \rstick{\ket{-}}
+\end{quantikz}
+\caption{Deutsch-Jozsa algorithm circuit}
+\label{Deutsch-Jozsa}
+\end{figure}
+
+\subsection{Performance}
+Processing: two quantum gates - one operation per gate; one measurement.
+Memory: one qubit for the processing. But for output, two qubits are required.
 
 \subsection{Phase estimation}
 \subsubsection{Complexity}
 
 \section{Shor's algorithm}
-Almost all Internet connections from our mobile phones and computers are based on AES, a private key encryption algorithm. To establish the key to be used, a public-key algorithm is used for key exchange. The standard public-key algorithms, RSA and DH algorithms are all based on the difficulty of factoring large integer numbers. Factoring 15 = 3x5 is easy for a person. Factoring 12140041 = 3413x3557 is impossible for a person. The key exchange used in Internet depends on factoring bigger numbers that are difficult for modern-day computers.
+The security of all Internet connections from our mobile phones and computers depends on the security of key exchanges using public-key algorithms. Among them, RSA and DH algorithms are based on the difficulty of factoring large integer numbers. Factoring 15 = 3x5 is easy for a person. Factoring 12140041 = 3413x3557 is impossible for a person. Shor's algorithm makes factoring large numbers exponentially easier using a quantum computer. Thus quantum computers threaten the security of today's Internet communication.
 
-For a positive integer $T$, how can we find out whether it has factors? The naive brute force approach is to iterate over $a=2, 3, ..., [T/2]$ one by one to see whether $T$ modulo $a$ is zero or $T \mod a = 0$. The needed operation is $[T/2]$. Mathematicians have found a shortcut basing on the fact that if a pair of positive integers $a < N$ and even number $r$ exist, such that $a^r = 1(\mod T)$, $T$ can be factored. And at least $a^{r/2}+1)$ and $(a^{r/2}-1)$ are the factors. $r$ is called the order of $a$. Since $a^r \leq T$, the search ranges of $a$ and $r$ are much smaller than iterating over $[T/2]$. But, besides some trivial solutions, iterating over all the possible $a$ and $r$ is still daunting. Peter Shor, in his 1997 monumental paper\cite{1997Shor}, described a quantum algorithm that finds the existence of $r$ and its value without iteration over all possible.
+Given a positive integer $T$, how can we find out whether it has factors? The naive brute force approach is to iterate over $a=2, 3, ..., [T/2]$ one by one to see whether $T$ modulo $a$ is zero or $T \mod a = 0$. The needed operation is $[T/2]$. Mathematicians have found a shortcut basing on the fact that if a pair of positive integers $a < N$ and even number $r$ exist, such that $a^r = 1(\mod T)$, $T$ can be factored. And at least $a^{r/2}+1$ and $a^{r/2}-1$ are the factors. $r$ is called the order of $a$. Since $a^r \leq T$, the search ranges of $a$ and $r$ are exponentially smaller than $[T/2]$. However, besides some trivial solutions, iterating over all the possible $a$ and $r$ is still daunting. Peter Shor's 1997 monumental paper\cite{1997Shor} describes a quantum algorithm that iterates only over candidates of $a$ while finding $r$ without iteration.
 
-Let $f(x) = a^x (Mod T)$. Assume we use $m$ qubits to carry $x$ and $n$ qubits to carry $f(x)$. Obviously, $x\in [0, T)$ and $f(x) \in [1,r]$. $r$ is unknown, but we know it is less than or equal to $T$. So, it's safe to select $n = [ln(T)]$. Although we can select $m=n$, the bigger the number $m$ is, the better accuracy, as we will see below. For convenience, we also define $N=2^n$ and $M=2^m$.
+Let $f(x) = a^x (Mod T)$. Assume we use $m$ qubits to carry $x$ and $n$ qubits to carry $f(x)$. Obviously, $x\in [0, r)$ and $f(x) \in [1, T]$. $r$ is unknown, but we know it is less than or equal to $ln(T)$. So, it's safe to select $n = [ln(T)]$. As for $m$, the We also define $N=2^n$ and $M=2^m$ to make the equations easier to read.
 
-We can apply the ideas behind Deutsch-Jozsa algorithm to to form the skeleton of the Shor's algorithm:
-1. Apply an $n$-qubit quantum gate $U_f$ basing on the function $f(x)$ but controlled by or use as input the even-superposition modulation point $\keta{s_t}$:
+We can apply the ideas behind Deutsch-Jozsa algorithm as the skeleton of Shor's algorithm:
+1. Apply an $n$-qubit quantum gate $U_f$ based on the function $f(x)$ but controlled by or use as input the even-superposition modulation point $\keta{s_t}$:
 \begin{equation}
     C-U_f{\keta{s_m}}_m {\keta{y}}_n = \frac 1 over \sqrt {M} \sum^{M-1}_{j=0} \keta{j} {\keta{y\bigoplus f(j)}}_n
 \end{equation}
@@ -1222,17 +1292,17 @@ We can apply the ideas behind Deutsch-Jozsa algorithm to to form the skeleton of
 3. Use the phase estimate technique, which we will discuss in next section, to reveal $r$ from the phases of the first $m$ qubit.
 
 \subsection{Eigen waves for phase kickback}
-For phase kickback to work, we need to find an eigen-wave of $U_f$ for the latter $n$ qubits. Let's assume the eigen-wave is
+For phase kickback to work, we must find an eigen-wave of $U_{f(j)}$ for the latter $n$ qubits. Let's assume the eigen-wave being
 \begin{equation}\label{keta_u}
-    \keta{u_f} = \sum^{r-1}_{j=0} c_j \keta{f(j)}.
+    \keta{u_{f(j)}} = \sum^{r-1}_{j=0} c_j \keta{f(j)}.
 \end{equation}
-And we recognize the eigen-waves of $U_f(0)$ are also eigen-waves of $U_f(j)$, and
+And we recognize the eigen-waves of $U_f(1)$ are also eigen-waves of $U_f(j)$, and
 \begin{equation}\label{Uketa_u}
-U_f(0) \keta{u_f} = \sum^{r-1}_{j=0} c_j \keta{a f(j)}= \sum^{r-1}_{j=0} c_j \keta{ f(j+1)}.
+U_{f(1)} \keta{u_{f(1)}} = \sum^{r-1}_{j=0} c_j \keta{a f(j)}= \sum^{r-1}_{j=0} c_j \keta{ f(j+1)}.
 \end{equation}
 Therefore, $e^{2\pi i \frac 1 r}$, is an eigen-value, and
 \begin{equation}\label{keta_u1}
-    \keta{u_1} = \sum^{r-1}_{j=0} e^{-i 2\pi \frac j r} \keta{f(j)}
+    \keta{u_{f(1)}} = \sum^{r-1}_{j=0} e^{-i 2\pi \frac j r} \keta{f(j)}
 \end{equation}
 is the eigen-wave.
 In general, the eigen-values are $e^{i 2\pi \frac k r}$ where $k=0, 1, 2, ..., r-1$, and the respective eigen-waves are
@@ -1258,6 +1328,47 @@ is the eigen-wave of $U_F$
 \includegraphics[width=12cm]{pic/Shor_algorithm.eps}
 \caption{Circuit of Shor's algorithm}
 \label{ShorAlgorithm}
+\end{figure}
+
+\subsection{Complexity}
+
+\section{Harrow–Hassidim–Lloyd algorithm}
+Harrow–Hassidim–Lloyd (HHL) algorithm approximately solves linear equation $A x = b$ where $x$ and $b$ are $n$ dimensional vectors and $A$ is a $n \times n$ hermitian matrix of complex numbers. The problem would be solved if we knew the orthonormal eigen-vectors ${v_i}, i=1, 2, ...n$ and the eigen-values ${\lambda_i}$ of $A$ because the eigen-values of $A^{-1}$ are  ${1/\lambda_i}$. By writing vector $b$ in terms of the eigen-vectors $b = {\sum^n}_{i=1} \beta_i v_i$, we can achieve our goal
+\begin{equation}
+    x = A^{-1} b = \sum^{n}_{i=1} \frac {\beta_i} {\lambda_i} v_i .
+\end{equation}
+
+Drawing from the technique used in the Deautsch's and Shor's algorithms, we need to "kick up" the eigen-values to the phases. Let's try
+\begin{equation}\label{hhl-1}
+    e^{i t A}\keta{b} = {\sum^n}_{i=1} \beta_i e^{i t \lambda_i} \keta{v_i}
+\end{equation}
+where $t$ is a constant to be determined soon. With the circuit of phase estimation, we then can bring the phases down to the second set of qubits
+\begin{equation}\label{hhl-2}
+    {\sum^n}_{i=1} \beta_i e^{i t \lambda_i} \keta{v_i} \keta{t\lambda_i}.
+\end{equation}
+We then apply controlled rotation gate to kick values of the second set of qubits to the $\theta$ of a third set of qubits, which contains only one, and have
+\begin{equation}\label{hhl-3}
+    \sum_{i=1}^n \beta_i e^{i t \lambda_i} \keta{v_i} \keta{t\lambda_i} \keta{cos\theta_i=\frac 1 {t\lambda_i}}.
+\end{equation}
+
+Here
+\begin{equation}
+    \keta{cos\theta_i=\frac 1 {t\lambda_i}} = \frac 1 {t\lambda_i} \keta{0} + sin{\theta_i} \keta{1}.
+\end{equation}
+If measuring the third set of qubits results in 0, the first and second sets of qubits collaps to
+\begin{equation}
+    \sum_{i=1}^n \beta_i e^{i t \lambda_i} \keta{v_i} \keta{t\lambda_i} \frac 1 {t\lambda_i}.
+\end{equation}
+
+\subsection{Circuit diagram}
+\begin{figure}[ht]\label{HHL}
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    \lstick{\ket{0}} & \qwbundle{1} & \qw               & \qw       & \qw       & \gate{RY}  & \meter{} &\cw \rstick{take result 0} \\
+    \lstick{\ket{0}} & \qwbundle{n} &\gate{H^{\otimes n}} &\ctrl{1}     & \gate{IQFT} & \ctrl{-1} & \qw &\gate{QFT} &\ctrl{1}       &\qw  \\
+    \lstick{\ket{b}} & \qwbundle{n} & \qw               & \gate{e^{itA}} & \qw       &\qw       &\qw    &\qw       &\gate{e^{-itA}} & \qw \rstick{{\ket{x}}}
+\end{quantikz}
+
+\caption{HHL algorithm}
 \end{figure}
 
 \subsection{Complexity}
@@ -1405,28 +1516,6 @@ Another type of qubits uses lights confined in optical waveguides. Optical fiber
 \end{figure}
 
 The Xanadu.ai M-8 quantum computing chip assembles waveguide qubits and processing gates in an integrated waveguide circuit. We see it very much resembles a maze. The optical waveguides are the paths that light waves traverse. Its couplers and splitters resemble the junctions of maze. A coupler merge two light paths into one, and a splitter split one into two. The chip has 8 entrances and 8 exits and can build $8^8$ possible paths.
-
-\section{Superconductor qubits}
-A superconductor transmon qubit is similar to the string of a guitar and uses the first two standing waves, which resonate at the first and second harmonic frequencies respectively, to represent the integers of "0" and "1". Such a qubit is constructed by two superconductors separated by a layer of insulator. The insulator is thin enough for electrons to move ("tunnel") back and forth from one superconductor to another without loss of energy. But traveling through the insulator leads to delays (phase delays) of the electrons. The back-and-forth movement (vibration) of the electrons between the two superconductors resonate as standing waves at periods fractions of the delay. typically, the first fundamental frequency and the first harmonic are used to represent "0" and "1".
-\begin{figure}[h]
-\includegraphics[width=12cm]{pic/supercQubit.jpg}
-\caption{Josephson junction}
-\label{Superconductor}
-\end{figure}
-
-\begin{figure}[h]
-\includegraphics[width=12cm]{pic/superGates.jpg}
-\caption{Superconductor gates.}
-\label{superGates}
-\end{figure}
-
-\section{Trapped atoms and ions}
-
-\begin{figure}[h]
-\includegraphics[width=12cm]{pic/h-atom.png}
-\caption{Atom}
-\label{Atom}
-\end{figure}
 
 %\backmatter
 

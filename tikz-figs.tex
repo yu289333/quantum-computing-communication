@@ -1,3 +1,140 @@
+\label{t-gates}
+\begin{tabular}{|c|c|c|}
+\hline
+量子门 & 转换图像描述 & $(x_0, x_1)$转换矩阵 \\
+\hline
+T & $\phi + \pi/4$ & $
+\begin{pmatrix}
+    1 & 0 \\
+    0 & e^{i \pi/4}
+\end{pmatrix} $ \\
+\hline
+S & $\phi + \pi/4$ & $
+\begin{pmatrix}
+    1 & 0 \\
+    0 & i 
+\end{pmatrix} $ \\
+\hline
+X & $(1, \pi/4, 0)$轴线的镜像反影 & $
+\begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+\end{pmatrix} $ \\
+\hline
+Y & $\phi + \pi/2$, $\theta + \pi/2$ & $
+\begin{pmatrix}
+    0 & -i \\
+    i & 0
+\end{pmatrix} $ \\
+\hline
+Z & $\phi + \pi$ & $
+\begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+\end{pmatrix} $ \\
+\hline
+H & $(1, \pi/8, 0)$轴线的镜像反影  & $
+\frac 1 {\sqrt 2}
+\begin{pmatrix}
+    1 & -1 \\
+    1 & 1
+\end{pmatrix} $ \\
+\hline
+
+\end{tabular}
+
+%\label{3levels}
+\begin{tikzpicture}[
+info/.style={rounded rectangle, draw=black, minimum size=30, align=center},
+symbol/.style={chamfered rectangle, draw=black, very thick, minimum size=40, align=center},
+carrier/.style={rounded corners, draw=black, very thick, minimum size=60, align=center},
+]
+\node[info] (in) {Input\\information};
+\node (proc) [info, right=2.5 of in] {Information\\processing};
+\node (out) [info, right=2.7 of proc] {Output\\information};
+\draw (in.west) node[text width=80, align=center, anchor=east] {Information\\level};
+\draw[->, thick] (in) to node[below] {} (proc);
+\draw[->, thick] (proc) to node[below] {} (out);
+
+\node (sym_in) [symbol, below=2 of in] {Input\\numbers};
+\node (sym_proc) [symbol, right=2.2 of sym_in] {algorithms and\\software code\\(on Turing machine)};
+\node (sym_out) [symbol, right=2.4 of sym_proc] {Output\\numbers};
+
+\draw (sym_in.west) node[text width=80, align=center, anchor=east] {Number-symbol\\level};
+\draw[->, very thick] (in) to node[left, color=blue] {encoding} (sym_in);
+\draw[->, thick] (sym_in) to node[below] {} (sym_proc);
+\draw[->, thick] (sym_proc) to node[below] {} (sym_out);
+\draw[->, thick] (proc) to node[right, align=left] {design\\programming} (sym_proc);
+\draw[->, thick] (sym_out) to node[left, color=blue] {decoding} (out);
+
+\node (qubit) [carrier, below=2 of sym_in] {Carrier parameters\\(qubits as registers)};
+\node (gate) [carrier, right=1.3 of qubit] {U-transforming gates\\(Turing complete ALU)};
+\node (qubit_out) [carrier, right=1.4 of gate] {Carrier parameters\\(qubits as registers)};
+
+\draw (qubit.west) node[text width=80, align=center, anchor=east] {Carrier\\level};
+\draw[->, very thick] (sym_in) to node[left, color=blue, label={[black]0:carrying}] {modulation} (qubit);
+\draw[->, thick] (qubit) to node[below] {} (gate);
+\draw[->, thick] (gate) to node[below] {} (qubit_out);
+\draw[->, thick] (sym_proc) to node[right] {execute} (gate);
+\draw[->, thick] (qubit_out) to node[left, color=blue, label={[black]0:readout}] {demodulation} (sym_out);
+
+\end{tikzpicture}
+
+\label{3level-a}
+\begin{flushleft}
+\begin{tikzpicture}[
+info/.style={rounded rectangle, draw=black, minimum size=30, align=center},
+symbol/.style={chamfered rectangle, draw=black, very thick, minimum size=40, align=center},
+carrier/.style={rounded corners, draw=black, very thick, minimum size=60, align=center},
+]
+
+% Define a grid using coordinates
+\coordinate (grid1) at (0,0);      % Top-left
+\coordinate (grid2) at (5,0);      % Top-center
+\coordinate (grid3) at (10,0);      % Top-right
+\coordinate (grid4) at (0,-3);     % Middle-left
+\coordinate (grid5) at (5,-3);     % Middle-center
+\coordinate (grid6) at (10,-3);     % Middle-right
+\coordinate (grid7) at (0,-7);     % Bottom-left
+\coordinate (grid8) at (5,-7);     % Bottom-center
+\coordinate (grid9) at (10,-7);     % Bottom-right
+
+% Nodes at grid points
+\node[info] (in) at (grid1) {Input\\information};
+\node[info] (proc) at (grid2) {Information\\processing};
+\node[info] (out) at (grid3) {Output\\information};
+
+\node[symbol] (sym_in) at (grid4) {Input\\numbers};
+\node[symbol] (sym_proc) at (grid5) {Algorithms and\\software code};
+\node[symbol] (sym_out) at (grid6) {Output\\numbers};
+
+\node[carrier] (qubit) at (grid7) {Carrier wave\\parameters};
+\node[carrier] (gate) at (grid8) {Unitary\\transformation};
+\node[carrier] (qubit_out) at (grid9) {Carrier wave\\parameters};
+
+% Draw levels
+\draw (in.west) node[text width=80, align=center, anchor=east] {Information\\level};
+\draw (sym_in.west) node[text width=80, align=center, anchor=east] {Number-symbol\\level};
+\draw (qubit.west) node[text width=80, align=center, anchor=east] {Carrier\\level};
+
+% Draw connecting arrows
+\draw[->, thick] (in) to (proc);
+\draw[->, thick] (proc) to (out);
+\draw[->, very thick] (in) to node[left, color=blue] {encoding} (sym_in);
+\draw[->, thick] (sym_in) to (sym_proc);
+\draw[->, thick] (sym_proc) to (sym_out);
+\draw[->, thick] (proc) to node[right, align=left] {design\\programming} (sym_proc);
+\draw[->, thick] (sym_out) to node[left, color=blue] {decoding} (out);
+\draw[->, very thick] (sym_in) to node[left, color=blue] {modulation} (qubit);
+\draw[->, thick] (qubit) to (gate);
+\draw[->, thick] (gate) to (qubit_out);
+\draw[->, thick] (sym_proc) to node[right] {execute} (gate);
+\draw[->, thick] (qubit_out) to node[left, color=blue] {demodulation} (sym_out);
+
+\end{tikzpicture}
+\end{flushleft}
+
+
 %\label{Maze}
 \begin{tikzpicture}[scale=0.5]
 % Water
@@ -137,14 +274,15 @@
 %\label{Wave}
 \begin{tikzpicture}[scale=1.2]
     \draw[->] (-3.8,0) -- (3.9, 0)  node[pos=1.02,below] {$t$};
-    \draw[->] (0,-3.5) -- (0,3.5);
+    \draw[->] (0,-3.5) -- (0,3.5)   node[pos=1.02,right] {$h$};
     \draw[dotted, red] (-3.5,0) sin (-2.5,3) cos (-1.5,0) sin (-0.5,-3) cos (0.5,0) sin (1.5,3) cos (2.5,0) sin (3.5,-3);
     \draw[red, fill] (-2.5,3) circle(0.05cm);
     \draw[red, fill] (1.5,3) circle(0.05cm);
-    \draw[dashed] (-2.5,0) -- (-2.5,3) node[pos=0.5, rotate = 90, above] {amplitude};
-    \draw[dashed] (-2.5,3) -- (1.5,3) node[pos=0.3, above] {period - $T$};
-    \draw[red, fill] (0.5,0) circle(0.05cm);
-    \draw[dashed] (0.25,-0.1) -- (1,-2) node[below] {phase};
+    \draw[dashed] (-2.5,0) -- (-2.5,3) node[pos=0.5, rotate = 90, above] {振幅 - $A$};
+    \draw[dashed] (-2.5,3) -- (1.5,3) node[pos=0.3, above] {周期 - $T$};
+    %\draw[gray, fill] (1.5,0) circle(0.05cm);
+    \draw[dashed] (-2.5,0.6) -- (0, 0.6) ;
+    \draw[dashed] (-1.2, 0.5) -- (-2, -2) node[below] {相位 - $\phi / T$};
 \end{tikzpicture}
 
 %\label{PM}
@@ -703,6 +841,23 @@
     \draw[red, fill] (-45:3) circle(0.05cm) node[right] {110};
 \end{tikzpicture}
 
+%\label{16QAM}
+\begin{tikzpicture}[scale=3]
+
+% Axis
+\draw[->] (-2.5,0) -- (2.5,0) node[right] {Quadrature ($Q$)};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {In-phase ($I$)};
+
+% Constellation points and labels
+\foreach \x/\ix in {-1.5/00, -0.5/01, 0.5/11, 1.5/10} {
+    \foreach \y/\iy in {-1.5/00, -0.5/01, 0.5/11, 1.5/10} {
+        \shade[shading=radial, inner color=green, outer color=white]  (\x, \y) circle (6pt); % Larger circle with fading edge
+        \node[anchor=north] at (\x, \y - 0.3) {\ix\iy}; % Shift labels slightly below
+    }
+}
+
+\end{tikzpicture}
+
 %\label{Bloch-alt}
 \tdplotsetmaincoords{0}{0}
 \begin{tikzpicture} %[scale=2,tdplot_main_coords]
@@ -737,6 +892,54 @@
     %\draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (Pyz) arc (75:60:1.2) -- cycle;
     \draw( -0.8, 1.6) node[anchor=north west] {$\varphi$};
     \draw( 1.3, 0.8) node[anchor=north west] {$\theta$};
+\end{tikzpicture}
+
+%\label{bloch-Elliptical}
+\tdplotsetmaincoords{75}{110}
+\pgfmathsetmacro{\h}{3.53}
+\pgfmathsetmacro{\hn}{-3.53}
+\pgfmathsetmacro{\r}{5}
+\pgfmathsetmacro{\rn}{-5}
+\pgfmathsetmacro{\ang}{105}
+
+\begin{tikzpicture}[tdplot_main_coords]
+\tdplotsetcoord{P1}{\r}{45}{45}
+\tdplotsetcoord{P2}{\r}{90}{45}
+
+% xy plane
+\tdplotdrawarc[black]{(0,0,0)}{\r}{-77}{\ang}{};
+\tdplotdrawarc[dashed, gray]{(0,0,0)}{\r}{\ang}{285}{};
+% yz plane
+\tdplotsetthetaplanecoords{90}
+\tdplotdrawarc[tdplot_rotated_coords, gray!30]{(0,0,0)}{\r}{0}{90}{};
+\tdplotdrawarc[tdplot_rotated_coords, gray!35]{(0,0,0)}{\r}{-50}{0}{};
+\tdplotdrawarc[tdplot_rotated_coords,dashed, gray!50]{(0,0,0)}{\r}{270}{305}{};
+% apparent yz plane
+\tdplotsetthetaplanecoords{\ang}
+\tdplotdrawarc[tdplot_rotated_coords, gray]{(0,0,0)}{\r}{-90}{90}{};
+
+% axes
+\draw[dashed, gray!50] (\rn,0,0) -- (0,0,0); \draw[gray!50] (0,0,0) -- (\r,0,0); %x
+\draw[gray!55] (0,\rn,0) -- (0,\r,0); %y
+\draw[gray!60] (0,0,0) -- (0,0,\r); %z
+
+\draw[thick, -Stealth] (\r,0,0) -- (9,0,0) node[black, left] {$x$};
+\draw[thick, -Stealth] (0,\r,0) -- (0,7,0) node[black, right] {$y$};
+\draw[thick, -Stealth] (0,0,\r) -- (0,0,7) node[black, left] {$z$};
+
+% Coordination point
+\fill[red] (P1) circle (0.1);
+\draw[dashed, red!60] (0,0,0) -- (P1);
+\draw[dashed, red!70] (0,0,0) -- (2.5, 2.5, 0) -- (P1); 
+\draw[dashed, red!70] (0,0,0) -- (P2);
+
+\tdplotsetthetaplanecoords{45}
+\tdplotdrawarc[tdplot_rotated_coords, -Latex]{(0,0,0)}{2}{0}{45}{anchor=north east}{$\theta$}
+\tdplotdrawarc[tdplot_rotated_coords, dashed, red!45]{(0,0,0)}{\r}{0}{90}{};
+
+\draw [thick, -Latex, canvas is xy plane at z=0] (2,0) arc [start angle=0, end angle=45, radius=2];
+\node at (2,0.5,-0.3) {$\phi$};
+
 \end{tikzpicture}
 
 %\label{Bloch}
@@ -774,15 +977,31 @@
 \begin{tikzpicture}
     \draw[->] (-3.5,0) -- (3.5, 0);
     \draw[->] (0,-3.5) -- (0,3.5);
-    \draw[dashed] (2.5,2.5) -- (0,0);
-    \draw[dashed] (0,0) -- (2.5,-2.5);
+    \draw[dashed] (2.4,2.4) -- (0,0);
+    \draw[dashed] (0,0) -- (2.3,-2.3);
     \draw[dotted, red] (0,0) circle(3cm);
-    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {0};
-    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {1};
-    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right] {+};
-    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below] {-};
+    \draw[red, fill] (3,0) circle(0.05cm) node[below right] {$\keta{0}$ - 00};
+    \draw[red, fill] (0,3) circle(0.05cm) node[above right] {$\keta{1}$ - 01};
+    \draw[red, fill] (2.12,2.12) circle(0.05cm) node[right=0.3] {$\keta{+}$ - 11};
+    \draw[red, fill] (2.12,-2.12) circle(0.05cm) node[below=0.5, right] {$\keta{-}$ - 10};
     \draw[dashed] (1,0) arc (0:45:1) node[right, pos=0.6]{$\theta=\pi/4$};
 \end{tikzpicture}
+
+\label{denseCoding}
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & &\lstick{Alice' 2nd bit}  & \cwbend{2} \\
+    & & \lstick{1st bit}  & \cwbend{1} \\
+    \lstick{Alice' \ket{0}} & \gate{H} &\ctrl{1} & \gate{X} & \gate{Z} &\ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Bob's 1st bit} \\
+    \lstick{Bob's \ket{0}} & \qw      & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{B_{00}}} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{\Phi_1}} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{\Phi_2}} & \targ{} & \qw & \meter{} & \cw \rstick{Bob's 2nd bit}
+\end{quantikz}
+
+\label{denseCoding}
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    & & &\lstick{Alice' 2nd bit}  & \cwbend{2} \\
+    & & \lstick{1st bit}  & \cwbend{1} \\
+    \lstick{Alice' \ket{0}} & \gate{H} &\ctrl{1} & \gate{X} & \gate{Z} &\ctrl{1} & \gate{H} & \meter{} &\cw \rstick{Bob's 1st bit} \\
+    \lstick{Bob's \ket{0}} & \qw      & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{B_{00}}} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{\Phi_1}} & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{\Phi_2}} & \targ{} & \qw & \meter{} & \cw \rstick{Bob's 2nd bit}
+\end{quantikz}
 
 %\label{2CDMA}
 \begin{tikzpicture}[scale=1.5]
@@ -821,4 +1040,53 @@
     \draw[red, fill] (0,-3) circle(0.05cm) node[below left] {11};
 \end{tikzpicture}
 
-%
+\label{deutsch-Alt}
+\begin{quantikz}%[slice all, slice style={shorten <=8mm}, slice label style = {yshift=-38mm} ]
+    \lstick{\ket{+}} & \qw & \ctrl{1} & \qw &\qw \rstick{\ket{+}} \\
+    \lstick{\ket{+}} & \ctrl{1} & \gate{ U_f } & \ctrl{1} & \gate{H} & \meter{} &\cw \rstick{} \\
+    \lstick{\ket{0}} & \targ{} \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{B_{00}}}
+    & \qw \slice[style={shorten <=12mm}, label style={yshift=-38mm}]{\ket{\Phi}}
+    & \targ{} & \qw & \meter{} & \cw \rstick{}
+\end{quantikz}
+
+\label{BB84}
+\begin{quantikz} %[wire types={q,c}]
+    \lstick{Alice' data bits}  & \cwbend{1} \\
+    \lstick{\ket{0}} & \gate{X} & \gate{H} &\qw & \qw & \gate{H} & \meter{} &\cw \rstick{data output} \\
+    \lstick{Alice' key bits}  & \cw & \cwbend{-1} &\slice{Eve} & & \cwbend{-1} & \cw \rstick{Bob's key bits}
+\end{quantikz}
+
+%%\label{t-modulations}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+调制技术 & 频率 & 振幅 & 相位 & 偏振   \\ \hline
+调幅广播(AM) &  & 近似于[0, $\infty$) &  & \\ \hline
+调频广播(FM) & (0, $\infty$) &  &  &  \\ \hline
+256QAM Wi-Fi & 多路复用 & \multicolumn{2}{l|}{选256 对值} & \\ \hline
+OTN4, 100GbE光纤通信 & 多路复用 &  & $\pi/4, 3\pi/4, 5\pi/4, 7\pi/4$ & $\pi/4, 3\pi/4$ \\ \hline
+光量子比特 &  & 多路复用 & [0, $2\pi$) & [0, $\pi$) \\ \hline
+\end{tabular}
+
+\begin{table}[]\label{t-modulation-steps}
+    \caption{调制技术解决的问题}
+\begin{tabular}{|l|l|l|}
+\hline
+问题 & 无线通信方法和思路 & 光量子比特方法和思路   \\ \hline
+选择哪些波参量能达到承载信息量的要求 &  振幅+相位 &  偏振+相位 \\ \hline
+选择哪些波参量值能避开其它限制 & 避开噪声限制 &  避开读取限制  \\ \hline
+选择波参量值怎样与信息符号对应 & 易纠错 & 依算法定 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+%\label{t-multiplexing}
+\begin{tabular}{|l|c|c|c|}
+\hline
+多路复用 & Wi-Fi, 4-5G OFDM & 3-4G CDMA & 光量子比特   \\ \hline
+单元波分离参量 &  频率段 FDM & 时间段 TDM & 能量，空间 \\ \hline
+组合参数 & 傅里叶矩阵 & 哈达玛矩阵Hadamard & 傅里叶矩阵, Bell  \\ \hline
+调制 & QAM & QAM & 偏振+相位 \\
+\hline
+\end{tabular}
+

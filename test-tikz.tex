@@ -1,23 +1,28 @@
-\documentclass[]{article}
+\documentclass[]{ctexart}
 \pagestyle{empty}
+\usepackage[table]{xcolor}
 \input{lib/packages}
 \input{lib/commands}
 
 \begin{document}
 
-%\label{2CDMA}
-\begin{tikzpicture}[scale=1.5]
-    \draw[->] (-0.5,5) -- (2.5,5)  node[pos=1.02,below] {$t$};
-    \draw[->] (0,4.5) -- (0,8.5) node[pos=0.99,left] {$A$};
-    \draw[red] (0,5) -- (0,8) -- (0.98,8) -- (0.98,5) -- (1,5)
-    node[pos=1.02,below, black] {$\frac T 2$} -- (1,8) -- (1.98,8) -- (1.98,5)
-    node[pos=1.02,below, black] {$T$};
+\begin{quantikz}
+    \ctrl{1}  \\
+    \gate{X} 
+\end{quantikz}
+\begin{quantikz}
+    \ctrl{1}  \\
+    \targ{} 
+\end{quantikz}
 
-    \draw[->] (-0.5,0) -- (2.5, 0)  node[pos=1.02,below] {$t$};
-    \draw[->] (0,-3.5) -- (0,3.5) node[pos=0.99,left] {$A$};
-    \draw[red] (0, 0) -- (0, 3) -- (0.98, 3) -- (0.98, 0) -- (1,0)
-    node[pos=6,above, black] {$\frac T 2$} -- (1,-3) -- (2,-3) -- (2,0)
-    node[pos=1.02,above, black] {$T$};
-\end{tikzpicture}
+
+\begin{figure}[h]
+\begin{quantikz}
+    \lstick{\ket{+}}  & \ctrl{1} & \qw \rstick[2]{\ket{\Phi^+}} \\
+    \lstick{\ket{0}} & \targ{} &\qw 
+\end{quantikz}
+\caption{Producing Bell states}
+\label{BS}
+\end{figure}
 
 \end{document}
