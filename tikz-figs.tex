@@ -104,17 +104,17 @@ carrier/.style={rounded corners, draw=black, very thick, minimum size=60, align=
 \node[info] (proc) at (grid2) {Information\\processing};
 \node[info] (out) at (grid3) {Output\\information};
 
-\node[symbol] (sym_in) at (grid4) {Input\\numbers};
+\node[symbol] (sym_in) at (grid4) {Input\\data};
 \node[symbol] (sym_proc) at (grid5) {Algorithms and\\software code};
-\node[symbol] (sym_out) at (grid6) {Output\\numbers};
+\node[symbol] (sym_out) at (grid6) {Output\\data};
 
-\node[carrier] (qubit) at (grid7) {Carrier wave\\parameters};
+\node[carrier] (qubit) at (grid7) {Carrier\\parameters};
 \node[carrier] (gate) at (grid8) {Unitary\\transformation};
-\node[carrier] (qubit_out) at (grid9) {Carrier wave\\parameters};
+\node[carrier] (qubit_out) at (grid9) {Carrier\\parameters};
 
 % Draw levels
 \draw (in.west) node[text width=80, align=center, anchor=east] {Information\\level};
-\draw (sym_in.west) node[text width=80, align=center, anchor=east] {Number-symbol\\level};
+\draw (sym_in.west) node[text width=80, align=center, anchor=east] {Data\\level};
 \draw (qubit.west) node[text width=80, align=center, anchor=east] {Carrier\\level};
 
 % Draw connecting arrows
@@ -851,7 +851,7 @@ carrier/.style={rounded corners, draw=black, very thick, minimum size=60, align=
 % Constellation points and labels
 \foreach \x/\ix in {-1.5/00, -0.5/01, 0.5/11, 1.5/10} {
     \foreach \y/\iy in {-1.5/00, -0.5/01, 0.5/11, 1.5/10} {
-        \shade[shading=radial, inner color=green, outer color=white]  (\x, \y) circle (6pt); % Larger circle with fading edge
+        \shade[shading=radial, inner color=green, outer color=white]  (\x, \y) circle (2pt); % Larger circle with fading edge
         \node[anchor=north] at (\x, \y - 0.3) {\ix\iy}; % Shift labels slightly below
     }
 }
